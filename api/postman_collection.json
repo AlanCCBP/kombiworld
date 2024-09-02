@@ -1,0 +1,374 @@
+{
+  "info": {
+    "name": "API Collection",
+    "description": "Collection for testing all API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/users"
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/users/:id"
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"user-3\",\n    \"email\": \"newuser@example.com\",\n    \"password\": \"newpassword\",\n    \"name\": \"New\",\n    \"lastName\": \"User\",\n    \"isAdmin\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/users"
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"updateduser@example.com\",\n    \"password\": \"updatedpassword\",\n    \"name\": \"Updated\",\n    \"lastName\": \"User\",\n    \"isAdmin\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/users/:id"
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:4000/users/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entrepreneurship",
+      "item": [
+        {
+          "name": "Get All Entrepreneurships",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/entrepreneurships"
+          }
+        },
+        {
+          "name": "Get Entrepreneurship by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/entrepreneurships/:id"
+          }
+        },
+        {
+          "name": "Create Entrepreneurship",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"entrepreneurship-2\",\n    \"name\": \"New Venture\",\n    \"description\": \"A new venture company\",\n    \"website\": \"https://newventure.com\",\n    \"logoUrl\": \"https://newventure.com/logo.png\",\n    \"phone\": \"987-654-3210\",\n    \"address\": \"456 New Street\",\n    \"city\": \"Newville\",\n    \"userId\": \"user-1\",\n    \"tags\": [\"venture\", \"innovation\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/entrepreneurships"
+          }
+        },
+        {
+          "name": "Update Entrepreneurship",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Venture\",\n    \"description\": \"An updated venture company\",\n    \"website\": \"https://updatedventure.com\",\n    \"logoUrl\": \"https://updatedventure.com/logo.png\",\n    \"phone\": \"987-654-3210\",\n    \"address\": \"789 Updated Street\",\n    \"city\": \"Updatedville\",\n    \"userId\": \"user-2\",\n    \"tags\": [\"venture\", \"growth\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/entrepreneurships/:id"
+          }
+        },
+        {
+          "name": "Delete Entrepreneurship",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:4000/entrepreneurships/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "SocialMedia",
+      "item": [
+        {
+          "name": "Get All Social Media",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/social-media"
+          }
+        },
+        {
+          "name": "Get Social Media by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/social-media/:id"
+          }
+        },
+        {
+          "name": "Create Social Media",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"socialmedia-2\",\n    \"platform\": \"LinkedIn\",\n    \"url\": \"https://linkedin.com/company/newventure\",\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/social-media"
+          }
+        },
+        {
+          "name": "Update Social Media",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"platform\": \"Facebook\",\n    \"url\": \"https://facebook.com/company/updatedventure\",\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/social-media/:id"
+          }
+        },
+        {
+          "name": "Delete Social Media",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:4000/social-media/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Location",
+      "item": [
+        {
+          "name": "Get All Locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/locations"
+          }
+        },
+        {
+          "name": "Get Location by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/locations/:id"
+          }
+        },
+        {
+          "name": "Create Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"location-2\",\n    \"latitude\": 37.7749,\n    \"longitude\": -122.4194,\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/locations"
+          }
+        },
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"latitude\": 34.0522,\n    \"longitude\": -118.2437,\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/locations/:id"
+          }
+        },
+        {
+          "name": "Delete Location",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:4000/locations/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Image",
+      "item": [
+        {
+          "name": "Get All Images",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/images"
+          }
+        },
+        {
+          "name": "Get Image by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:4000/images/:id"
+          }
+        },
+        {
+          "name": "Create Image",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"image-2\",\n    \"url\": \"https://example.com/image2.png\",\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/images"
+          }
+        },
+        {
+          "name": "Update Image",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"url\": \"https://example.com/image-updated.png\",\n    \"entrepreneurshipId\": \"entrepreneurship-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:4000/images/:id"
+          }
+        },
+        {
+          "name": "Delete Image",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:4000/images/:id"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+services:
+  backend:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    command: >
+      sh -c "wait-for-it.sh db:5432 -- npx prisma migrate deploy --schema=./prisma/schema.prisma && npm start"
+
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: junous
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
