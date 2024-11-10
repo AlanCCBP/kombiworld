@@ -4,12 +4,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { PrismaClient } = require('@prisma/client');
 
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
-var entrepreneurshipRouter = require('./routes/entrepreneurship');
-var socialMediaRouter = require('./routes/socialMedia');
-var locationRouter = require('./routes/location');
-var imageRouter = require('./routes/image');
+var authRouter = require('./routes/auth');
+var carsRouter = require('./routes/cars');
+var citiesRouter = require('./routes/cities');
+var invoicesRouter = require('./routes/invoices');
+var reservationsRouter = require('./routes/reservations');
+var rolesRouter = require('./routes/roles');
+var routesRouter = require('./routes/routes');
+var schedulesRouter = require('./routes/schedules');
+var stopsRouter = require('./routes/stops');
+var usersRouter = require('./routes/users');
 
 var app = express();
 const prisma = new PrismaClient();
@@ -20,12 +24,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', userRouter);
-app.use('/entrepreneurships', entrepreneurshipRouter);
-app.use('/social-media', socialMediaRouter);
-app.use('/locations', locationRouter);
-app.use('/images', imageRouter);
+app.use('/auth', authRouter);
+app.use('/cars', carsRouter);
+app.use('/cities', citiesRouter);
+app.use('/invoices', invoicesRouter);
+app.use('/reservations', reservationsRouter);
+app.use('/roles', rolesRouter);
+app.use('/routes', routesRouter);
+app.use('/schedules', schedulesRouter);
+app.use('/stops', stopsRouter);
+app.use('/users', usersRouter);
 
 process.on('SIGINT', async () => {
   await prisma.$disconnect();

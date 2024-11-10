@@ -1,6 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  binaryTargets = ["native", "debian-openssl-3.0.x", "darwin"]
 }
 
 datasource db {
@@ -9,57 +9,95 @@ datasource db {
 }
 
 model User {
-  id               String               @id @default(uuid())
-  email            String               @unique
-  password         String
-  name             String
-  lastName         String
-  isAdmin          Boolean
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
-  deletedAt        DateTime?
-  entrepreneurships Entrepreneurship[]
+  id                String        @id @default(uuid())
+  email             String        @unique
+  password          String
+  name              String
+  lastName          String
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  deletedAt         DateTime?
+  roles             UserRole[]
+  reservations      Reservation[]
+  drivenSchedules   Schedule[]    @relation("DriverSchedules") // Relación opuesta para Schedule
 }
 
-model Entrepreneurship {
-  id               String        @id @default(uuid())
-  name             String
-  description      String
-  website          String?
-  logoUrl          String?
-  phone            String
-  address          String?
-  city             String
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  deletedAt        DateTime?
-  userId           String
-  user             User          @relation(fields: [userId], references: [id])
-  socialMedia      SocialMedia[]
-  locations        Location[]
-  images           Image[]
-  tags             String[]
+model UserRole {
+  id          String   @id @default(uuid())
+  name        String
+  users       User[]
 }
 
-model SocialMedia {
-  id                  String            @id @default(uuid())
-  platform            String
-  url                 String
-  entrepreneurshipId  String
-  entrepreneurship    Entrepreneurship  @relation(fields: [entrepreneurshipId], references: [id])
+model Car {
+  id          String   @id @default(uuid())
+  licensePlate String   @unique
+  model       String
+  capacity    Int
+  schedules   Schedule[]
 }
 
-model Location {
-  id                  String            @id @default(uuid())
+model Schedule {
+  id          String     @id @default(uuid())
+  routeId     String
+  carId       String
+  driverId    String
+  departureTime DateTime
+  arrivalTime   DateTime
+  route       Route      @relation(fields: [routeId], references: [id])
+  car         Car        @relation(fields: [carId], references: [id])
+  driver      User       @relation("DriverSchedules", fields: [driverId], references: [id]) // Relación nombrada
+  reservations Reservation[]
+}
+
+model Stop {
+  id                  String     @id @default(uuid())
+  name                String
+  cityId              String
+  city                City       @relation(fields: [cityId], references: [id])
   latitude            Float?
   longitude           Float?
-  entrepreneurshipId  String
-  entrepreneurship    Entrepreneurship  @relation(fields: [entrepreneurshipId], references: [id])
+  routeStops          RouteStop[]
+  startReservations   Reservation[] @relation("StartStop") // Relación opuesta para startStop
+  endReservations     Reservation[] @relation("EndStop")   // Relación opuesta para endStop
 }
 
-model Image {
-  id                  String            @id @default(uuid())
-  url                 String
-  entrepreneurshipId  String
-  entrepreneurship    Entrepreneurship  @relation(fields: [entrepreneurshipId], references: [id])
+model RouteStop {
+  id         String   @id @default(uuid())
+  stopId     String
+  routeId    String
+  stop       Stop     @relation(fields: [stopId], references: [id])
+  route      Route    @relation(fields: [routeId], references: [id])
+}
+
+model Reservation {
+  id          String   @id @default(uuid())
+  userId      String
+  scheduleId  String
+  startStopId String
+  endStopId   String
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+  schedule    Schedule @relation(fields: [scheduleId], references: [id])
+  startStop   Stop     @relation("StartStop", fields: [startStopId], references: [id])
+  endStop     Stop     @relation("EndStop", fields: [endStopId], references: [id])
+}
+
+model Route {
+  id           String      @id @default(uuid())
+  name         String
+  startCityId  String
+  endCityId    String
+  startCity    City        @relation("RouteStartCity", fields: [startCityId], references: [id])
+  endCity      City        @relation("RouteEndCity", fields: [endCityId], references: [id])
+  stops        RouteStop[]
+  schedules    Schedule[]
+}
+
+model City {
+  id          String     @id @default(uuid())
+  name        String
+  stops       Stop[]
+  startRoutes Route[]    @relation("RouteStartCity") // Relación opuesta para startCity
+  endRoutes   Route[]    @relation("RouteEndCity")   // Relación opuesta para endCity
 }

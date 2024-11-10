@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
     command: >
-      sh -c "wait-for-it.sh db:5432 -- npx prisma migrate deploy --schema=./prisma/schema.prisma && npm start"
+      sh -c "wait-for-it.sh db:5432 -- npx prisma migrate deploy --schema=./prisma/schema.prisma && npm i && npm start"
 
   frontend:
     build:
@@ -39,7 +39,7 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: junous
+      POSTGRES_DB: kombiworld
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
