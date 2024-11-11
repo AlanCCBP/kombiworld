@@ -2,12 +2,23 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function getAllCities() {
-  return await prisma.city.findMany();
+  return await prisma.city.findMany({
+    include: {
+      stops: true,
+      startRoutes: true,
+      endRoutes: true,
+    },
+  });
 }
 
 async function getCityById(id) {
   return await prisma.city.findUnique({
     where: { id },
+    include: {
+      stops: true,
+      startRoutes: true,
+      endRoutes: true,
+    },
   });
 }
 
@@ -16,9 +27,15 @@ async function createCity(data) {
     const newCity = await prisma.city.create({
       data: {
         name: data.name,
-        stops: data.stops,
-        startRoutes: data.startRoutes,
-        endRoutes: data.endRoutes,
+        stops: {
+          create: data.stops,
+        },
+        startRoutes: {
+          create: data.startRoutes,
+        },
+        endRoutes: {
+          create: data.endRoutes,
+        },
       },
     });
     return newCity;
@@ -29,15 +46,23 @@ async function createCity(data) {
 }
 
 async function updateCity(id, data) {
-  return await prisma.city.update({
-    where: { id },
-    data,
-  });
+  try {
+    return await prisma.city.update({
+      where: { id },
+      data,
+    });
+  } catch (error) {
+    console.error('Error updating city:', error);
+    throw new Error('City not found or update failed');
+  }
 }
 
 async function deleteCity(id) {
-  return await prisma.city.delete({
+  return await prisma.city.update({
     where: { id },
+    data: {
+      deletedAt: new Date(),
+    },
   });
 }
 

@@ -2,12 +2,19 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function getAllCars() {
-  return await prisma.car.findMany();
+  return await prisma.car.findMany({
+    include: {
+      schedules: true,
+    },
+  });
 }
 
 async function getCarById(id) {
   return await prisma.car.findUnique({
     where: { id },
+    include: {
+      schedules: true,
+    },
   });
 }
 
@@ -28,15 +35,23 @@ async function createCar(data) {
 }
 
 async function updateCar(id, data) {
-  return await prisma.car.update({
-    where: { id },
-    data,
-  });
+  try {
+    return await prisma.car.update({
+      where: { id },
+      data,
+    });
+  } catch (error) {
+    console.error('Error updating car:', error);
+    throw new Error('Car not found or update failed');
+  }
 }
 
 async function deleteCar(id) {
-  return await prisma.car.delete({
+  return await prisma.car.update({
     where: { id },
+    data: {
+      deletedAt: new Date(),
+    },
   });
 }
 
