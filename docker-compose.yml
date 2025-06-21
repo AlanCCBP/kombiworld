@@ -1,19 +1,4 @@
 services:
-  backend:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    env_file:
-      - ./api/.env
-    volumes:
-      - ./api:/usr/src/app
-    ports:
-      - "4000:4000"
-    depends_on:
-      - db
-    command: >
-      sh -c "wait-for-it.sh db:5432 -- npx prisma migrate deploy --schema=./prisma/schema.prisma && npm i && npm start"
-
   frontend:
     build:
       context: ./app
@@ -23,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - users-service
 
   nginx:
     build:
@@ -34,16 +19,32 @@ services:
     depends_on:
       - frontend
 
-  db:
+  users-service:
+    build:
+      context: ./usersService
+      dockerfile: Dockerfile
+    env_file:
+      - ./usersService/.env
+    volumes:
+      - ./usersService:/usr/src/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - users-db
+    command: >
+      sh -c "wait-for-it.sh users-db:5432 -- npx prisma generate --schema=./prisma/schema.prisma && npx prisma migrate deploy --schema=./prisma/schema.prisma && npm start"
+
+  users-db:
     image: postgres:15
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: kombiworld
+      POSTGRES_USER: users_user
+      POSTGRES_PASSWORD: users_password
+      POSTGRES_DB: users
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - users_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
 volumes:
   pgdata:
+  users_data:

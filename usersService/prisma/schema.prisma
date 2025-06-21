@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  ADMIN
+  USER
+  BANNED
+  @@map("status")
+}
+
+enum DocType {
+  DNI
+  LC
+  LE
+  CUIT
+  CUIL
+  OTHER
+  @@map("doc_type")
+}
+
+model Role {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  userRoles UserRole[]
+
+  @@map("role")
+}
+
+model User {
+  id         String     @id @default(uuid()) @db.Uuid
+  firstName  String     @map("first_name")
+  lastName   String     @map("last_name")
+  docType    DocType    @map("doc_type")
+  docNumber  String     @unique @map("doc_number")
+  email      String     @unique
+  phone      String?
+  altPhone   String?    @map("alt_phone")
+  birthdate  DateTime?
+  address    String?
+  password   String
+  status     Status     @default(USER)
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+  deletedAt  DateTime?  @map("deleted_at")
+
+  userRoles  UserRole[]
+
+  @@map("user")
+}
+
+model UserRole {
+  roleId Int    @map("role_id")
+  userId String @db.Uuid @map("user_id")
+
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([roleId, userId])
+  @@map("user_role")
+}
