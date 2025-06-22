@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
 const userUtils = require('../utils/userUtils');
 const { PrismaClient } = require('@prisma/client');
+const csv = require('csv-parser');
+const stream = require('stream');
 const prisma = new PrismaClient();
 
 exports.createUser = async (userData) => {
@@ -119,4 +121,60 @@ exports.getUsers = async (filterOptions) => {
 
 exports.getUser = async (id) => {
   return await userModel.findUserById(id);
+};
+
+exports.importContactsFromCSV = async (buffer) => {
+  return new Promise((resolve, reject) => {
+    const results = [];
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(buffer);
+
+    bufferStream
+      .pipe(csv())
+      .on('data', (data) => results.push(data))
+      .on('end', async () => {
+        try {
+          const passwordHash = await bcrypt.hash('temporary123', 10);
+          const createdUsers = [];
+
+          for (const row of results) {
+            const firstName = row['First Name'] || 'NoName';
+            const lastName = row['Last Name'] || 'NoLastName';
+            const email =
+              row['E-mail 1 - Value'] ||
+              `${firstName.toLowerCase()}.${lastName.toLowerCase()}@temp.com`;
+            const phone = row['Phone 1 - Value'] || null;
+            const birthdate = row['Birthday']
+              ? new Date(row['Birthday'])
+              : null;
+
+            try {
+              const newUser = await userModel.createUser({
+                firstName,
+                lastName,
+                email,
+                phone,
+                docNumber: 'pending',
+                docType: 'DNI',
+                password: passwordHash,
+                status: 'USER',
+                birthdate,
+              });
+              createdUsers.push(newUser);
+            } catch (err) {
+              console.error(
+                'Error creating user:',
+                firstName,
+                lastName,
+                err.message,
+              );
+            }
+          }
+          resolve(createdUsers);
+        } catch (err) {
+          reject(err);
+        }
+      })
+      .on('error', (err) => reject(err));
+  });
 };

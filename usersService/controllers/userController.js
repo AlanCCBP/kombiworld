@@ -117,3 +117,21 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: 'Login failed', message: error.message });
   }
 };
+
+exports.importContacts = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'CSV file not provided' });
+    }
+
+    const result = await userService.importContactsFromCSV(req.file.buffer);
+
+    res.json({
+      message: `Users imported: ${result.length}`,
+      users: result,
+    });
+  } catch (error) {
+    console.error('importContacts error:', error);
+    res.status(500).json({ error: 'Error processing file' });
+  }
+};
