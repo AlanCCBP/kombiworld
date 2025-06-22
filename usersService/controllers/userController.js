@@ -3,14 +3,17 @@ const userService = require('../services/userService');
 
 exports.getUsers = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const { page = 1, limit = 10, filterOptions = {} } = req.body;
 
-    const result = await userService.getUsers({ page, limit });
+    const result = await userService.getUsers({
+      filterOptions,
+      page,
+      limit,
+    });
 
     res.json(result);
   } catch (error) {
-    console.error('getAllUsers error:', error);
+    console.error('getUsers error:', error);
     res.status(500).json({ error: error.message });
   }
 };

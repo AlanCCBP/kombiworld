@@ -113,8 +113,8 @@ exports.loginUser = async ({ email, password }) => {
   }
 };
 
-exports.getUsers = async (pagination) => {
-  return await userModel.getAllUsers(pagination);
+exports.getUsers = async (filterOptions) => {
+  return await userModel.getUsers(filterOptions);
 };
 
 exports.getUser = async (id) => {
