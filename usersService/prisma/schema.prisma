@@ -37,7 +37,7 @@ model User {
   firstName  String     @map("first_name")
   lastName   String     @map("last_name")
   docType    DocType    @map("doc_type")
-  docNumber  String     @unique @map("doc_number")
+  docNumber  String     @map("doc_number")
   email      String     @unique
   phone      String?
   altPhone   String?    @map("alt_phone")

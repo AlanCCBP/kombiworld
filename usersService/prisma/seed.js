@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-  const roles = ['ADMIN', 'USER', 'BANNED'];
+  const roles = ['ADMIN', 'DRIVER', 'USER', 'BANNED'];
 
   for (const name of roles) {
     await prisma.role.upsert({

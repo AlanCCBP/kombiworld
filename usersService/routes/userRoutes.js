@@ -6,11 +6,12 @@ const { authenticate } = require('../middlewares/authMiddleware');
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/', userController.createUser);
-router.put('/', userController.updateUser);
-router.post('/users', authenticate, userController.getUsers);
-router.post('/user', authenticate, userController.getUser);
-router.delete('/', userController.deleteUser);
+router.put('/:userId', authenticate, userController.updateUser);
+router.delete('/:userId', authenticate, userController.deleteUser);
+router.get('/:userId', authenticate, userController.getUser);
+router.get('/', authenticate, userController.getUsers);
 router.post('/login', userController.login);
+
 router.post(
   '/import-contacts',
   authenticate,

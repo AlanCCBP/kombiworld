@@ -1,14 +1,13 @@
-const { Prisma, DocType } = require('@prisma/client');
 const userService = require('../services/userService');
 
 exports.getUsers = async (req, res) => {
   try {
-    const { page = 1, limit = 10, filterOptions = {} } = req.body;
+    const { page = 1, limit = 10, ...filterOptions } = req.query;
 
     const result = await userService.getUsers({
       filterOptions,
-      page,
-      limit,
+      page: parseInt(page),
+      limit: parseInt(limit),
     });
 
     res.json(result);
@@ -20,7 +19,9 @@ exports.getUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await userService.getUser(req.params.id);
+    const { userId } = req.params;
+    const user = await userService.getUser(userId);
+
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (error) {
@@ -30,14 +31,7 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const user = req.body.user;
-
-    if (!user) {
-      return res.status(400).json({
-        error: 'Invalid request body',
-        details: ['El objeto [user] es requerido'],
-      });
-    }
+    const user = req.body; // 👈 directo, no req.body.user
 
     const requiredFields = [
       'firstName',
@@ -77,13 +71,14 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const user = req.body.user;
+    const { userId } = req.params;
+    const updates = req.body;
 
-    if (!user || !user.id) {
-      return res.status(400).json({ error: 'Missing user or user.id' });
+    if (!userId) {
+      return res.status(400).json({ error: 'Missing userId parameter' });
     }
 
-    const updatedUser = await userService.updateUser(user);
+    const updatedUser = await userService.updateUser(userId, updates);
 
     res.json(updatedUser);
   } catch (error) {
@@ -93,10 +88,10 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const { id } = req.body.user || {};
-    if (!id) return res.status(400).json({ error: 'Missing user.id' });
+    const { userId } = req.params;
+    if (!userId) return res.status(400).json({ error: 'Missing userId' });
 
-    const result = await userService.deleteUser(id);
+    const result = await userService.deleteUser(userId);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });

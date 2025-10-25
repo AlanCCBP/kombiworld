@@ -48,14 +48,18 @@ exports.createUser = async (userData) => {
   }
 };
 
-exports.updateUser = async (userData) => {
+exports.updateUser = async (userId, updates) => {
   try {
-    if (userData.password) {
-      userData.password = await bcrypt.hash(userData.password, 10);
+    if (updates.password) {
+      updates.password = await bcrypt.hash(updates.password, 10);
     }
 
-    const user = await userModel.updateUser(userData);
-    return user;
+    const updatedUser = await userModel.updateUser({
+      id: userId,
+      ...updates,
+    });
+
+    return updatedUser;
   } catch (error) {
     console.error('UpdateUser error:', error);
     return { error: 'User update failed', message: error.message };
@@ -120,6 +124,7 @@ exports.getUsers = async (filterOptions) => {
 };
 
 exports.getUser = async (id) => {
+  console.log('ALOSADASODAS', id);
   return await userModel.findUserById(id);
 };
 

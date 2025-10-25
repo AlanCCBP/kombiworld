@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_RESERVATIONS")
+}
+
+model Route {
+  id          String    @id @default(uuid())
+  name        String
+  ticketPrice Decimal   @db.Decimal(10,2)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  stops       Stop[]
+  trips       Trip[]
+}
+
+model Stop {
+  id          String    @id @default(uuid())
+  routeId     String
+  name        String
+  latitude    Decimal   @db.Decimal(9,6)
+  longitude   Decimal   @db.Decimal(9,6)
+  plusMins    Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  route       Route     @relation(fields: [routeId], references: [id])
+  ticketsOrigin Ticket[] @relation("TicketOrigin")
+  ticketsDestination Ticket[] @relation("TicketDestination")
+}
+
+model Trip {
+  id          String    @id @default(uuid())
+  routeId     String
+  departureTime DateTime
+  available   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  driverId    String
+
+  route       Route     @relation(fields: [routeId], references: [id])
+  tickets     Ticket[]
+}
+
+model Ticket {
+  id            String   @id @default(uuid())
+  tripId        String
+  passengerId   String
+  originStopId  String
+  destinationStopId String
+  paymentStatus Boolean  @default(false)
+  invoiceId     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  trip          Trip     @relation(fields: [tripId], references: [id])
+  originStop    Stop     @relation("TicketOrigin", fields: [originStopId], references: [id])
+  destinationStop Stop   @relation("TicketDestination", fields: [destinationStopId], references: [id])
+}
