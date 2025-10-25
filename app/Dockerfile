@@ -1,24 +1,14 @@
-# Frontend Dockerfile
-# Stage 1: Build the Next.js application
-FROM node:22-alpine AS builder
+FROM node:24-slim
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
 
 RUN npm install
 
 COPY . .
-
-# Build the Next.js application
-RUN npm run build
-
-# Stage 2: Serve the production build with Node.js
-FROM node:22-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app ./
 
 # Expose port 3000
 EXPOSE 3000
