@@ -23,9 +23,8 @@ export default function Navbar() {
           <Link href="/commutes">Combinaciones</Link>
           <Link href="/status">Estado de los Servicios</Link>
           <Link href="/termsAndConditions">Términos y Condiciones</Link>
-          <a href="#cta" className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600">
-            Reservar
-          </a>
+          <Link href="/register">Registrarse</Link>
+          <Link href="/login">Ingresar</Link>
         </div>
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
@@ -53,7 +52,14 @@ export default function Navbar() {
             className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600 text-center"
             onClick={() => setOpen(false)}
           >
-            Reservar
+            Registrarse
+          </a>
+          <a
+            href="#cta"
+            className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600 text-center"
+            onClick={() => setOpen(false)}
+          >
+            Ingresar
           </a>
         </div>
       )}

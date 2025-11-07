@@ -10,6 +10,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.5",
+    "@tanstack/react-query-devtools": "^5.90.2",
     "@types/react-map-gl": "^6.1.7",
     "lucide-react": "^0.543.0",
     "mapbox-gl": "^3.14.0",
@@ -21,8 +23,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
+    "@types/node": "^20.19.23",
+    "@types/react": "^19.2.2",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",

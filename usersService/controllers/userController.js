@@ -31,7 +31,7 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const user = req.body; // 👈 directo, no req.body.user
+    const user = req.body;
 
     const requiredFields = [
       'firstName',
