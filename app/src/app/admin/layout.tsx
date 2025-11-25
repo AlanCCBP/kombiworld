@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SideBar from "@/components/Sidebar";
 import { Building2, LayoutDashboard, Receipt, UsersRound } from "lucide-react";
-import NavbarPublic from "@/components/NavbarPublic";
 import Footer from "@/components/Footer";
 import { MenuItem } from "@/types";
 

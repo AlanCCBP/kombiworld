@@ -1,1 +1,1281 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"ascent":232.3,"descent":232.3,"segments":[{"distance":1.918,"duration":197.3,"steps":[{"distance":0.059,"duration":6.1,"type":11,"instruction":"Camina hacia el sudeste en <b>Combate de San Lorenzo</b>","name":"Combate de San Lorenzo","way_points":[0,1]},{"distance":0.23,"duration":23.7,"type":0,"instruction":"Gire a la izquierda a <b>Rivadavia</b>","name":"Rivadavia","way_points":[1,3]},{"distance":1.629,"duration":167.5,"type":1,"instruction":"Gire a la derecha a <b>Padre Luis Brady, RP43</b>","name":"Padre Luis Brady, RP43","way_points":[3,19]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Padre Luis Brady, RP43, a la derecha","name":"-","way_points":[19,19]}],"ascent":6,"descent":7},{"distance":18.142,"duration":655.5,"steps":[{"distance":0.037,"duration":3.8,"type":11,"instruction":"Camina hacia el sudeste en <b>Padre Luis Brady, RP43</b>","name":"Padre Luis Brady, RP43","way_points":[19,21]},{"distance":18.105,"duration":651.7,"type":1,"instruction":"Gire a la derecha a <b>Ruta Nacional 5, RN5</b>","name":"Ruta Nacional 5, RN5","way_points":[21,84]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Ruta Nacional 5, RN5, a la derecha","name":"-","way_points":[84,84]}],"ascent":41.1879997253418,"descent":36.1879997253418},{"distance":15.24,"duration":598.4,"steps":[{"distance":14.532,"duration":544.9,"type":11,"instruction":"Camina hacia el suroeste en <b>Ruta Nacional 5, RN5</b>","name":"Ruta Nacional 5, RN5","way_points":[84,172]},{"distance":0.646,"duration":38.8,"type":1,"instruction":"Gire a la derecha a <b>Acceso Néstor Carlos Kirchner</b>","name":"Acceso Néstor Carlos Kirchner","way_points":[172,177]},{"distance":0.062,"duration":14.8,"type":0,"instruction":"Gire a la izquierda a <b>De los Fundadores</b>","name":"De los Fundadores","way_points":[177,180]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a De los Fundadores, a la izquierda","name":"-","way_points":[180,180]}],"ascent":44.612998962402344,"descent":41.612998962402344},{"distance":0.518,"duration":124.4,"steps":[{"distance":0.518,"duration":124.4,"type":11,"instruction":"Camina hacia el suroeste en <b>De los Fundadores</b>","name":"De los Fundadores","way_points":[180,185]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a De los Fundadores, a la izquierda","name":"-","way_points":[185,185]}],"ascent":1.5,"descent":2},{"distance":0.226,"duration":22.5,"steps":[{"distance":0.029,"duration":7.1,"type":11,"instruction":"Camina hacia el suroeste en <b>De los Fundadores</b>","name":"De los Fundadores","way_points":[185,186]},{"distance":0.197,"duration":15.4,"type":1,"instruction":"Gire a la derecha a <b>Acceso Raúl Alfonsín, 028-11</b>","name":"Acceso Raúl Alfonsín, 028-11","way_points":[186,189]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Acceso Raúl Alfonsín, 028-11, a la derecha","name":"-","way_points":[189,189]}],"ascent":1.5,"descent":1.5},{"distance":2.165,"duration":176.5,"steps":[{"distance":2.165,"duration":176.5,"type":11,"instruction":"Camina hacia el noroeste en <b>Acceso Raúl Alfonsín, 028-11</b>","name":"Acceso Raúl Alfonsín, 028-11","way_points":[189,212]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Acceso Raúl Alfonsín, 028-11, a la derecha","name":"-","way_points":[212,212]}],"ascent":12.5,"descent":7.5},{"distance":1.859,"duration":158.6,"steps":[{"distance":0.083,"duration":7.4,"type":11,"instruction":"Camina hacia el noroeste en <b>Avenida Bartolomé Mitre, 028-11</b>","name":"Avenida Bartolomé Mitre, 028-11","way_points":[212,213]},{"distance":0.94,"duration":96.4,"type":0,"instruction":"Gire a la izquierda a <b>Avenida Avellaneda</b>","name":"Avenida Avellaneda","way_points":[213,224]},{"distance":0.836,"duration":54.7,"type":12,"instruction":"Gire a la izquierda a <b>Avenida Avellaneda</b>","name":"Avenida Avellaneda","way_points":[224,233]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Avellaneda, a la izquierda","name":"-","way_points":[233,233]}],"ascent":8.5,"descent":16},{"distance":0.967,"duration":66.1,"steps":[{"distance":0.006,"duration":0.4,"type":11,"instruction":"Camina hacia el suroeste en <b>Avenida Avellaneda</b>","name":"Avenida Avellaneda","way_points":[233,234]},{"distance":0.937,"duration":64.2,"type":1,"instruction":"Gire a la derecha a <b>Avenida Lisandro de la Torre</b>","name":"Avenida Lisandro de la Torre","way_points":[234,242]},{"distance":0.023,"duration":1.5,"type":1,"instruction":"Gire a la derecha a <b>Avenida Calixto Calderón</b>","name":"Avenida Calixto Calderón","way_points":[242,243]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Calixto Calderón, a la derecha","name":"-","way_points":[243,243]}],"ascent":7,"descent":6},{"distance":1.344,"duration":116.9,"steps":[{"distance":1.344,"duration":116.9,"type":11,"instruction":"Camina hacia el nordeste en <b>Avenida Calixto Calderón</b>","name":"Avenida Calixto Calderón","way_points":[243,257]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Calixto Calderón, a la derecha","name":"-","way_points":[257,257]}],"ascent":7.5,"descent":4},{"distance":0.303,"duration":36.4,"steps":[{"distance":0.303,"duration":36.4,"type":11,"instruction":"Camina hacia el nordeste en <b>Avenida Villarino</b>","name":"Avenida Villarino","way_points":[257,260]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Villarino, a la derecha","name":"-","way_points":[260,260]}],"ascent":2.5},{"distance":0.393,"duration":63.3,"steps":[{"distance":0.004,"duration":0.4,"type":11,"instruction":"Camina hacia el nordeste en <b>Avenida Villarino</b>","name":"Avenida Villarino","way_points":[260,261]},{"distance":0.39,"duration":62.9,"type":1,"instruction":"Gire a la derecha a <b>25 de Mayo, 028-11</b>","name":"25 de Mayo, 028-11","way_points":[261,270]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a 25 de Mayo, 028-11, a la derecha","name":"-","way_points":[270,270]}],"ascent":2.5,"descent":2},{"distance":0.914,"duration":106.6,"steps":[{"distance":0.016,"duration":2.3,"type":11,"instruction":"Camina hacia el noroeste en <b>Moreno, 028-11</b>","name":"Moreno, 028-11","way_points":[270,271]},{"distance":0.898,"duration":104.3,"type":1,"instruction":"Gire a la derecha a <b>Avenida Federico Soárez</b>","name":"Avenida Federico Soárez","way_points":[271,280]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Federico Soárez, a la derecha","name":"-","way_points":[280,280]}],"ascent":1.5,"descent":5},{"distance":0.784,"duration":51.3,"steps":[{"distance":0.781,"duration":51.1,"type":11,"instruction":"Camina hacia el nordeste en <b>Avenida José León Suárez</b>","name":"Avenida José León Suárez","way_points":[280,289]},{"distance":0.003,"duration":0.2,"type":0,"instruction":"Gire a la izquierda a <b>Avenida Gato y Mancha</b>","name":"Avenida Gato y Mancha","way_points":[289,290]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Avenida Gato y Mancha, a la derecha","name":"-","way_points":[290,290]}],"ascent":2,"descent":3},{"distance":1.38,"duration":89.7,"steps":[{"distance":0.007,"duration":0.4,"type":11,"instruction":"Camina hacia el noroeste en <b>Avenida Gato y Mancha</b>","name":"Avenida Gato y Mancha","way_points":[290,291]},{"distance":0.953,"duration":62.4,"type":6,"instruction":"Siga todo recto a <b>Avenida Gato y Mancha</b>","name":"Avenida Gato y Mancha","way_points":[291,303]},{"distance":0.212,"duration":12.8,"type":0,"instruction":"Gire a la izquierda a <b>Avenida Ortíz</b>","name":"Avenida Ortíz","way_points":[303,305]},{"distance":0.207,"duration":14.1,"type":6,"instruction":"Siga todo recto a <b>Acceso Juan Domingo Perón</b>","name":"Acceso Juan Domingo Perón","way_points":[305,308]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Acceso Juan Domingo Perón, a la izquierda","name":"-","way_points":[308,308]}],"ascent":9,"descent":9},{"distance":2.121,"duration":132.7,"steps":[{"distance":0.015,"duration":1,"type":11,"instruction":"Camina hacia el suroeste en <b>Acceso Juan Domingo Perón</b>","name":"Acceso Juan Domingo Perón","way_points":[308,310]},{"distance":2.045,"duration":122.8,"type":6,"instruction":"Siga todo recto a <b>Avenida Ortíz</b>","name":"Avenida Ortíz","way_points":[310,325]},{"distance":0.062,"duration":8.9,"type":13,"instruction":"Gire a la derecha a <b>Acceso Juan Domingo Perón</b>","name":"Acceso Juan Domingo Perón","way_points":[325,329]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Acceso Juan Domingo Perón, a la izquierda","name":"-","way_points":[329,329]}],"ascent":14.071998596191406,"descent":13.967498779296875},{"distance":14.725,"duration":644.5,"steps":[{"distance":3.36,"duration":224.8,"type":11,"instruction":"Camina hacia el sudeste en <b>Acceso Juan Domingo Perón</b>","name":"Acceso Juan Domingo Perón","way_points":[329,349]},{"distance":11.365,"duration":419.7,"type":12,"instruction":"Gire a la izquierda","name":"-","way_points":[349,406]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a su destino, a la izquierda","name":"-","way_points":[406,406]}],"ascent":27.263999938964844,"descent":31.368499755859375},{"distance":19.965,"duration":840.1,"steps":[{"distance":18.179,"duration":654.4,"type":11,"instruction":"Camina hacia el nordeste en <b>Ruta Nacional 5, RN5</b>","name":"Ruta Nacional 5, RN5","way_points":[406,471]},{"distance":1.783,"duration":185.4,"type":0,"instruction":"Gire a la izquierda a <b>Padre Luis Brady, RP43</b>","name":"Padre Luis Brady, RP43","way_points":[471,489]},{"distance":0.003,"duration":0.3,"type":1,"instruction":"Gire a la derecha a <b>San Martín</b>","name":"San Martín","way_points":[489,490]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a San Martín, a la derecha","name":"-","way_points":[490,490]}],"ascent":42.1879997253418,"descent":46.1879997253418},{"distance":0.277,"duration":28.5,"steps":[{"distance":0.234,"duration":24.1,"type":11,"instruction":"Camina hacia el suroeste en <b>San Martín</b>","name":"San Martín","way_points":[490,493]},{"distance":0.043,"duration":4.4,"type":0,"instruction":"Gire a la izquierda a <b>Combate de San Lorenzo</b>","name":"Combate de San Lorenzo","way_points":[493,494]},{"distance":0,"duration":0,"type":10,"instruction":"Llegar a Combate de San Lorenzo, es recto","name":"-","way_points":[494,494]}],"ascent":1}],"extras":{"waytype":{"values":[[0,3,3],[3,21,2],[21,172,1],[172,177,2],[177,186,3],[186,305,2],[305,306,3],[306,330,2],[330,471,1],[471,489,2],[489,494,3]],"summary":[{"value":1,"distance":0.066,"amount":78.72},{"value":2,"distance":0.017,"amount":19.86},{"value":3,"distance":0.001,"amount":1.43}]},"surface":{"values":[[0,1,0],[1,21,1],[21,128,3],[128,172,1],[172,177,0],[177,199,1],[199,223,4],[223,242,1],[242,258,3],[258,264,4],[264,266,3],[266,275,4],[275,276,3],[276,277,4],[277,303,3],[303,305,1],[305,306,0],[306,310,1],[310,311,3],[311,336,1],[336,337,0],[337,364,1],[364,471,3],[471,493,1],[493,494,0]],"summary":[{"value":3,"distance":0.062,"amount":74.61},{"value":1,"distance":0.017,"amount":20.41},{"value":4,"distance":0.003,"amount":4.03},{"value":0,"distance":0.001,"amount":0.94}]},"steepness":{"values":[[0,494,0]],"summary":[{"value":0,"distance":0.083,"amount":100}]}},"way_points":[0,19,84,180,185,189,212,233,243,257,260,270,280,290,308,329,406,490,494],"summary":{"distance":83.241,"duration":4109.299999999999},"opacity":0.9},"geometry":{"type":"LineString","coordinates":[[-59.687406,-34.769054,48],[-59.687026,-34.769485,48],[-59.686001,-34.768881,46],[-59.684976,-34.768277,48],[-59.684234,-34.769124,48],[-59.683889,-34.769516,47],[-59.683513,-34.769945,47],[-59.682616,-34.770964,47],[-59.68203,-34.771625,47],[-59.681241,-34.772515,46],[-59.680498,-34.773353,45],[-59.679743,-34.774203,47],[-59.679022,-34.775016,47],[-59.678312,-34.775817,49],[-59.677585,-34.776637,49],[-59.676884,-34.777427,49],[-59.676824,-34.777502,49],[-59.676159,-34.778245,47],[-59.675515,-34.778971,47],[-59.674491,-34.780125,47],[-59.67449,-34.780126,47],[-59.674255,-34.780391,47],[-59.674861,-34.780624,47],[-59.675142,-34.780732,48],[-59.675641,-34.780915,47],[-59.676158,-34.781123,47],[-59.676625,-34.781291,47],[-59.677987,-34.781839,49],[-59.678832,-34.782161,46],[-59.680176,-34.782674,49],[-59.680616,-34.782821,49],[-59.681135,-34.782994,48.3],[-59.681752,-34.783153,47.8],[-59.682339,-34.783276,48],[-59.684501,-34.783684,51],[-59.685784,-34.783926,50],[-59.6878,-34.784306,50],[-59.688519,-34.784442,50],[-59.690377,-34.78479,50],[-59.691034,-34.784912,50],[-59.691267,-34.784972,50],[-59.691736,-34.785092,48.7],[-59.692522,-34.785365,48],[-59.693965,-34.785865,52],[-59.69467,-34.78611,54],[-59.695725,-34.786483,51],[-59.698209,-34.787362,49],[-59.700327,-34.788133,48],[-59.700934,-34.788351,50],[-59.701662,-34.788605,50],[-59.70217,-34.788773,48],[-59.708328,-34.790926,47],[-59.709672,-34.791394,49],[-59.711196,-34.791927,49],[-59.717559,-34.794152,47],[-59.721248,-34.795481,48],[-59.723583,-34.796292,47],[-59.724358,-34.796547,48],[-59.724609,-34.796635,48],[-59.730907,-34.798837,50],[-59.737698,-34.801196,50],[-59.743839,-34.803347,49],[-59.753668,-34.806787,50],[-59.75907,-34.808678,54],[-59.764599,-34.810614,48],[-59.7693,-34.812259,46],[-59.777439,-34.815113,46],[-59.779369,-34.815782,49],[-59.780344,-34.81612,48],[-59.7833,-34.817145,49],[-59.787424,-34.818332,47],[-59.794241,-34.820242,48],[-59.795523,-34.8206,46.3],[-59.797055,-34.821084,46.3],[-59.799092,-34.821795,45],[-59.799576,-34.82196,44],[-59.820222,-34.829166,48],[-59.827962,-34.831871,49],[-59.832702,-34.833514,50],[-59.833733,-34.833871,50],[-59.837626,-34.835228,50],[-59.845982,-34.838141,52],[-59.847769,-34.838765,52],[-59.85536,-34.841454,52],[-59.857532,-34.842196,52],[-59.857663,-34.84224,52],[-59.858234,-34.842425,52],[-59.858632,-34.842575,50],[-59.863113,-34.844145,53],[-59.863618,-34.844322,52],[-59.86446,-34.844604,51],[-59.874434,-34.848076,51],[-59.879352,-34.849764,51],[-59.891293,-34.853938,53],[-59.908977,-34.860129,55],[-59.911971,-34.861159,54],[-59.912819,-34.861466,54],[-59.91421,-34.862037,54],[-59.922835,-34.865686,53],[-59.925286,-34.866734,54.2],[-59.925986,-34.867088,54.1],[-59.926707,-34.867527,54],[-59.92737,-34.868017,54],[-59.927934,-34.868505,53.8],[-59.928397,-34.868963,53.7],[-59.92878,-34.869371,53.7],[-59.935267,-34.877049,55],[-59.940508,-34.883249,54],[-59.942969,-34.886154,54],[-59.943804,-34.887085,54.7],[-59.944218,-34.887481,54.8],[-59.944852,-34.888022,54.8],[-59.946692,-34.88947,53],[-59.949025,-34.891305,54],[-59.949245,-34.891478,54],[-59.949567,-34.891731,55],[-59.949931,-34.892018,55],[-59.950086,-34.89214,54],[-59.950626,-34.892568,55],[-59.951665,-34.893416,54],[-59.952923,-34.894406,55],[-59.953726,-34.895041,56],[-59.953771,-34.895077,56],[-59.953959,-34.895226,56],[-59.954251,-34.895457,56],[-59.954644,-34.895762,56],[-59.954924,-34.895993,59],[-59.955501,-34.896462,55],[-59.955658,-34.896579,55],[-59.956291,-34.896986,53.4],[-59.957017,-34.897373,53],[-59.957066,-34.897397,53],[-59.957733,-34.897901,53.7],[-59.95788,-34.898038,54],[-59.95793,-34.89809,54],[-59.958562,-34.898766,55.3],[-59.959153,-34.899316,58],[-59.959468,-34.899557,52],[-59.962925,-34.902304,52],[-59.963474,-34.90274,53],[-59.964356,-34.903442,53],[-59.96563,-34.904454,52],[-59.966953,-34.905491,55],[-59.967524,-34.90594,53],[-59.968129,-34.906415,53],[-59.971532,-34.909097,52],[-59.972149,-34.909584,53],[-59.97256,-34.909909,52],[-59.972906,-34.910179,52],[-59.973341,-34.910524,51],[-59.974005,-34.911048,49],[-59.974081,-34.91111,49],[-59.974754,-34.911637,52],[-59.975335,-34.912097,51],[-59.975749,-34.912425,51],[-59.975802,-34.912468,51],[-59.976431,-34.912964,51],[-59.976692,-34.913169,53],[-59.977639,-34.913914,52],[-59.978656,-34.914715,52],[-59.979072,-34.915045,56],[-59.979337,-34.915251,54],[-59.979441,-34.915331,54],[-59.979827,-34.915636,54],[-59.980433,-34.916114,52],[-59.980566,-34.916222,52],[-59.980774,-34.916383,52],[-59.981073,-34.91662,52],[-59.98139,-34.916867,54],[-59.981533,-34.91698,54],[-59.981996,-34.917342,53],[-59.982192,-34.917498,53],[-59.982689,-34.917897,50],[-59.98295,-34.917667,50],[-59.984679,-34.916241,52.6],[-59.985596,-34.915369,53.7],[-59.987472,-34.913809,54.3],[-59.987587,-34.913699,54],[-59.987643,-34.913717,54],[-59.987859,-34.913878,54],[-59.988071,-34.914079,55],[-59.989409,-34.915348,56],[-59.989793,-34.915685,56],[-59.990571,-34.916404,54],[-59.991291,-34.917092,54],[-59.991823,-34.917579,54.5],[-59.992038,-34.917776,55],[-59.992868,-34.917129,56],[-59.993479,-34.916674,55],[-59.993618,-34.916568,54.5],[-59.993711,-34.916496,54],[-59.994485,-34.915905,54],[-59.994963,-34.91554,55],[-59.99568,-34.914993,56],[-59.996466,-34.914393,55],[-59.997314,-34.913735,55],[-59.998114,-34.913112,56],[-59.998935,-34.912476,56],[-59.999755,-34.91184,55],[-60.000593,-34.911189,56],[-60.001483,-34.910498,58],[-60.00235,-34.909825,58],[-60.003181,-34.909181,56],[-60.00401,-34.908537,54],[-60.004821,-34.907907,55],[-60.004882,-34.90786,55],[-60.005708,-34.907219,54],[-60.006539,-34.906574,54],[-60.007369,-34.905929,54],[-60.008201,-34.905284,56],[-60.009031,-34.904639,57],[-60.009866,-34.903991,58],[-60.010884,-34.903201,59.5],[-60.011541,-34.90269,61],[-60.011613,-34.902753,61],[-60.012342,-34.90339,57],[-60.013121,-34.90407,57],[-60.013901,-34.904751,58],[-60.014695,-34.905445,56],[-60.015465,-34.906117,58],[-60.016246,-34.906799,58],[-60.01704,-34.907492,57],[-60.017809,-34.908165,57],[-60.018536,-34.908802,57],[-60.018614,-34.908839,57],[-60.018673,-34.90888,57],[-60.019087,-34.909244,54],[-60.019485,-34.909586,55],[-60.020268,-34.910287,53],[-60.021028,-34.910954,56],[-60.021823,-34.911639,56],[-60.022554,-34.91228,56],[-60.023398,-34.91302,52],[-60.0249,-34.914317,52],[-60.024947,-34.914358,52],[-60.026581,-34.913073,54],[-60.028285,-34.911755,49],[-60.028808,-34.911341,50],[-60.029099,-34.911113,50],[-60.029952,-34.910455,51],[-60.030842,-34.909758,50],[-60.031562,-34.909185,50],[-60.032391,-34.908545,53],[-60.032217,-34.908394,53],[-60.031623,-34.907878,53],[-60.030838,-34.907202,52],[-60.030034,-34.906502,51],[-60.029249,-34.905819,51],[-60.028467,-34.905136,52],[-60.027695,-34.904446,51],[-60.026929,-34.903781,55],[-60.026109,-34.903058,54],[-60.025291,-34.902342,54],[-60.024521,-34.901667,55],[-60.023735,-34.900985,56],[-60.022954,-34.900295,56],[-60.022174,-34.899628,56],[-60.022124,-34.899586,56.5],[-60.021376,-34.898942,57],[-60.020603,-34.898262,59],[-60.019844,-34.897599,59],[-60.019817,-34.897575,59],[-60.019108,-34.898129,58],[-60.018973,-34.898149,58],[-60.01883,-34.898122,58],[-60.018232,-34.897599,59],[-60.018169,-34.897544,59],[-60.017509,-34.896968,58],[-60.017482,-34.896856,58],[-60.017518,-34.896739,58],[-60.018093,-34.896291,59.5],[-60.01822,-34.896193,61],[-60.017435,-34.895506,61],[-60.016653,-34.894823,60],[-60.015873,-34.894141,60],[-60.015091,-34.893457,58],[-60.01431,-34.892775,57],[-60.013529,-34.892091,57],[-60.012748,-34.891409,56],[-60.011967,-34.890725,56],[-60.011481,-34.890301,56],[-60.01116,-34.890021,56],[-60.010371,-34.88934,56],[-60.009591,-34.888662,55],[-60.0088,-34.887965,55],[-60.008028,-34.887304,56],[-60.00722,-34.886595,55],[-60.006461,-34.885941,56],[-60.005662,-34.885241,55],[-60.005606,-34.885189,55],[-60.00563,-34.885175,55],[-60.00569,-34.885139,55],[-60.00574,-34.885184,55],[-60.005662,-34.885241,55],[-60.004825,-34.885897,56],[-60.004005,-34.886538,55],[-60.003181,-34.887183,56],[-60.002362,-34.887815,56],[-60.001526,-34.888463,57],[-60.000709,-34.889096,54],[-59.999877,-34.889747,55],[-59.99907,-34.890356,54.7],[-59.998285,-34.890976,53],[-59.998208,-34.891035,53],[-59.998156,-34.890984,53],[-59.996615,-34.889641,57],[-59.996692,-34.889584,58],[-59.997452,-34.890248,57],[-59.998176,-34.890882,55],[-59.99823,-34.890929,53],[-59.998285,-34.890976,53],[-59.998208,-34.891035,53],[-59.998156,-34.890984,53],[-59.996615,-34.889641,57],[-59.995031,-34.88826,55],[-59.991674,-34.885331,57.3],[-59.991602,-34.885194,58],[-59.991619,-34.885134,56.3],[-59.991661,-34.885074,56.1],[-59.991744,-34.885001,55.7],[-59.992536,-34.884402,55.7],[-59.992556,-34.884365,54],[-59.992547,-34.884329,54],[-59.992513,-34.884295,54],[-59.987723,-34.880006,61],[-59.985049,-34.877576,56],[-59.984803,-34.877446,55.1],[-59.984663,-34.877426,55.2],[-59.984478,-34.877456,55.2],[-59.984427,-34.877476,55.1],[-59.984273,-34.877535,55],[-59.983868,-34.877828,54.3],[-59.982667,-34.87865,54],[-59.979346,-34.881064,57],[-59.974024,-34.885118,54],[-59.972773,-34.88606,54],[-59.970431,-34.887823,54],[-59.970207,-34.887983,54],[-59.967512,-34.889996,53],[-59.967017,-34.890366,54],[-59.963805,-34.892766,56],[-59.959219,-34.896263,52],[-59.95809,-34.897228,52],[-59.957961,-34.897391,53.5],[-59.957872,-34.897543,53.7],[-59.957827,-34.897684,53.6],[-59.957816,-34.897802,53.6],[-59.957832,-34.897912,53.5],[-59.95788,-34.898038,54],[-59.95793,-34.89809,54],[-59.957964,-34.898178,55.5],[-59.957956,-34.898253,55.7],[-59.957926,-34.898328,55.9],[-59.957872,-34.898381,56.1],[-59.957792,-34.89841,56],[-59.957687,-34.898412,55.9],[-59.957595,-34.898386,57],[-59.95754,-34.898357,57],[-59.95739,-34.898267,54.5],[-59.957159,-34.898091,54.7],[-59.956759,-34.897734,54],[-59.95671,-34.897682,54],[-59.956341,-34.897272,53.6],[-59.956049,-34.896913,53.8],[-59.955658,-34.896579,55],[-59.955501,-34.896462,55],[-59.954924,-34.895993,59],[-59.954644,-34.895762,56],[-59.954251,-34.895457,56],[-59.953959,-34.895226,56],[-59.953771,-34.895077,56],[-59.953726,-34.895041,56],[-59.952923,-34.894406,55],[-59.951665,-34.893416,54],[-59.950626,-34.892568,55],[-59.950086,-34.89214,54],[-59.949931,-34.892018,55],[-59.949567,-34.891731,55],[-59.949245,-34.891478,54],[-59.949025,-34.891305,54],[-59.946692,-34.88947,53],[-59.944852,-34.888022,54.8],[-59.944218,-34.887481,54.8],[-59.943804,-34.887085,54.7],[-59.942969,-34.886154,54],[-59.940508,-34.883249,54],[-59.935267,-34.877049,55],[-59.92878,-34.869371,53.7],[-59.928397,-34.868963,53.7],[-59.927934,-34.868505,53.8],[-59.92737,-34.868017,54],[-59.926707,-34.867527,54],[-59.925986,-34.867088,54.1],[-59.925286,-34.866734,54.2],[-59.922835,-34.865686,53],[-59.91421,-34.862037,54],[-59.912819,-34.861466,54],[-59.911971,-34.861159,54],[-59.908977,-34.860129,55],[-59.891293,-34.853938,53],[-59.879352,-34.849764,51],[-59.874434,-34.848076,51],[-59.86446,-34.844604,51],[-59.863618,-34.844322,52],[-59.863113,-34.844145,53],[-59.858632,-34.842575,50],[-59.858284,-34.842444,51],[-59.858234,-34.842425,52],[-59.857663,-34.84224,52],[-59.85536,-34.841454,52],[-59.847769,-34.838765,52],[-59.845982,-34.838141,52],[-59.837626,-34.835228,50],[-59.833733,-34.833871,50],[-59.832702,-34.833514,50],[-59.827962,-34.831871,49],[-59.820222,-34.829166,48],[-59.799576,-34.82196,44],[-59.799092,-34.821795,45],[-59.797055,-34.821084,46.3],[-59.795523,-34.8206,46.3],[-59.794241,-34.820242,48],[-59.787424,-34.818332,47],[-59.7833,-34.817145,49],[-59.780344,-34.81612,48],[-59.779369,-34.815782,49],[-59.777439,-34.815113,46],[-59.7693,-34.812259,46],[-59.764599,-34.810614,48],[-59.75907,-34.808678,54],[-59.753668,-34.806787,50],[-59.743839,-34.803347,49],[-59.737698,-34.801196,50],[-59.730907,-34.798837,50],[-59.724609,-34.796635,48],[-59.724358,-34.796547,48],[-59.723583,-34.796292,47],[-59.721248,-34.795481,48],[-59.717559,-34.794152,47],[-59.711196,-34.791927,49],[-59.709672,-34.791394,49],[-59.708328,-34.790926,47],[-59.70217,-34.788773,48],[-59.701662,-34.788605,50],[-59.700934,-34.788351,50],[-59.700327,-34.788133,48],[-59.698209,-34.787362,49],[-59.695725,-34.786483,51],[-59.69467,-34.78611,54],[-59.693965,-34.785865,52],[-59.692522,-34.785365,48],[-59.691736,-34.785092,48.7],[-59.691267,-34.784972,50],[-59.691034,-34.784912,50],[-59.690377,-34.78479,50],[-59.688519,-34.784442,50],[-59.6878,-34.784306,50],[-59.685784,-34.783926,50],[-59.684501,-34.783684,51],[-59.682339,-34.783276,48],[-59.681752,-34.783153,47.8],[-59.681135,-34.782994,48.3],[-59.680616,-34.782821,49],[-59.680176,-34.782674,49],[-59.678832,-34.782161,46],[-59.677987,-34.781839,49],[-59.676625,-34.781291,47],[-59.676158,-34.781123,47],[-59.675641,-34.780915,47],[-59.675142,-34.780732,48],[-59.674861,-34.780624,47],[-59.674255,-34.780391,47],[-59.67449,-34.780126,47],[-59.675515,-34.778971,47],[-59.676159,-34.778245,47],[-59.676824,-34.777502,49],[-59.676884,-34.777427,49],[-59.677585,-34.776637,49],[-59.678312,-34.775817,49],[-59.679022,-34.775016,47],[-59.679743,-34.774203,47],[-59.680498,-34.773353,45],[-59.681241,-34.772515,46],[-59.68203,-34.771625,47],[-59.682616,-34.770964,47],[-59.683513,-34.769945,47],[-59.683889,-34.769516,47],[-59.684234,-34.769124,48],[-59.684976,-34.768277,48],[-59.685729,-34.767419,47],[-59.685701,-34.767402,47],[-59.685729,-34.767419,47],[-59.68675,-34.76803,47],[-59.68777,-34.76864,48],[-59.687493,-34.768955,48]]}},{"type":"Feature","properties":{"label":"San Martín, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.68747079372407,-34.76909246263009]}},{"type":"Feature","properties":{"label":"Colectividad Italiana, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.674515724182136,-34.78013916592744]}},{"type":"Feature","properties":{"label":"Acceso a Gorostiaga, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.857587218284614,-34.842086957717186]}},{"type":"Feature","properties":{"label":"Acceso Néstor Carlos Kirchner, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.988119602203376,-34.91404462806756]}},{"type":"Feature","properties":{"label":"Alejandro Mathus, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.99183177947999,-34.917572458053904]}},{"type":"Feature","properties":{"label":"Calle 110, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.99356448650361,-34.9165211629823]}},{"type":"Feature","properties":{"label":"50 Avenida Bartolomé Mitre, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.01073598861695,-34.903073075726915]}},{"type":"Feature","properties":{"label":"Avenida Avellaneda, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.024876594543464,-34.91433495396633]}},{"type":"Feature","properties":{"label":"Avenida Diario La Razón, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.03204345703126,-34.908528240901454]}},{"type":"Feature","properties":{"label":"149 Avenida Villarino, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.022097826004035,-34.89960621791973]}},{"type":"Feature","properties":{"label":"9 de Julio, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.019866228103645,-34.89758235002716]}},{"type":"Feature","properties":{"label":"028-11, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.01798868179322,-34.89620081156622]}},{"type":"Feature","properties":{"label":"Jardín De Infantes Nº 916, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.011465549469,-34.89031361333967]}},{"type":"Feature","properties":{"label":"401 Avenida José León Suárez, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-60.005629062652595,-34.885174070010265]}},{"type":"Feature","properties":{"label":"Patricia Leiva, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.99818325042725,-34.89087683141934]}},{"type":"Feature","properties":{"label":"Acceso Juan Domingo Perón, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.984450340271,-34.87751696240134]}},{"type":"Feature","properties":{"label":"Acceso a Gorostiaga, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.85824704170228,-34.842509619437486]}},{"type":"Feature","properties":{"label":"Rivadavia, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.68570590019227,-34.76739588937162]}},{"type":"Feature","properties":{"label":"San Martín, BA,Argentina"},"geometry":{"type":"Point","coordinates":[-59.68749761581421,-34.768958060046515]}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ascent": 232.3,
+        "descent": 232.3,
+        "segments": [
+          {
+            "distance": 1.918,
+            "duration": 197.3,
+            "steps": [
+              {
+                "distance": 0.059,
+                "duration": 6.1,
+                "type": 11,
+                "instruction": "Camina hacia el sudeste en <b>Combate de San Lorenzo</b>",
+                "name": "Combate de San Lorenzo",
+                "way_points": [0, 1]
+              },
+              {
+                "distance": 0.23,
+                "duration": 23.7,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Rivadavia</b>",
+                "name": "Rivadavia",
+                "way_points": [1, 3]
+              },
+              {
+                "distance": 1.629,
+                "duration": 167.5,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Padre Luis Brady, RP43</b>",
+                "name": "Padre Luis Brady, RP43",
+                "way_points": [3, 19]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Padre Luis Brady, RP43, a la derecha",
+                "name": "-",
+                "way_points": [19, 19]
+              }
+            ],
+            "ascent": 6,
+            "descent": 7
+          },
+          {
+            "distance": 18.142,
+            "duration": 655.5,
+            "steps": [
+              {
+                "distance": 0.037,
+                "duration": 3.8,
+                "type": 11,
+                "instruction": "Camina hacia el sudeste en <b>Padre Luis Brady, RP43</b>",
+                "name": "Padre Luis Brady, RP43",
+                "way_points": [19, 21]
+              },
+              {
+                "distance": 18.105,
+                "duration": 651.7,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Ruta Nacional 5, RN5</b>",
+                "name": "Ruta Nacional 5, RN5",
+                "way_points": [21, 84]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Ruta Nacional 5, RN5, a la derecha",
+                "name": "-",
+                "way_points": [84, 84]
+              }
+            ],
+            "ascent": 41.1879997253418,
+            "descent": 36.1879997253418
+          },
+          {
+            "distance": 15.24,
+            "duration": 598.4,
+            "steps": [
+              {
+                "distance": 14.532,
+                "duration": 544.9,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>Ruta Nacional 5, RN5</b>",
+                "name": "Ruta Nacional 5, RN5",
+                "way_points": [84, 172]
+              },
+              {
+                "distance": 0.646,
+                "duration": 38.8,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Acceso Néstor Carlos Kirchner</b>",
+                "name": "Acceso Néstor Carlos Kirchner",
+                "way_points": [172, 177]
+              },
+              {
+                "distance": 0.062,
+                "duration": 14.8,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>De los Fundadores</b>",
+                "name": "De los Fundadores",
+                "way_points": [177, 180]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a De los Fundadores, a la izquierda",
+                "name": "-",
+                "way_points": [180, 180]
+              }
+            ],
+            "ascent": 44.612998962402344,
+            "descent": 41.612998962402344
+          },
+          {
+            "distance": 0.518,
+            "duration": 124.4,
+            "steps": [
+              {
+                "distance": 0.518,
+                "duration": 124.4,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>De los Fundadores</b>",
+                "name": "De los Fundadores",
+                "way_points": [180, 185]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a De los Fundadores, a la izquierda",
+                "name": "-",
+                "way_points": [185, 185]
+              }
+            ],
+            "ascent": 1.5,
+            "descent": 2
+          },
+          {
+            "distance": 0.226,
+            "duration": 22.5,
+            "steps": [
+              {
+                "distance": 0.029,
+                "duration": 7.1,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>De los Fundadores</b>",
+                "name": "De los Fundadores",
+                "way_points": [185, 186]
+              },
+              {
+                "distance": 0.197,
+                "duration": 15.4,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Acceso Raúl Alfonsín, 028-11</b>",
+                "name": "Acceso Raúl Alfonsín, 028-11",
+                "way_points": [186, 189]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Acceso Raúl Alfonsín, 028-11, a la derecha",
+                "name": "-",
+                "way_points": [189, 189]
+              }
+            ],
+            "ascent": 1.5,
+            "descent": 1.5
+          },
+          {
+            "distance": 2.165,
+            "duration": 176.5,
+            "steps": [
+              {
+                "distance": 2.165,
+                "duration": 176.5,
+                "type": 11,
+                "instruction": "Camina hacia el noroeste en <b>Acceso Raúl Alfonsín, 028-11</b>",
+                "name": "Acceso Raúl Alfonsín, 028-11",
+                "way_points": [189, 212]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Acceso Raúl Alfonsín, 028-11, a la derecha",
+                "name": "-",
+                "way_points": [212, 212]
+              }
+            ],
+            "ascent": 12.5,
+            "descent": 7.5
+          },
+          {
+            "distance": 1.859,
+            "duration": 158.6,
+            "steps": [
+              {
+                "distance": 0.083,
+                "duration": 7.4,
+                "type": 11,
+                "instruction": "Camina hacia el noroeste en <b>Avenida Bartolomé Mitre, 028-11</b>",
+                "name": "Avenida Bartolomé Mitre, 028-11",
+                "way_points": [212, 213]
+              },
+              {
+                "distance": 0.94,
+                "duration": 96.4,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Avenida Avellaneda</b>",
+                "name": "Avenida Avellaneda",
+                "way_points": [213, 224]
+              },
+              {
+                "distance": 0.836,
+                "duration": 54.7,
+                "type": 12,
+                "instruction": "Gire a la izquierda a <b>Avenida Avellaneda</b>",
+                "name": "Avenida Avellaneda",
+                "way_points": [224, 233]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Avellaneda, a la izquierda",
+                "name": "-",
+                "way_points": [233, 233]
+              }
+            ],
+            "ascent": 8.5,
+            "descent": 16
+          },
+          {
+            "distance": 0.967,
+            "duration": 66.1,
+            "steps": [
+              {
+                "distance": 0.006,
+                "duration": 0.4,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>Avenida Avellaneda</b>",
+                "name": "Avenida Avellaneda",
+                "way_points": [233, 234]
+              },
+              {
+                "distance": 0.937,
+                "duration": 64.2,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Avenida Lisandro de la Torre</b>",
+                "name": "Avenida Lisandro de la Torre",
+                "way_points": [234, 242]
+              },
+              {
+                "distance": 0.023,
+                "duration": 1.5,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Avenida Calixto Calderón</b>",
+                "name": "Avenida Calixto Calderón",
+                "way_points": [242, 243]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Calixto Calderón, a la derecha",
+                "name": "-",
+                "way_points": [243, 243]
+              }
+            ],
+            "ascent": 7,
+            "descent": 6
+          },
+          {
+            "distance": 1.344,
+            "duration": 116.9,
+            "steps": [
+              {
+                "distance": 1.344,
+                "duration": 116.9,
+                "type": 11,
+                "instruction": "Camina hacia el nordeste en <b>Avenida Calixto Calderón</b>",
+                "name": "Avenida Calixto Calderón",
+                "way_points": [243, 257]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Calixto Calderón, a la derecha",
+                "name": "-",
+                "way_points": [257, 257]
+              }
+            ],
+            "ascent": 7.5,
+            "descent": 4
+          },
+          {
+            "distance": 0.303,
+            "duration": 36.4,
+            "steps": [
+              {
+                "distance": 0.303,
+                "duration": 36.4,
+                "type": 11,
+                "instruction": "Camina hacia el nordeste en <b>Avenida Villarino</b>",
+                "name": "Avenida Villarino",
+                "way_points": [257, 260]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Villarino, a la derecha",
+                "name": "-",
+                "way_points": [260, 260]
+              }
+            ],
+            "ascent": 2.5
+          },
+          {
+            "distance": 0.393,
+            "duration": 63.3,
+            "steps": [
+              {
+                "distance": 0.004,
+                "duration": 0.4,
+                "type": 11,
+                "instruction": "Camina hacia el nordeste en <b>Avenida Villarino</b>",
+                "name": "Avenida Villarino",
+                "way_points": [260, 261]
+              },
+              {
+                "distance": 0.39,
+                "duration": 62.9,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>25 de Mayo, 028-11</b>",
+                "name": "25 de Mayo, 028-11",
+                "way_points": [261, 270]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a 25 de Mayo, 028-11, a la derecha",
+                "name": "-",
+                "way_points": [270, 270]
+              }
+            ],
+            "ascent": 2.5,
+            "descent": 2
+          },
+          {
+            "distance": 0.914,
+            "duration": 106.6,
+            "steps": [
+              {
+                "distance": 0.016,
+                "duration": 2.3,
+                "type": 11,
+                "instruction": "Camina hacia el noroeste en <b>Moreno, 028-11</b>",
+                "name": "Moreno, 028-11",
+                "way_points": [270, 271]
+              },
+              {
+                "distance": 0.898,
+                "duration": 104.3,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>Avenida Federico Soárez</b>",
+                "name": "Avenida Federico Soárez",
+                "way_points": [271, 280]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Federico Soárez, a la derecha",
+                "name": "-",
+                "way_points": [280, 280]
+              }
+            ],
+            "ascent": 1.5,
+            "descent": 5
+          },
+          {
+            "distance": 0.784,
+            "duration": 51.3,
+            "steps": [
+              {
+                "distance": 0.781,
+                "duration": 51.1,
+                "type": 11,
+                "instruction": "Camina hacia el nordeste en <b>Avenida José León Suárez</b>",
+                "name": "Avenida José León Suárez",
+                "way_points": [280, 289]
+              },
+              {
+                "distance": 0.003,
+                "duration": 0.2,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Avenida Gato y Mancha</b>",
+                "name": "Avenida Gato y Mancha",
+                "way_points": [289, 290]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Avenida Gato y Mancha, a la derecha",
+                "name": "-",
+                "way_points": [290, 290]
+              }
+            ],
+            "ascent": 2,
+            "descent": 3
+          },
+          {
+            "distance": 1.38,
+            "duration": 89.7,
+            "steps": [
+              {
+                "distance": 0.007,
+                "duration": 0.4,
+                "type": 11,
+                "instruction": "Camina hacia el noroeste en <b>Avenida Gato y Mancha</b>",
+                "name": "Avenida Gato y Mancha",
+                "way_points": [290, 291]
+              },
+              {
+                "distance": 0.953,
+                "duration": 62.4,
+                "type": 6,
+                "instruction": "Siga todo recto a <b>Avenida Gato y Mancha</b>",
+                "name": "Avenida Gato y Mancha",
+                "way_points": [291, 303]
+              },
+              {
+                "distance": 0.212,
+                "duration": 12.8,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Avenida Ortíz</b>",
+                "name": "Avenida Ortíz",
+                "way_points": [303, 305]
+              },
+              {
+                "distance": 0.207,
+                "duration": 14.1,
+                "type": 6,
+                "instruction": "Siga todo recto a <b>Acceso Juan Domingo Perón</b>",
+                "name": "Acceso Juan Domingo Perón",
+                "way_points": [305, 308]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Acceso Juan Domingo Perón, a la izquierda",
+                "name": "-",
+                "way_points": [308, 308]
+              }
+            ],
+            "ascent": 9,
+            "descent": 9
+          },
+          {
+            "distance": 2.121,
+            "duration": 132.7,
+            "steps": [
+              {
+                "distance": 0.015,
+                "duration": 1,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>Acceso Juan Domingo Perón</b>",
+                "name": "Acceso Juan Domingo Perón",
+                "way_points": [308, 310]
+              },
+              {
+                "distance": 2.045,
+                "duration": 122.8,
+                "type": 6,
+                "instruction": "Siga todo recto a <b>Avenida Ortíz</b>",
+                "name": "Avenida Ortíz",
+                "way_points": [310, 325]
+              },
+              {
+                "distance": 0.062,
+                "duration": 8.9,
+                "type": 13,
+                "instruction": "Gire a la derecha a <b>Acceso Juan Domingo Perón</b>",
+                "name": "Acceso Juan Domingo Perón",
+                "way_points": [325, 329]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Acceso Juan Domingo Perón, a la izquierda",
+                "name": "-",
+                "way_points": [329, 329]
+              }
+            ],
+            "ascent": 14.071998596191406,
+            "descent": 13.967498779296875
+          },
+          {
+            "distance": 14.725,
+            "duration": 644.5,
+            "steps": [
+              {
+                "distance": 3.36,
+                "duration": 224.8,
+                "type": 11,
+                "instruction": "Camina hacia el sudeste en <b>Acceso Juan Domingo Perón</b>",
+                "name": "Acceso Juan Domingo Perón",
+                "way_points": [329, 349]
+              },
+              {
+                "distance": 11.365,
+                "duration": 419.7,
+                "type": 12,
+                "instruction": "Gire a la izquierda",
+                "name": "-",
+                "way_points": [349, 406]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a su destino, a la izquierda",
+                "name": "-",
+                "way_points": [406, 406]
+              }
+            ],
+            "ascent": 27.263999938964844,
+            "descent": 31.368499755859375
+          },
+          {
+            "distance": 19.965,
+            "duration": 840.1,
+            "steps": [
+              {
+                "distance": 18.179,
+                "duration": 654.4,
+                "type": 11,
+                "instruction": "Camina hacia el nordeste en <b>Ruta Nacional 5, RN5</b>",
+                "name": "Ruta Nacional 5, RN5",
+                "way_points": [406, 471]
+              },
+              {
+                "distance": 1.783,
+                "duration": 185.4,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Padre Luis Brady, RP43</b>",
+                "name": "Padre Luis Brady, RP43",
+                "way_points": [471, 489]
+              },
+              {
+                "distance": 0.003,
+                "duration": 0.3,
+                "type": 1,
+                "instruction": "Gire a la derecha a <b>San Martín</b>",
+                "name": "San Martín",
+                "way_points": [489, 490]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a San Martín, a la derecha",
+                "name": "-",
+                "way_points": [490, 490]
+              }
+            ],
+            "ascent": 42.1879997253418,
+            "descent": 46.1879997253418
+          },
+          {
+            "distance": 0.277,
+            "duration": 28.5,
+            "steps": [
+              {
+                "distance": 0.234,
+                "duration": 24.1,
+                "type": 11,
+                "instruction": "Camina hacia el suroeste en <b>San Martín</b>",
+                "name": "San Martín",
+                "way_points": [490, 493]
+              },
+              {
+                "distance": 0.043,
+                "duration": 4.4,
+                "type": 0,
+                "instruction": "Gire a la izquierda a <b>Combate de San Lorenzo</b>",
+                "name": "Combate de San Lorenzo",
+                "way_points": [493, 494]
+              },
+              {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Llegar a Combate de San Lorenzo, es recto",
+                "name": "-",
+                "way_points": [494, 494]
+              }
+            ],
+            "ascent": 1
+          }
+        ],
+        "extras": {
+          "waytype": {
+            "values": [
+              [0, 3, 3],
+              [3, 21, 2],
+              [21, 172, 1],
+              [172, 177, 2],
+              [177, 186, 3],
+              [186, 305, 2],
+              [305, 306, 3],
+              [306, 330, 2],
+              [330, 471, 1],
+              [471, 489, 2],
+              [489, 494, 3]
+            ],
+            "summary": [
+              { "value": 1, "distance": 0.066, "amount": 78.72 },
+              { "value": 2, "distance": 0.017, "amount": 19.86 },
+              { "value": 3, "distance": 0.001, "amount": 1.43 }
+            ]
+          },
+          "surface": {
+            "values": [
+              [0, 1, 0],
+              [1, 21, 1],
+              [21, 128, 3],
+              [128, 172, 1],
+              [172, 177, 0],
+              [177, 199, 1],
+              [199, 223, 4],
+              [223, 242, 1],
+              [242, 258, 3],
+              [258, 264, 4],
+              [264, 266, 3],
+              [266, 275, 4],
+              [275, 276, 3],
+              [276, 277, 4],
+              [277, 303, 3],
+              [303, 305, 1],
+              [305, 306, 0],
+              [306, 310, 1],
+              [310, 311, 3],
+              [311, 336, 1],
+              [336, 337, 0],
+              [337, 364, 1],
+              [364, 471, 3],
+              [471, 493, 1],
+              [493, 494, 0]
+            ],
+            "summary": [
+              { "value": 3, "distance": 0.062, "amount": 74.61 },
+              { "value": 1, "distance": 0.017, "amount": 20.41 },
+              { "value": 4, "distance": 0.003, "amount": 4.03 },
+              { "value": 0, "distance": 0.001, "amount": 0.94 }
+            ]
+          },
+          "steepness": {
+            "values": [[0, 494, 0]],
+            "summary": [{ "value": 0, "distance": 0.083, "amount": 100 }]
+          }
+        },
+        "way_points": [
+          0, 19, 84, 180, 185, 189, 212, 233, 243, 257, 260, 270, 280, 290, 308, 329, 406, 490, 494
+        ],
+        "summary": { "distance": 83.241, "duration": 4109.299999999999 },
+        "opacity": 0.9
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-59.687406, -34.769054, 48],
+          [-59.687026, -34.769485, 48],
+          [-59.686001, -34.768881, 46],
+          [-59.684976, -34.768277, 48],
+          [-59.684234, -34.769124, 48],
+          [-59.683889, -34.769516, 47],
+          [-59.683513, -34.769945, 47],
+          [-59.682616, -34.770964, 47],
+          [-59.68203, -34.771625, 47],
+          [-59.681241, -34.772515, 46],
+          [-59.680498, -34.773353, 45],
+          [-59.679743, -34.774203, 47],
+          [-59.679022, -34.775016, 47],
+          [-59.678312, -34.775817, 49],
+          [-59.677585, -34.776637, 49],
+          [-59.676884, -34.777427, 49],
+          [-59.676824, -34.777502, 49],
+          [-59.676159, -34.778245, 47],
+          [-59.675515, -34.778971, 47],
+          [-59.674491, -34.780125, 47],
+          [-59.67449, -34.780126, 47],
+          [-59.674255, -34.780391, 47],
+          [-59.674861, -34.780624, 47],
+          [-59.675142, -34.780732, 48],
+          [-59.675641, -34.780915, 47],
+          [-59.676158, -34.781123, 47],
+          [-59.676625, -34.781291, 47],
+          [-59.677987, -34.781839, 49],
+          [-59.678832, -34.782161, 46],
+          [-59.680176, -34.782674, 49],
+          [-59.680616, -34.782821, 49],
+          [-59.681135, -34.782994, 48.3],
+          [-59.681752, -34.783153, 47.8],
+          [-59.682339, -34.783276, 48],
+          [-59.684501, -34.783684, 51],
+          [-59.685784, -34.783926, 50],
+          [-59.6878, -34.784306, 50],
+          [-59.688519, -34.784442, 50],
+          [-59.690377, -34.78479, 50],
+          [-59.691034, -34.784912, 50],
+          [-59.691267, -34.784972, 50],
+          [-59.691736, -34.785092, 48.7],
+          [-59.692522, -34.785365, 48],
+          [-59.693965, -34.785865, 52],
+          [-59.69467, -34.78611, 54],
+          [-59.695725, -34.786483, 51],
+          [-59.698209, -34.787362, 49],
+          [-59.700327, -34.788133, 48],
+          [-59.700934, -34.788351, 50],
+          [-59.701662, -34.788605, 50],
+          [-59.70217, -34.788773, 48],
+          [-59.708328, -34.790926, 47],
+          [-59.709672, -34.791394, 49],
+          [-59.711196, -34.791927, 49],
+          [-59.717559, -34.794152, 47],
+          [-59.721248, -34.795481, 48],
+          [-59.723583, -34.796292, 47],
+          [-59.724358, -34.796547, 48],
+          [-59.724609, -34.796635, 48],
+          [-59.730907, -34.798837, 50],
+          [-59.737698, -34.801196, 50],
+          [-59.743839, -34.803347, 49],
+          [-59.753668, -34.806787, 50],
+          [-59.75907, -34.808678, 54],
+          [-59.764599, -34.810614, 48],
+          [-59.7693, -34.812259, 46],
+          [-59.777439, -34.815113, 46],
+          [-59.779369, -34.815782, 49],
+          [-59.780344, -34.81612, 48],
+          [-59.7833, -34.817145, 49],
+          [-59.787424, -34.818332, 47],
+          [-59.794241, -34.820242, 48],
+          [-59.795523, -34.8206, 46.3],
+          [-59.797055, -34.821084, 46.3],
+          [-59.799092, -34.821795, 45],
+          [-59.799576, -34.82196, 44],
+          [-59.820222, -34.829166, 48],
+          [-59.827962, -34.831871, 49],
+          [-59.832702, -34.833514, 50],
+          [-59.833733, -34.833871, 50],
+          [-59.837626, -34.835228, 50],
+          [-59.845982, -34.838141, 52],
+          [-59.847769, -34.838765, 52],
+          [-59.85536, -34.841454, 52],
+          [-59.857532, -34.842196, 52],
+          [-59.857663, -34.84224, 52],
+          [-59.858234, -34.842425, 52],
+          [-59.858632, -34.842575, 50],
+          [-59.863113, -34.844145, 53],
+          [-59.863618, -34.844322, 52],
+          [-59.86446, -34.844604, 51],
+          [-59.874434, -34.848076, 51],
+          [-59.879352, -34.849764, 51],
+          [-59.891293, -34.853938, 53],
+          [-59.908977, -34.860129, 55],
+          [-59.911971, -34.861159, 54],
+          [-59.912819, -34.861466, 54],
+          [-59.91421, -34.862037, 54],
+          [-59.922835, -34.865686, 53],
+          [-59.925286, -34.866734, 54.2],
+          [-59.925986, -34.867088, 54.1],
+          [-59.926707, -34.867527, 54],
+          [-59.92737, -34.868017, 54],
+          [-59.927934, -34.868505, 53.8],
+          [-59.928397, -34.868963, 53.7],
+          [-59.92878, -34.869371, 53.7],
+          [-59.935267, -34.877049, 55],
+          [-59.940508, -34.883249, 54],
+          [-59.942969, -34.886154, 54],
+          [-59.943804, -34.887085, 54.7],
+          [-59.944218, -34.887481, 54.8],
+          [-59.944852, -34.888022, 54.8],
+          [-59.946692, -34.88947, 53],
+          [-59.949025, -34.891305, 54],
+          [-59.949245, -34.891478, 54],
+          [-59.949567, -34.891731, 55],
+          [-59.949931, -34.892018, 55],
+          [-59.950086, -34.89214, 54],
+          [-59.950626, -34.892568, 55],
+          [-59.951665, -34.893416, 54],
+          [-59.952923, -34.894406, 55],
+          [-59.953726, -34.895041, 56],
+          [-59.953771, -34.895077, 56],
+          [-59.953959, -34.895226, 56],
+          [-59.954251, -34.895457, 56],
+          [-59.954644, -34.895762, 56],
+          [-59.954924, -34.895993, 59],
+          [-59.955501, -34.896462, 55],
+          [-59.955658, -34.896579, 55],
+          [-59.956291, -34.896986, 53.4],
+          [-59.957017, -34.897373, 53],
+          [-59.957066, -34.897397, 53],
+          [-59.957733, -34.897901, 53.7],
+          [-59.95788, -34.898038, 54],
+          [-59.95793, -34.89809, 54],
+          [-59.958562, -34.898766, 55.3],
+          [-59.959153, -34.899316, 58],
+          [-59.959468, -34.899557, 52],
+          [-59.962925, -34.902304, 52],
+          [-59.963474, -34.90274, 53],
+          [-59.964356, -34.903442, 53],
+          [-59.96563, -34.904454, 52],
+          [-59.966953, -34.905491, 55],
+          [-59.967524, -34.90594, 53],
+          [-59.968129, -34.906415, 53],
+          [-59.971532, -34.909097, 52],
+          [-59.972149, -34.909584, 53],
+          [-59.97256, -34.909909, 52],
+          [-59.972906, -34.910179, 52],
+          [-59.973341, -34.910524, 51],
+          [-59.974005, -34.911048, 49],
+          [-59.974081, -34.91111, 49],
+          [-59.974754, -34.911637, 52],
+          [-59.975335, -34.912097, 51],
+          [-59.975749, -34.912425, 51],
+          [-59.975802, -34.912468, 51],
+          [-59.976431, -34.912964, 51],
+          [-59.976692, -34.913169, 53],
+          [-59.977639, -34.913914, 52],
+          [-59.978656, -34.914715, 52],
+          [-59.979072, -34.915045, 56],
+          [-59.979337, -34.915251, 54],
+          [-59.979441, -34.915331, 54],
+          [-59.979827, -34.915636, 54],
+          [-59.980433, -34.916114, 52],
+          [-59.980566, -34.916222, 52],
+          [-59.980774, -34.916383, 52],
+          [-59.981073, -34.91662, 52],
+          [-59.98139, -34.916867, 54],
+          [-59.981533, -34.91698, 54],
+          [-59.981996, -34.917342, 53],
+          [-59.982192, -34.917498, 53],
+          [-59.982689, -34.917897, 50],
+          [-59.98295, -34.917667, 50],
+          [-59.984679, -34.916241, 52.6],
+          [-59.985596, -34.915369, 53.7],
+          [-59.987472, -34.913809, 54.3],
+          [-59.987587, -34.913699, 54],
+          [-59.987643, -34.913717, 54],
+          [-59.987859, -34.913878, 54],
+          [-59.988071, -34.914079, 55],
+          [-59.989409, -34.915348, 56],
+          [-59.989793, -34.915685, 56],
+          [-59.990571, -34.916404, 54],
+          [-59.991291, -34.917092, 54],
+          [-59.991823, -34.917579, 54.5],
+          [-59.992038, -34.917776, 55],
+          [-59.992868, -34.917129, 56],
+          [-59.993479, -34.916674, 55],
+          [-59.993618, -34.916568, 54.5],
+          [-59.993711, -34.916496, 54],
+          [-59.994485, -34.915905, 54],
+          [-59.994963, -34.91554, 55],
+          [-59.99568, -34.914993, 56],
+          [-59.996466, -34.914393, 55],
+          [-59.997314, -34.913735, 55],
+          [-59.998114, -34.913112, 56],
+          [-59.998935, -34.912476, 56],
+          [-59.999755, -34.91184, 55],
+          [-60.000593, -34.911189, 56],
+          [-60.001483, -34.910498, 58],
+          [-60.00235, -34.909825, 58],
+          [-60.003181, -34.909181, 56],
+          [-60.00401, -34.908537, 54],
+          [-60.004821, -34.907907, 55],
+          [-60.004882, -34.90786, 55],
+          [-60.005708, -34.907219, 54],
+          [-60.006539, -34.906574, 54],
+          [-60.007369, -34.905929, 54],
+          [-60.008201, -34.905284, 56],
+          [-60.009031, -34.904639, 57],
+          [-60.009866, -34.903991, 58],
+          [-60.010884, -34.903201, 59.5],
+          [-60.011541, -34.90269, 61],
+          [-60.011613, -34.902753, 61],
+          [-60.012342, -34.90339, 57],
+          [-60.013121, -34.90407, 57],
+          [-60.013901, -34.904751, 58],
+          [-60.014695, -34.905445, 56],
+          [-60.015465, -34.906117, 58],
+          [-60.016246, -34.906799, 58],
+          [-60.01704, -34.907492, 57],
+          [-60.017809, -34.908165, 57],
+          [-60.018536, -34.908802, 57],
+          [-60.018614, -34.908839, 57],
+          [-60.018673, -34.90888, 57],
+          [-60.019087, -34.909244, 54],
+          [-60.019485, -34.909586, 55],
+          [-60.020268, -34.910287, 53],
+          [-60.021028, -34.910954, 56],
+          [-60.021823, -34.911639, 56],
+          [-60.022554, -34.91228, 56],
+          [-60.023398, -34.91302, 52],
+          [-60.0249, -34.914317, 52],
+          [-60.024947, -34.914358, 52],
+          [-60.026581, -34.913073, 54],
+          [-60.028285, -34.911755, 49],
+          [-60.028808, -34.911341, 50],
+          [-60.029099, -34.911113, 50],
+          [-60.029952, -34.910455, 51],
+          [-60.030842, -34.909758, 50],
+          [-60.031562, -34.909185, 50],
+          [-60.032391, -34.908545, 53],
+          [-60.032217, -34.908394, 53],
+          [-60.031623, -34.907878, 53],
+          [-60.030838, -34.907202, 52],
+          [-60.030034, -34.906502, 51],
+          [-60.029249, -34.905819, 51],
+          [-60.028467, -34.905136, 52],
+          [-60.027695, -34.904446, 51],
+          [-60.026929, -34.903781, 55],
+          [-60.026109, -34.903058, 54],
+          [-60.025291, -34.902342, 54],
+          [-60.024521, -34.901667, 55],
+          [-60.023735, -34.900985, 56],
+          [-60.022954, -34.900295, 56],
+          [-60.022174, -34.899628, 56],
+          [-60.022124, -34.899586, 56.5],
+          [-60.021376, -34.898942, 57],
+          [-60.020603, -34.898262, 59],
+          [-60.019844, -34.897599, 59],
+          [-60.019817, -34.897575, 59],
+          [-60.019108, -34.898129, 58],
+          [-60.018973, -34.898149, 58],
+          [-60.01883, -34.898122, 58],
+          [-60.018232, -34.897599, 59],
+          [-60.018169, -34.897544, 59],
+          [-60.017509, -34.896968, 58],
+          [-60.017482, -34.896856, 58],
+          [-60.017518, -34.896739, 58],
+          [-60.018093, -34.896291, 59.5],
+          [-60.01822, -34.896193, 61],
+          [-60.017435, -34.895506, 61],
+          [-60.016653, -34.894823, 60],
+          [-60.015873, -34.894141, 60],
+          [-60.015091, -34.893457, 58],
+          [-60.01431, -34.892775, 57],
+          [-60.013529, -34.892091, 57],
+          [-60.012748, -34.891409, 56],
+          [-60.011967, -34.890725, 56],
+          [-60.011481, -34.890301, 56],
+          [-60.01116, -34.890021, 56],
+          [-60.010371, -34.88934, 56],
+          [-60.009591, -34.888662, 55],
+          [-60.0088, -34.887965, 55],
+          [-60.008028, -34.887304, 56],
+          [-60.00722, -34.886595, 55],
+          [-60.006461, -34.885941, 56],
+          [-60.005662, -34.885241, 55],
+          [-60.005606, -34.885189, 55],
+          [-60.00563, -34.885175, 55],
+          [-60.00569, -34.885139, 55],
+          [-60.00574, -34.885184, 55],
+          [-60.005662, -34.885241, 55],
+          [-60.004825, -34.885897, 56],
+          [-60.004005, -34.886538, 55],
+          [-60.003181, -34.887183, 56],
+          [-60.002362, -34.887815, 56],
+          [-60.001526, -34.888463, 57],
+          [-60.000709, -34.889096, 54],
+          [-59.999877, -34.889747, 55],
+          [-59.99907, -34.890356, 54.7],
+          [-59.998285, -34.890976, 53],
+          [-59.998208, -34.891035, 53],
+          [-59.998156, -34.890984, 53],
+          [-59.996615, -34.889641, 57],
+          [-59.996692, -34.889584, 58],
+          [-59.997452, -34.890248, 57],
+          [-59.998176, -34.890882, 55],
+          [-59.99823, -34.890929, 53],
+          [-59.998285, -34.890976, 53],
+          [-59.998208, -34.891035, 53],
+          [-59.998156, -34.890984, 53],
+          [-59.996615, -34.889641, 57],
+          [-59.995031, -34.88826, 55],
+          [-59.991674, -34.885331, 57.3],
+          [-59.991602, -34.885194, 58],
+          [-59.991619, -34.885134, 56.3],
+          [-59.991661, -34.885074, 56.1],
+          [-59.991744, -34.885001, 55.7],
+          [-59.992536, -34.884402, 55.7],
+          [-59.992556, -34.884365, 54],
+          [-59.992547, -34.884329, 54],
+          [-59.992513, -34.884295, 54],
+          [-59.987723, -34.880006, 61],
+          [-59.985049, -34.877576, 56],
+          [-59.984803, -34.877446, 55.1],
+          [-59.984663, -34.877426, 55.2],
+          [-59.984478, -34.877456, 55.2],
+          [-59.984427, -34.877476, 55.1],
+          [-59.984273, -34.877535, 55],
+          [-59.983868, -34.877828, 54.3],
+          [-59.982667, -34.87865, 54],
+          [-59.979346, -34.881064, 57],
+          [-59.974024, -34.885118, 54],
+          [-59.972773, -34.88606, 54],
+          [-59.970431, -34.887823, 54],
+          [-59.970207, -34.887983, 54],
+          [-59.967512, -34.889996, 53],
+          [-59.967017, -34.890366, 54],
+          [-59.963805, -34.892766, 56],
+          [-59.959219, -34.896263, 52],
+          [-59.95809, -34.897228, 52],
+          [-59.957961, -34.897391, 53.5],
+          [-59.957872, -34.897543, 53.7],
+          [-59.957827, -34.897684, 53.6],
+          [-59.957816, -34.897802, 53.6],
+          [-59.957832, -34.897912, 53.5],
+          [-59.95788, -34.898038, 54],
+          [-59.95793, -34.89809, 54],
+          [-59.957964, -34.898178, 55.5],
+          [-59.957956, -34.898253, 55.7],
+          [-59.957926, -34.898328, 55.9],
+          [-59.957872, -34.898381, 56.1],
+          [-59.957792, -34.89841, 56],
+          [-59.957687, -34.898412, 55.9],
+          [-59.957595, -34.898386, 57],
+          [-59.95754, -34.898357, 57],
+          [-59.95739, -34.898267, 54.5],
+          [-59.957159, -34.898091, 54.7],
+          [-59.956759, -34.897734, 54],
+          [-59.95671, -34.897682, 54],
+          [-59.956341, -34.897272, 53.6],
+          [-59.956049, -34.896913, 53.8],
+          [-59.955658, -34.896579, 55],
+          [-59.955501, -34.896462, 55],
+          [-59.954924, -34.895993, 59],
+          [-59.954644, -34.895762, 56],
+          [-59.954251, -34.895457, 56],
+          [-59.953959, -34.895226, 56],
+          [-59.953771, -34.895077, 56],
+          [-59.953726, -34.895041, 56],
+          [-59.952923, -34.894406, 55],
+          [-59.951665, -34.893416, 54],
+          [-59.950626, -34.892568, 55],
+          [-59.950086, -34.89214, 54],
+          [-59.949931, -34.892018, 55],
+          [-59.949567, -34.891731, 55],
+          [-59.949245, -34.891478, 54],
+          [-59.949025, -34.891305, 54],
+          [-59.946692, -34.88947, 53],
+          [-59.944852, -34.888022, 54.8],
+          [-59.944218, -34.887481, 54.8],
+          [-59.943804, -34.887085, 54.7],
+          [-59.942969, -34.886154, 54],
+          [-59.940508, -34.883249, 54],
+          [-59.935267, -34.877049, 55],
+          [-59.92878, -34.869371, 53.7],
+          [-59.928397, -34.868963, 53.7],
+          [-59.927934, -34.868505, 53.8],
+          [-59.92737, -34.868017, 54],
+          [-59.926707, -34.867527, 54],
+          [-59.925986, -34.867088, 54.1],
+          [-59.925286, -34.866734, 54.2],
+          [-59.922835, -34.865686, 53],
+          [-59.91421, -34.862037, 54],
+          [-59.912819, -34.861466, 54],
+          [-59.911971, -34.861159, 54],
+          [-59.908977, -34.860129, 55],
+          [-59.891293, -34.853938, 53],
+          [-59.879352, -34.849764, 51],
+          [-59.874434, -34.848076, 51],
+          [-59.86446, -34.844604, 51],
+          [-59.863618, -34.844322, 52],
+          [-59.863113, -34.844145, 53],
+          [-59.858632, -34.842575, 50],
+          [-59.858284, -34.842444, 51],
+          [-59.858234, -34.842425, 52],
+          [-59.857663, -34.84224, 52],
+          [-59.85536, -34.841454, 52],
+          [-59.847769, -34.838765, 52],
+          [-59.845982, -34.838141, 52],
+          [-59.837626, -34.835228, 50],
+          [-59.833733, -34.833871, 50],
+          [-59.832702, -34.833514, 50],
+          [-59.827962, -34.831871, 49],
+          [-59.820222, -34.829166, 48],
+          [-59.799576, -34.82196, 44],
+          [-59.799092, -34.821795, 45],
+          [-59.797055, -34.821084, 46.3],
+          [-59.795523, -34.8206, 46.3],
+          [-59.794241, -34.820242, 48],
+          [-59.787424, -34.818332, 47],
+          [-59.7833, -34.817145, 49],
+          [-59.780344, -34.81612, 48],
+          [-59.779369, -34.815782, 49],
+          [-59.777439, -34.815113, 46],
+          [-59.7693, -34.812259, 46],
+          [-59.764599, -34.810614, 48],
+          [-59.75907, -34.808678, 54],
+          [-59.753668, -34.806787, 50],
+          [-59.743839, -34.803347, 49],
+          [-59.737698, -34.801196, 50],
+          [-59.730907, -34.798837, 50],
+          [-59.724609, -34.796635, 48],
+          [-59.724358, -34.796547, 48],
+          [-59.723583, -34.796292, 47],
+          [-59.721248, -34.795481, 48],
+          [-59.717559, -34.794152, 47],
+          [-59.711196, -34.791927, 49],
+          [-59.709672, -34.791394, 49],
+          [-59.708328, -34.790926, 47],
+          [-59.70217, -34.788773, 48],
+          [-59.701662, -34.788605, 50],
+          [-59.700934, -34.788351, 50],
+          [-59.700327, -34.788133, 48],
+          [-59.698209, -34.787362, 49],
+          [-59.695725, -34.786483, 51],
+          [-59.69467, -34.78611, 54],
+          [-59.693965, -34.785865, 52],
+          [-59.692522, -34.785365, 48],
+          [-59.691736, -34.785092, 48.7],
+          [-59.691267, -34.784972, 50],
+          [-59.691034, -34.784912, 50],
+          [-59.690377, -34.78479, 50],
+          [-59.688519, -34.784442, 50],
+          [-59.6878, -34.784306, 50],
+          [-59.685784, -34.783926, 50],
+          [-59.684501, -34.783684, 51],
+          [-59.682339, -34.783276, 48],
+          [-59.681752, -34.783153, 47.8],
+          [-59.681135, -34.782994, 48.3],
+          [-59.680616, -34.782821, 49],
+          [-59.680176, -34.782674, 49],
+          [-59.678832, -34.782161, 46],
+          [-59.677987, -34.781839, 49],
+          [-59.676625, -34.781291, 47],
+          [-59.676158, -34.781123, 47],
+          [-59.675641, -34.780915, 47],
+          [-59.675142, -34.780732, 48],
+          [-59.674861, -34.780624, 47],
+          [-59.674255, -34.780391, 47],
+          [-59.67449, -34.780126, 47],
+          [-59.675515, -34.778971, 47],
+          [-59.676159, -34.778245, 47],
+          [-59.676824, -34.777502, 49],
+          [-59.676884, -34.777427, 49],
+          [-59.677585, -34.776637, 49],
+          [-59.678312, -34.775817, 49],
+          [-59.679022, -34.775016, 47],
+          [-59.679743, -34.774203, 47],
+          [-59.680498, -34.773353, 45],
+          [-59.681241, -34.772515, 46],
+          [-59.68203, -34.771625, 47],
+          [-59.682616, -34.770964, 47],
+          [-59.683513, -34.769945, 47],
+          [-59.683889, -34.769516, 47],
+          [-59.684234, -34.769124, 48],
+          [-59.684976, -34.768277, 48],
+          [-59.685729, -34.767419, 47],
+          [-59.685701, -34.767402, 47],
+          [-59.685729, -34.767419, 47],
+          [-59.68675, -34.76803, 47],
+          [-59.68777, -34.76864, 48],
+          [-59.687493, -34.768955, 48]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "San Martín, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.68747079372407, -34.76909246263009] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Colectividad Italiana, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.674515724182136, -34.78013916592744] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Acceso a Gorostiaga, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.857587218284614, -34.842086957717186] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Acceso Néstor Carlos Kirchner, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.988119602203376, -34.91404462806756] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Alejandro Mathus, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.99183177947999, -34.917572458053904] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Calle 110, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.99356448650361, -34.9165211629823] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "50 Avenida Bartolomé Mitre, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.01073598861695, -34.903073075726915] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Avenida Avellaneda, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.024876594543464, -34.91433495396633] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Avenida Diario La Razón, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.03204345703126, -34.908528240901454] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "149 Avenida Villarino, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.022097826004035, -34.89960621791973] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "9 de Julio, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.019866228103645, -34.89758235002716] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "028-11, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.01798868179322, -34.89620081156622] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Jardín De Infantes Nº 916, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.011465549469, -34.89031361333967] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "401 Avenida José León Suárez, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-60.005629062652595, -34.885174070010265] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Patricia Leiva, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.99818325042725, -34.89087683141934] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Acceso Juan Domingo Perón, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.984450340271, -34.87751696240134] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Acceso a Gorostiaga, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.85824704170228, -34.842509619437486] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "Rivadavia, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.68570590019227, -34.76739588937162] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "label": "San Martín, BA,Argentina" },
+      "geometry": { "type": "Point", "coordinates": [-59.68749761581421, -34.768958060046515] }
+    }
+  ]
+}

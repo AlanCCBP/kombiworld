@@ -24,7 +24,7 @@ const ReservationForm = () => {
 
   interface Stop {
     name: string;
-    additionalMinutes: Number;
+    additionalMinutes: number;
   }
 
   interface Trip {
