@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -51,47 +50,44 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-[#FFBA38] text-white">
-      <Navbar />
-      <main className="p-6 sm:p-12 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">Ingresar</h1>
+    <main className="p-6 sm:p-12 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold text-center mb-8">Ingresar</h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
-        >
-          <div>
-            <label className="block text-sm font-semibold mb-2">Email</label>
-            <input
-              type="text"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-            />
-          </div>
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
+      >
+        <div>
+          <label className="block text-sm font-semibold mb-2">Email</label>
+          <input
+            type="text"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full p-2 border rounded-lg"
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-semibold mb-2">Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-semibold mb-2">Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full p-2 border rounded-lg"
+          />
+        </div>
 
-          <div className="sm:col-span-2">
-            <button
-              type="submit"
-              className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
-            >
-              Ingresar
-            </button>
-          </div>
-        </form>
-      </main>
-    </div>
+        <div className="sm:col-span-2">
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
+          >
+            Ingresar
+          </button>
+        </div>
+      </form>
+    </main>
   );
 }

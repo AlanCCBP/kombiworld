@@ -10,8 +10,6 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.90.5",
-    "@tanstack/react-query-devtools": "^5.90.2",
     "@types/react-map-gl": "^6.1.7",
     "lucide-react": "^0.543.0",
     "mapbox-gl": "^3.14.0",
