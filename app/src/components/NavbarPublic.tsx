@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { MenuItem } from "@/types";
-import Image from "next/image";
 
 export default function NavbarPublic() {
   const [open, setOpen] = useState(false);
@@ -53,18 +52,12 @@ export default function NavbarPublic() {
       <div className="flex justify-between items-center">
         <Link href="/">
           <div className="flex items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Logo KombiWorld"
-              className="h-10 w-10"
-              width={64}
-              height={64}
-            />
+            <img src="/logo.png" alt="Logo KombiWorld" className="h-10 w-10" />
             <span className="font-bold text-lg">KombiWorld</span>
           </div>
         </Link>
         <div className="hidden md:flex space-x-6 items-center">
-          {menu.map(({ label, path }, i) => (
+          {menu.map(({ label, path, icon: Icon }, i) => (
             <Link
               href={path}
               className="flex items-center gap-3 p-2 rounded-md transition-colors"
