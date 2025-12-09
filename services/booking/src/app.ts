@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ✅ CORS config
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://reservations-service:4000',
+  'http://booking-service:4000',
 ];
 
 app.use(

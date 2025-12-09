@@ -1,0 +1,68 @@
+services:
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    container_name: kombi_web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../apps/web:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - users
+      - booking
+    networks:
+      - kombi_network
+
+  users:
+    build:
+      context: ../services/users
+      dockerfile: Dockerfile
+    container_name: kombi_users
+    volumes:
+      - ../services/users:/app
+      - /app/node_modules
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=development
+      - PORT=4001
+    networks:
+      - kombi_network
+
+  booking:
+    build:
+      context: ../services/booking
+      dockerfile: Dockerfile
+    container_name: kombi_booking
+    volumes:
+      - ../services/booking:/app
+      - /app/node_modules
+    ports:
+      - "4002:4002"
+    environment:
+      - NODE_ENV=development
+      - PORT=4002
+    networks:
+      - kombi_network
+
+  nginx:
+    build:
+      context: ../infra/nginx
+      dockerfile: Dockerfile
+    container_name: kombi_nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+      - users
+      - booking
+    networks:
+      - kombi_network
+
+networks:
+  kombi_network:
+    driver: bridge

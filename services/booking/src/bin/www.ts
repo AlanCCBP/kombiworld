@@ -4,7 +4,7 @@ import app from '../app';
 import debugLib from 'debug';
 import http, { Server } from 'http';
 
-const debug = debugLib('reservationsservice:server');
+const debug = debugLib('bookingservice:server');
 
 /**
  * Get port from environment and store in Express.
