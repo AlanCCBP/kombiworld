@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import SideBar from "@/components/Sidebar";
 import { Building2, LayoutDashboard, Receipt, UsersRound } from "lucide-react";
 import Footer from "@/components/Footer";
 import { MenuItem } from "@/types";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -49,18 +38,14 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main className="flex flex-col max-h-screen">
-          <div className="grid grid-cols-12 gap-1 h-screen">
-            <div className="bg-pink-600 col-span-2">
-              <SideBar menuItems={menu} />
-            </div>
-            <div className="bg-white col-span-10">{children}</div>
-          </div>
-          <Footer />
-        </main>
-      </body>
-    </html>
+    <main className="flex flex-col max-h-screen">
+      <div className="grid grid-cols-12 gap-1 h-screen">
+        <div className="bg-pink-600 col-span-2">
+          <SideBar menuItems={menu} />
+        </div>
+        <div className="bg-white col-span-10">{children}</div>
+      </div>
+      <Footer />
+    </main>
   );
 }
