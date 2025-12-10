@@ -7,7 +7,7 @@ const createUser = async (data: CreateUserInput) => {
   return prisma.user.create({
     data: {
       ...fields,
-      password, // suponiendo que ya viene hasheado
+      password,
       userRoles: {
         createMany: {
           data: roleIds!.map((roleId: number) => ({ roleId })),
@@ -24,19 +24,16 @@ const updateUser = async (userId: string, data: UpdateUserInput) => {
   const { roleIds, ...fields } = data;
 
   return prisma.$transaction(async (tx) => {
-    // Update base fields
     const updatedUser = await tx.user.update({
       where: { id: userId },
       data: fields,
     });
 
     if (roleIds) {
-      // Clear roles
       await tx.userRole.deleteMany({
         where: { userId },
       });
 
-      // Insert new roles
       if (roleIds.length > 0) {
         await tx.userRole.createMany({
           data: roleIds.map((roleId: number) => ({ roleId, userId })),
