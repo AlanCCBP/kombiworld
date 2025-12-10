@@ -1,0 +1,81 @@
+services:
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile.prod
+    container_name: kombi_web
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../apps/web/.env.prod
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - users
+      - booking
+    networks:
+      - kombi_network
+
+  users:
+    build:
+      context: ../services/users
+      dockerfile: Dockerfile.prod
+    container_name: kombi_users
+    env_file:
+      - ../services/users/.env.prod
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - users-db
+    networks:
+      - kombi_network
+
+  booking:
+    build:
+      context: ../services/booking
+      dockerfile: Dockerfile.prod
+    container_name: kombi_booking
+    env_file:
+      - ../services/booking/.env.prod
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - booking-db
+    networks:
+      - kombi_network
+
+  users-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    networks:
+      - kombi_network
+
+  booking-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=booking
+    networks:
+      - kombi_network
+
+  nginx:
+    build:
+      context: ../infra/nginx
+      dockerfile: Dockerfile.prod
+    container_name: kombi_nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+      - users
+      - booking
+    networks:
+      - kombi_network
+
+networks:
+  kombi_network:
+    driver: bridge

@@ -1,15 +1,19 @@
-const js = require('@eslint/js');
-const prettier = require('eslint-plugin-prettier');
+import js from '@eslint/js';
+import prettier from 'eslint-plugin-prettier';
+import type { Linter } from 'eslint';
 
-module.exports = {
+const config: Linter.Config = {
   ...js.configs.recommended,
+
   languageOptions: {
     ecmaVersion: 2022,
     sourceType: 'module',
   },
+
   plugins: {
-    prettier: prettier,
+    prettier,
   },
+
   rules: {
     'prettier/prettier': [
       'error',
@@ -25,3 +29,5 @@ module.exports = {
     'no-console': 'warn',
   },
 };
+
+export default config;

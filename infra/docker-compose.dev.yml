@@ -2,13 +2,12 @@ services:
   web:
     build:
       context: ../apps/web
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: kombi_web
     ports:
       - "3000:3000"
     volumes:
-      - ../apps/web:/app
-      - /app/node_modules
+      - ../apps/web:/usr/src/app
     environment:
       - NODE_ENV=development
     depends_on:
@@ -20,39 +19,65 @@ services:
   users:
     build:
       context: ../services/users
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: kombi_users
     volumes:
-      - ../services/users:/app
-      - /app/node_modules
+      - ../services/users:/usr/src/app
     ports:
       - "4001:4001"
+    env_file:
+      - ../services/users/.env.dev
     environment:
       - NODE_ENV=development
-      - PORT=4001
+    depends_on:
+      - users-db
     networks:
       - kombi_network
 
   booking:
     build:
       context: ../services/booking
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: kombi_booking
     volumes:
-      - ../services/booking:/app
-      - /app/node_modules
+      - ../services/booking:/usr/src/app
     ports:
       - "4002:4002"
+    env_file:
+      - ../services/booking/.env.dev
     environment:
       - NODE_ENV=development
-      - PORT=4002
+    depends_on:
+      - booking-db
+    networks:
+      - kombi_network
+
+  users-db:
+    image: postgres:15
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    networks:
+      - kombi_network
+
+  booking-db:
+    image: postgres:15
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=booking
     networks:
       - kombi_network
 
   nginx:
     build:
       context: ../infra/nginx
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: kombi_nginx
     ports:
       - "80:80"
