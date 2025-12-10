@@ -1,4 +1,4 @@
-# Dockerfile for usersService
+# Dockerfile for kombi_users
 FROM node:24-slim
 
 # Install PostgreSQL client and wait-for-it script

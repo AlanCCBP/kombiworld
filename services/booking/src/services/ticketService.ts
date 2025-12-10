@@ -1,7 +1,10 @@
-import { Prisma, PrismaClient, Ticket, Trip } from '@prisma/client';
+import { prisma } from '../lib/prisma';
+import {
+  PrismaClientKnownRequestError,
+  TripWhereInput,
+} from '@/prisma/generated/prisma/internal/prismaNamespace';
+import { Ticket } from '@/prisma/generated/prisma/client';
 import { UserServiceClient } from '../clients/userServiceClient';
-
-const prisma = new PrismaClient();
 
 interface GetTicketOptions {
   page?: number;
@@ -69,7 +72,7 @@ export class TicketService {
         });
       }
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new Error(`Trip or route not found`);
         }
@@ -100,7 +103,7 @@ export class TicketService {
     const { tripIds, startDate, endDate, driverId, passengerId } =
       filterOptions || {};
 
-    const where: Prisma.TripWhereInput = {
+    const where: TripWhereInput = {
       deletedAt: null,
 
       ...(tripIds?.length && {

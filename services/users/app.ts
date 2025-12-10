@@ -1,29 +1,34 @@
-import express, { Application } from 'express';
+// app.ts
+import express, { Application, Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 
-import 'dotenv/config';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from './prisma/generated/prisma/client';
 
-import stopRouter from './routes/stopRoutes';
-import routeRouter from './routes/routeRoutes';
-import tripRouter from './routes/tripRoutes';
-import ticketRouter from './routes/ticketRoutes';
-import { contextMiddleware } from './middlewares/contextMiddleware';
-import { prisma } from './lib/prisma';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app: Application = express();
 
-app.use(express.json());
-app.use(contextMiddleware);
+const connectionString = process.env.DATABASE_URL_USERS ?? '';
+
+const adapter = new PrismaPg({ connectionString });
+export const prisma = new PrismaClient({ adapter });
+
+import userRoutes from './src/routes/userRoutes';
+
 app.use(logger('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ CORS config
-const allowedOrigins = ['http://localhost:3000', 'http://booking-service:4000'];
+const allowedOrigins = ['http://localhost:3000'];
 
 app.use(
   cors({
@@ -38,14 +43,9 @@ app.use(
   }),
 );
 
-// ✅ Rutas
-app.use('/api/stops', stopRouter);
-app.use('/api/routes', routeRouter);
-app.use('/api/trips', tripRouter);
-app.use('/api/tickets', ticketRouter);
+app.use('/users', userRoutes);
 
-// ✅ DB connection
-async function start() {
+async function start(): Promise<void> {
   try {
     await prisma.$connect();
     console.log('Database connected successfully!');
@@ -53,6 +53,10 @@ async function start() {
     console.error('Database connection failed:', error);
     process.exit(1);
   }
+
+  app.listen(4000, () => {
+    console.log('Server running on port 4000');
+  });
 }
 
 start();

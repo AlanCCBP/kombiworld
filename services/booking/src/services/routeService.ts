@@ -1,6 +1,9 @@
-import { Prisma, PrismaClient, Route } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prisma';
+import {
+  PrismaClientKnownRequestError,
+  RouteWhereInput,
+} from '@/prisma/generated/prisma/internal/prismaNamespace';
+import { Route } from '@/prisma/generated/prisma/client';
 
 export interface UpsertRouteDTO {
   id?: string;
@@ -29,7 +32,7 @@ export class RouteService {
         });
       } catch (error) {
         if (
-          error instanceof Prisma.PrismaClientKnownRequestError &&
+          error instanceof PrismaClientKnownRequestError &&
           error.code === 'P2025'
         ) {
           return await prisma.route.create({ data });
@@ -61,7 +64,7 @@ export class RouteService {
   }: GetRouteOptions) {
     const skip = (page - 1) * limit;
 
-    const where: Prisma.RouteWhereInput = {
+    const where: RouteWhereInput = {
       deletedAt: null,
       ...(filterOptions.ids?.length && { id: { in: filterOptions.ids } }),
       ...(filterOptions.name && {

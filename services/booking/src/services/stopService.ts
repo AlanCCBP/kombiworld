@@ -1,6 +1,9 @@
-import { Prisma, PrismaClient, Stop } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prisma';
+import {
+  PrismaClientKnownRequestError,
+  StopWhereInput,
+} from '@/prisma/generated/prisma/internal/prismaNamespace';
+import { Stop } from '@/prisma/generated/prisma/client';
 
 export interface UpsertStopDTO {
   id?: string;
@@ -42,7 +45,7 @@ export class StopService {
         },
       });
     } catch (error: unknown) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new Error(`Stop or route not found`);
         }
@@ -78,7 +81,7 @@ export class StopService {
   }: GetStopsOptions) {
     const skip = (page - 1) * limit;
 
-    const where: Prisma.StopWhereInput = {
+    const where: StopWhereInput = {
       routeId,
       deletedAt: null,
       ...(filterOptions.ids?.length && { id: { in: filterOptions.ids } }),
