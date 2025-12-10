@@ -1,7 +1,7 @@
-import { prisma } from '@/lib/prisma';
-import { CreateUserInput, UpdateUserInput } from '@/types/user.types';
+import { prisma } from '@/src/lib/prisma';
+import { CreateUserInput, UpdateUserInput } from '@/src/types/user.types';
 
-export const createUser = async (data: CreateUserInput) => {
+const createUser = async (data: CreateUserInput) => {
   const { roleIds, password, ...fields } = data;
 
   return prisma.user.create({
@@ -20,7 +20,7 @@ export const createUser = async (data: CreateUserInput) => {
   });
 };
 
-export const updateUser = async (userId: string, data: UpdateUserInput) => {
+const updateUser = async (userId: string, data: UpdateUserInput) => {
   const { roleIds, ...fields } = data;
 
   return prisma.$transaction(async (tx) => {
@@ -39,7 +39,7 @@ export const updateUser = async (userId: string, data: UpdateUserInput) => {
       // Insert new roles
       if (roleIds.length > 0) {
         await tx.userRole.createMany({
-          data: roleIds.map((roleId) => ({ roleId, userId })),
+          data: roleIds.map((roleId: number) => ({ roleId, userId })),
         });
       }
     }
@@ -53,7 +53,7 @@ export const updateUser = async (userId: string, data: UpdateUserInput) => {
   });
 };
 
-export const deleteUser = async (userId: string) => {
+const deleteUser = async (userId: string) => {
   return prisma.user.update({
     where: { id: userId },
     data: {
@@ -62,7 +62,7 @@ export const deleteUser = async (userId: string) => {
   });
 };
 
-export const getUser = async (userId: string) => {
+const getUser = async (userId: string) => {
   return prisma.user.findUnique({
     where: { id: userId },
     include: {
@@ -71,11 +71,19 @@ export const getUser = async (userId: string) => {
   });
 };
 
-export const getUsers = async () => {
+const getUsers = async () => {
   return prisma.user.findMany({
     where: { deletedAt: null },
     include: {
       userRoles: { include: { role: true } },
     },
   });
+};
+
+export default {
+  createUser,
+  updateUser,
+  deleteUser,
+  getUser,
+  getUsers,
 };

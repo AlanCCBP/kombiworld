@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "tsx watch ./src/bin/www.ts",
+    "dev": "tsx watch ./bin/www.ts",
     "build": "rm -rf dist && tsc",
-    "start": "node ./dist/src/bin/www.js",
-    "preview": "npm run build && node ./dist/src/bin/www.js",
+    "start": "node ./dist/bin/www.js",
+    "preview": "npm run build && node ./dist/bin/www.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",

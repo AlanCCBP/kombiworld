@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
+import app from '../app';
 import http from 'http';
 import debugLib from 'debug';
-import app from '../app';
 
 const debug = debugLib('kombi_users:server');
 
 // Get port from environment and store in Express.
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '4001');
 app.set('port', port);
 
 // Create HTTP server.
@@ -68,12 +68,7 @@ function onError(error: NodeJS.ErrnoException): void {
  */
 function onListening(): void {
   const addr = server.address();
-
-  if (!addr) {
-    return;
-  }
-
-  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-
+  if (!addr) return;
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug(`Listening on ${bind}`);
 }

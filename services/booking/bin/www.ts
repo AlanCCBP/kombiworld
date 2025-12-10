@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import app from '../app';
 import debugLib from 'debug';
 import http, { Server } from 'http';
@@ -9,7 +8,7 @@ const debug = debugLib('bookingservice:server');
 /**
  * Get port from environment and store in Express.
  */
-const port: number = normalizePort(process.env.PORT || '4000');
+const port = normalizePort(process.env.PORT || '4001');
 app.set('port', port);
 
 /**
@@ -20,26 +19,25 @@ const server: Server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
  */
-function normalizePort(val: string): number {
-  const parsedPort = parseInt(val, 10);
+function normalizePort(val: string): number | string | false {
+  const port = parseInt(val, 10);
 
-  if (isNaN(parsedPort)) {
-    // named pipe, no lo usamos aquí
-    return 4000;
+  if (isNaN(port)) {
+    // pipe name
+    return val;
   }
 
-  if (parsedPort >= 0) {
-    return parsedPort;
+  if (port >= 0) {
+    return port;
   }
 
-  return 4000;
+  return false;
 }
 
 /**

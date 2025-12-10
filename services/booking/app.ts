@@ -6,12 +6,12 @@ import cors from 'cors';
 
 import 'dotenv/config';
 
-import stopRouter from './routes/stopRoutes';
-import routeRouter from './routes/routeRoutes';
-import tripRouter from './routes/tripRoutes';
-import ticketRouter from './routes/ticketRoutes';
-import { contextMiddleware } from './middlewares/contextMiddleware';
-import { prisma } from './lib/prisma';
+import stopRouter from './src/routes/stopRoutes';
+import routeRouter from './src/routes/routeRoutes';
+import tripRouter from './src/routes/tripRoutes';
+import ticketRouter from './src/routes/ticketRoutes';
+import { contextMiddleware } from './src/middlewares/contextMiddleware';
+import { prisma } from './src/lib/prisma';
 
 const app: Application = express();
 
@@ -22,8 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ CORS config
-const allowedOrigins = ['http://localhost:3000', 'http://booking-service:4000'];
+const allowedOrigins = ['http://localhost:3000'];
 
 app.use(
   cors({
@@ -38,14 +37,12 @@ app.use(
   }),
 );
 
-// ✅ Rutas
 app.use('/api/stops', stopRouter);
 app.use('/api/routes', routeRouter);
 app.use('/api/trips', tripRouter);
 app.use('/api/tickets', ticketRouter);
 
-// ✅ DB connection
-async function start() {
+async function start(): Promise<void> {
   try {
     await prisma.$connect();
     console.log('Database connected successfully!');
