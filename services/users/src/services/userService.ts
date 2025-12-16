@@ -1,5 +1,11 @@
 import { prisma } from '@/src/lib/prisma';
-import { CreateUserInput, UpdateUserInput } from '@/src/types/user.types';
+import {
+  CreateUserInput,
+  LoginInput,
+  RegisterUserInput,
+  UpdateUserInput,
+} from '@/src/types/user.types';
+import { compare, hash } from 'bcrypt';
 
 const createUser = async (data: CreateUserInput) => {
   const { roleIds, password, ...fields } = data;
@@ -77,10 +83,75 @@ const getUsers = async () => {
   });
 };
 
+const loginUser = async (data: LoginInput) => {
+  const { email } = data;
+
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+    include: {
+      userRoles: { include: { role: true } },
+    },
+  });
+
+  if (!existingUser) {
+    throw new Error(`User with email ${data.email} does not exist.`);
+  }
+
+  const validPassword = await compare(data.password, existingUser.password);
+
+  if (!validPassword) {
+    throw new Error('Invalid credentials');
+  }
+
+  const { password, ...safeUser } = existingUser;
+
+  return safeUser;
+};
+
+const registerUser = async (data: RegisterUserInput) => {
+  const existingUser = await prisma.user.findUnique({
+    where: { email: data.email },
+  });
+
+  if (existingUser) {
+    throw new Error(`User with email ${data.email} already exists.`);
+  }
+
+  const hashedPassword = await hash(data.password, 10);
+
+  const newUser = await prisma.user.create({
+    data: {
+      ...data,
+      password: hashedPassword,
+      userRoles: {
+        create: {
+          role: { connect: { name: 'USER' } },
+        },
+      },
+    },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      status: true,
+      userRoles: {
+        select: {
+          role: true,
+        },
+      },
+    },
+  });
+
+  return newUser;
+};
+
 export default {
   createUser,
   updateUser,
   deleteUser,
   getUser,
   getUsers,
+  loginUser,
+  registerUser,
 };

@@ -1,11 +1,29 @@
-import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
+import {
+  JWT_ACCESS_SECRET,
+  JWT_REFRESH_SECRET,
+  ACCESS_TOKEN_EXPIRES,
+  REFRESH_TOKEN_EXPIRES,
+} from '@/src/config/jwt';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
-const SECRET_KEY = process.env.JWT_SECRET as string || 'your_secret_key';
-const EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
+const SECRET_KEY = (process.env.JWT_SECRET as string) || 'your_secret_key';
 
-export function generateToken(payload: object, expiresIn: string = EXPIRES_IN): string {
-  return jwt.sign(payload, SECRET_KEY, { expiresIn } as SignOptions);
-}
+export const generateAccessToken = (user: { id: string }) => {
+  return jwt.sign({ userId: user.id }, JWT_ACCESS_SECRET, {
+    expiresIn: ACCESS_TOKEN_EXPIRES,
+  });
+};
+
+export const generateRefreshToken = (user: {
+  id: string;
+  tokenVersion: number;
+}) => {
+  return jwt.sign(
+    { userId: user.id, version: user.tokenVersion },
+    JWT_REFRESH_SECRET,
+    { expiresIn: REFRESH_TOKEN_EXPIRES },
+  );
+};
 
 export function verifyToken(token: string): JwtPayload | string {
   try {

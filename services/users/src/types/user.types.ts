@@ -46,6 +46,22 @@ export interface LoginInput {
 }
 
 // -------------------------------------------------------------
+// REGISTER INPUT
+// -------------------------------------------------------------
+export interface RegisterUserInput {
+  firstName: string;
+  lastName: string;
+  docType: DocType;
+  docNumber: string;
+  email: string;
+  phone?: string;
+  altPhone?: string;
+  birthdate?: string | Date;
+  address?: string;
+  password: string;
+}
+
+// -------------------------------------------------------------
 // USER FILTER OPTIONS (GET USERS)
 // -------------------------------------------------------------
 export interface UserFilterOptions {
