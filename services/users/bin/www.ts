@@ -3,6 +3,7 @@
 import app from '../app';
 import http from 'http';
 import debugLib from 'debug';
+import { prisma } from '../src/lib/prisma';
 
 const debug = debugLib('kombi_users:server');
 

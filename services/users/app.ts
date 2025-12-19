@@ -7,19 +7,12 @@ import cors from 'cors';
 import 'dotenv/config';
 import userRoutes from './src/routes/userRoutes';
 
-import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from './prisma/generated/prisma/client';
+import { prisma } from './src/lib/prisma';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const app: Application = express();
-
-const connectionString = process.env.DATABASE_URL_USERS ?? '';
-
-const adapter = new PrismaPg({ connectionString });
-export const prisma = new PrismaClient({ adapter });
 
 app.use(logger('dev'));
 app.use(express.json());
