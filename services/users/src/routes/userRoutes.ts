@@ -9,7 +9,5 @@ router.get('/', auth, userController.getUsers);
 router.get('/:userId', auth, userController.getUser);
 router.put('/:userId', auth, userController.updateUser);
 router.delete('/:userId', auth, userController.deleteUser);
-router.post('/login', auth, userController.loginUser);
-router.post('/register', auth, userController.registerUser);
 
 export default router;

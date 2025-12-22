@@ -33,24 +33,26 @@ model Role {
 }
 
 model User {
-  id         String     @id @default(uuid()) @db.Uuid
-  firstName  String     @map("first_name")
-  lastName   String     @map("last_name")
-  docType    DocType    @map("doc_type")
-  docNumber  String     @map("doc_number")
-  email      String     @unique
-  phone      String?
-  altPhone   String?    @map("alt_phone")
-  birthdate  DateTime?
-  address    String?
-  password   String
-  status     Status     @default(USER)
-  tokenVersion  Int     @default(0)
-  createdAt  DateTime   @default(now()) @map("created_at")
-  updatedAt  DateTime   @updatedAt @map("updated_at")
-  deletedAt  DateTime?  @map("deleted_at")
+  id            String     @id @default(uuid()) @db.Uuid
+  firstName     String     @map("first_name")
+  lastName      String     @map("last_name")
+  docType       DocType    @map("doc_type")
+  docNumber     String     @map("doc_number")
+  email         String     @unique
+  phone         String?
+  altPhone      String?    @map("alt_phone")
+  birthdate     DateTime?
+  address       String?
+  password      String
+  status        Status     @default(USER)
+  tokenVersion  Int        @default(0) @map("token_version")
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+  deletedAt     DateTime?  @map("deleted_at")
 
-  userRoles  UserRole[]
+  userRoles     UserRole[]
+  refreshTokens RefreshToken[]
+  passwordResets PasswordReset[]
 
   @@map("user")
 }
@@ -64,4 +66,32 @@ model UserRole {
 
   @@id([roleId, userId])
   @@map("user_role")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  revokedAt DateTime? @map("revoked_at")
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_token")
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_reset")
 }

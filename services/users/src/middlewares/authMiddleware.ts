@@ -1,17 +1,58 @@
-import jwt from 'jsonwebtoken';
-import { JWT_ACCESS_SECRET } from '../config/jwt';
+import { Request, Response, NextFunction } from 'express';
+import { verifyAccessToken } from '../utils/jwt';
 
-export const auth = (req: any, res: any, next: any) => {
-  const header = req.headers.authorization;
-  if (!header) return res.status(401).json({ error: 'No token provided' });
+export interface AuthRequest extends Request {
+  userId?: string;
+  userEmail?: string;
+  userRoles?: string[];
+}
 
-  const token = header.split(' ')[1];
-
+export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const payload = jwt.verify(token, JWT_ACCESS_SECRET) as any;
-    req.userId = payload.userId;
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Invalid token' });
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({ error: 'No authorization header provided' });
+    }
+
+    const parts = authHeader.split(' ');
+
+    if (parts.length !== 2 || parts[0] !== 'Bearer') {
+      return res.status(401).json({ error: 'Invalid authorization header format' });
+    }
+
+    const token = parts[1];
+
+    try {
+      const payload = verifyAccessToken(token);
+
+      req.userId = payload.userId;
+      req.userEmail = payload.email;
+      req.userRoles = payload.roles;
+
+      next();
+    } catch (error) {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const requireRole = (...allowedRoles: string[]) => {
+  return (req: AuthRequest, res: Response, next: NextFunction) => {
+    if (!req.userRoles) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const hasRole = req.userRoles.some((role) => allowedRoles.includes(role));
+
+    if (!hasRole) {
+      return res.status(403).json({ error: 'Forbidden - insufficient permissions' });
+    }
+
+    next();
+  };
+};
+
+export const requireAdmin = requireRole('ADMIN');

@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import 'dotenv/config';
 import userRoutes from './src/routes/userRoutes';
+import authRoutes from './src/routes/authRoutes';
 
 import { prisma } from './src/lib/prisma';
 import { fileURLToPath } from 'url';
@@ -35,6 +36,7 @@ app.use(
   }),
 );
 
+app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 
 async function start(): Promise<void> {
