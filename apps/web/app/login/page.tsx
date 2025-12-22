@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
@@ -50,13 +51,16 @@ export default function Login() {
   };
 
   return (
-    <main className="p-6 sm:p-12 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-8">Ingresar</h1>
-
+    <main className="max-w-screen min-h-screen bg-gradient-to-br from-[#FF8554] to-[#FFBA38] p-6 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
+        // className="grid grid-cols-1 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
+        className="grid grid-cols-1 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg -translate-y-[20%] w-full sm:max-w-[120%] md:max-w-[500px]"
       >
+        <div>
+          <h1 className="text-3xl font-bold text-center mb-2">Bienvenido</h1>
+          <h2 className="text-md text-center text-gray-600">Inicia sesión en tu cuenta</h2>
+        </div>
         <div>
           <label className="block text-sm font-semibold mb-2">Email</label>
           <input
@@ -64,10 +68,10 @@ export default function Login() {
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border border-gray-200 rounded-lg hover:border-orange-300 transition focus:outline-none"
+            placeholder="tu@email.com"
           />
         </div>
-
         <div>
           <label className="block text-sm font-semibold mb-2">Contraseña</label>
           <input
@@ -75,17 +79,23 @@ export default function Login() {
             name="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border border-gray-200 rounded-lg hover:border-orange-300 transition focus:outline-none"
+            placeholder="········"
           />
         </div>
-
-        <div className="sm:col-span-2">
+        <div>
+          <h2 className="text-orange-400 text-sm hover:text-orange-500">¿Olvidaste tu contraseña?</h2>
+        </div>
+        <div>
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
+            className="w-full bg-orange-300 bg-linear-to-r from-[#FF8554] to-[#FFBA38] font-semibold text-white py-3 rounded-lg hover:bg-orange-400 transition"
           >
             Ingresar
           </button>
+        </div>
+        <div>
+          <h2 className="text-sm text-gray-700">¿Todavía no tenés una cuenta? <Link href="/register" className="text-orange-400 text-sm font-semibold hover:text-orange-500">Registrate</Link></h2>
         </div>
       </form>
     </main>
