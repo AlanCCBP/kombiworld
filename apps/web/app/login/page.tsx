@@ -95,7 +95,7 @@ export default function Login() {
           </button>
         </div>
         <div>
-          <h2 className="text-sm text-gray-700">¿Todavía no tenés una cuenta? <Link href="/register" className="text-orange-400 text-sm font-semibold hover:text-orange-500">Registrate</Link></h2>
+          <h2 className="text-sm text-center text-gray-700">¿Todavía no tenés una cuenta? <Link href="/register" className="text-orange-400 text-sm font-semibold hover:text-orange-500">Registrate</Link></h2>
         </div>
       </form>
     </main>
