@@ -17,12 +17,6 @@ export default function NavbarPrivate() {
           </div>
         </Link>
         <div className="hidden md:flex space-x-6 items-center">
-          <Link href="/chivilcoy">Chivilcoy</Link>
-          <Link href="/mercedes">Mercedes</Link>
-          <Link href="/rivas">General Rivas</Link>
-          <Link href="/commutes">Combinaciones</Link>
-          <Link href="/status">Estado de los Servicios</Link>
-          <Link href="/termsAndConditions">Términos y Condiciones</Link>
           <Link href="/register">Registrarse</Link>
           <Link href="/login">Ingresar</Link>
         </div>
@@ -33,20 +27,6 @@ export default function NavbarPrivate() {
 
       {open && (
         <div className="md:hidden mt-4 flex flex-col space-y-4">
-          <Link href="/chivilcoy" onClick={() => setOpen(false)}>
-            Chivilcoy
-          </Link>
-          <Link href="/mercedes" onClick={() => setOpen(false)}>
-            Mercedes
-          </Link>
-          <Link href="/rivas" onClick={() => setOpen(false)}>
-            General Rivas
-          </Link>
-          <Link href="/commutes">Combinaciones</Link>
-          <Link href="/status" onClick={() => setOpen(false)}>
-            Estado de los Servicios
-          </Link>
-          <Link href="/termsAndConditions">Términos y Condiciones</Link>
           <a
             href="#cta"
             className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600 text-center"

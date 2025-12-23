@@ -14,30 +14,6 @@ export default function NavbarPublic() {
       path: "/",
     },
     {
-      label: "Chivilcoy",
-      path: "/chivilcoy",
-    },
-    {
-      label: "Mercedes",
-      path: "/mercedes",
-    },
-    {
-      label: "General Rivas",
-      path: "/rivas",
-    },
-    {
-      label: "Combinaciones",
-      path: "/commutes",
-    },
-    {
-      label: "Estado de los servicios",
-      path: "/status",
-    },
-    {
-      label: "Términos y Condiciones",
-      path: "/termsAndConditions",
-    },
-    {
       label: "Registro",
       path: "/register",
     },
