@@ -1,13 +1,18 @@
 export default function CTA() {
   return (
-    <section id="cta" className="bg-[#FF6666] text-white text-center py-16 px-6">
-      <h2 className="text-3xl font-bold mb-6">¿Listo para viajar?</h2>
-      <p className="mb-8">Reservá tu lugar en segundos con nuestra plataforma.</p>
+    <section className="bg-[#FF6666] text-white text-center py-20 px-6">
+      <h2 className="text-3xl font-bold mb-6">
+        Empezá a viajar con KombiWorld
+      </h2>
+      <p className="mb-8 text-lg">
+        Buscá tu recorrido y encontrá la mejor opción para vos.
+      </p>
+
       <a
-        href="https://wa.me/5491170614444"
-        className="bg-[#3D4F63] px-6 py-3 rounded-xl text-lg hover:text-[#3D4F63]"
+        href="/"
+        className="bg-[#3D4F63] px-8 py-4 rounded-xl text-lg font-semibold hover:opacity-90 transition"
       >
-        Reservar por WhatsApp
+        Buscar viajes
       </a>
     </section>
   );
