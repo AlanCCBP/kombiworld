@@ -54,7 +54,6 @@ export default function Login() {
     <main className="max-w-screen min-h-screen bg-gradient-to-br from-[#FF8554] to-[#FFBA38] p-6 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        // className="grid grid-cols-1 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
         className="grid grid-cols-1 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg -translate-y-[20%] w-full sm:max-w-[120%] md:max-w-[500px]"
       >
         <div>
