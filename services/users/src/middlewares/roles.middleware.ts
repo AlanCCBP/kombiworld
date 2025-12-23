@@ -1,4 +1,4 @@
-import { prisma } from '../lib/prisma';
+import { prisma } from '../libs/prisma';
 
 export const requireRole = (...roles: string[]) => {
   return async (req: any, res: any, next: any) => {

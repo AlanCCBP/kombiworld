@@ -6,8 +6,11 @@ import cors from 'cors';
 
 import 'dotenv/config';
 import userRoutes from './src/routes/userRoutes';
+import { authRouter } from './src/modules/auth/auth.routes';
 
-import { prisma } from './src/lib/prisma';
+import { authMiddleware } from './src/middlewares/auth.middleware';
+
+import { prisma } from './src/libs/prisma';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,7 +38,9 @@ app.use(
   }),
 );
 
+app.use(authMiddleware);
 app.use('/users', userRoutes);
+app.use('/auth', authRouter);
 
 async function start(): Promise<void> {
   try {

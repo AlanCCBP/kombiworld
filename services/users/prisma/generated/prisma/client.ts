@@ -27,8 +27,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Roles
- * const roles = await prisma.role.findMany()
+ * // Fetch zero or more UserGlobalRoles
+ * const userGlobalRoles = await prisma.userGlobalRole.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -38,17 +38,22 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Role
+ * Model UserGlobalRole
  * 
  */
-export type Role = Prisma.RoleModel
+export type UserGlobalRole = Prisma.UserGlobalRoleModel
+/**
+ * Model CompanyUser
+ * 
+ */
+export type CompanyUser = Prisma.CompanyUserModel
 /**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
 /**
- * Model UserRole
+ * Model Company
  * 
  */
-export type UserRole = Prisma.UserRoleModel
+export type Company = Prisma.CompanyModel

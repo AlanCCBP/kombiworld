@@ -7,61 +7,112 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Status {
-  ADMIN
-  USER
-  BANNED
-  @@map("status")
-}
-
 enum DocType {
-  DNI
-  LC
-  LE
-  CUIT
-  CUIL
-  OTHER
+  ID_CARD
+  PASSPORT
+  DRIVER_LICENSE
+
   @@map("doc_type")
 }
 
-model Role {
-  id        Int        @id @default(autoincrement())
-  name      String     @unique
-  userRoles UserRole[]
+enum UserStatus {
+  ACTIVE
+  BANNED
+  DELETED
 
-  @@map("role")
+  @@map("user_status")
+}
+
+enum GlobalRole {
+  SUPER_ADMIN
+  SUPPORT
+
+  @@map("global_role")
+}
+
+enum CompanyRole {
+  OWNER
+  ADMIN
+  DRIVER
+  STAFF
+
+  @@map("company_role")
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+
+  @@map("membership_status")
+}
+
+model UserGlobalRole {
+  userId String     @map("user_id") @db.Uuid
+  role   GlobalRole
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, role])
+  @@map("user_global_role")
+}
+
+model CompanyUser {
+  id        String           @id @default(uuid())
+  userId    String           @db.Uuid
+  companyId String
+  role      CompanyRole
+  status    MembershipStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, companyId])
+  @@map("company_user")
 }
 
 model User {
-  id         String     @id @default(uuid()) @db.Uuid
-  firstName  String     @map("first_name")
-  lastName   String     @map("last_name")
-  docType    DocType    @map("doc_type")
-  docNumber  String     @map("doc_number")
-  email      String     @unique
-  phone      String?
-  altPhone   String?    @map("alt_phone")
-  birthdate  DateTime?
-  address    String?
-  password   String
-  status     Status     @default(USER)
-  tokenVersion  Int     @default(0)
-  createdAt  DateTime   @default(now()) @map("created_at")
-  updatedAt  DateTime   @updatedAt @map("updated_at")
-  deletedAt  DateTime?  @map("deleted_at")
+  id        String    @id @default(uuid()) @db.Uuid
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  docType   DocType?  @map("doc_type")
+  docNumber String?   @map("doc_number")
+  email     String    @unique
+  phone     String?
+  altPhone  String?   @map("alt_phone")
+  birthdate DateTime?
+  address   String?
+  password  String
 
-  userRoles  UserRole[]
+  status       UserStatus @default(ACTIVE)
+  tokenVersion Int        @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  globalRoles UserGlobalRole[]
+  memberships CompanyUser[]
 
   @@map("user")
 }
 
-model UserRole {
-  roleId Int    @map("role_id")
-  userId String @db.Uuid @map("user_id")
+model Company {
+  id        String  @id @default(uuid())
+  name      String
+  legalName String?
+  taxId     String? @unique
+  email     String?
+  phone     String?
 
-  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
-  @@id([roleId, userId])
-  @@map("user_role")
+  members CompanyUser[]
+
+  @@map("company")
 }

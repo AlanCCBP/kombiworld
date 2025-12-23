@@ -9,22 +9,46 @@
 * 🟢 You can import this file directly.
 */
 
-export const Status = {
-  ADMIN: 'ADMIN',
-  USER: 'USER',
-  BANNED: 'BANNED'
-} as const
-
-export type Status = (typeof Status)[keyof typeof Status]
-
-
 export const DocType = {
-  DNI: 'DNI',
-  LC: 'LC',
-  LE: 'LE',
-  CUIT: 'CUIT',
-  CUIL: 'CUIL',
-  OTHER: 'OTHER'
+  ID_CARD: 'ID_CARD',
+  PASSPORT: 'PASSPORT',
+  DRIVER_LICENSE: 'DRIVER_LICENSE'
 } as const
 
 export type DocType = (typeof DocType)[keyof typeof DocType]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  BANNED: 'BANNED',
+  DELETED: 'DELETED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
+export const GlobalRole = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  SUPPORT: 'SUPPORT'
+} as const
+
+export type GlobalRole = (typeof GlobalRole)[keyof typeof GlobalRole]
+
+
+export const CompanyRole = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  DRIVER: 'DRIVER',
+  STAFF: 'STAFF'
+} as const
+
+export type CompanyRole = (typeof CompanyRole)[keyof typeof CompanyRole]
+
+
+export const MembershipStatus = {
+  ACTIVE: 'ACTIVE',
+  INVITED: 'INVITED',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type MembershipStatus = (typeof MembershipStatus)[keyof typeof MembershipStatus]

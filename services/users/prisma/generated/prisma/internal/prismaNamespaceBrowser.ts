@@ -51,9 +51,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Role: 'Role',
+  UserGlobalRole: 'UserGlobalRole',
+  CompanyUser: 'CompanyUser',
   User: 'User',
-  UserRole: 'UserRole'
+  Company: 'Company'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,12 +73,25 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const RoleScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
+export const UserGlobalRoleScalarFieldEnum = {
+  userId: 'userId',
+  role: 'role'
 } as const
 
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+export type UserGlobalRoleScalarFieldEnum = (typeof UserGlobalRoleScalarFieldEnum)[keyof typeof UserGlobalRoleScalarFieldEnum]
+
+
+export const CompanyUserScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyId: 'companyId',
+  role: 'role',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyUserScalarFieldEnum = (typeof CompanyUserScalarFieldEnum)[keyof typeof CompanyUserScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -93,6 +107,7 @@ export const UserScalarFieldEnum = {
   address: 'address',
   password: 'password',
   status: 'status',
+  tokenVersion: 'tokenVersion',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -101,12 +116,19 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserRoleScalarFieldEnum = {
-  roleId: 'roleId',
-  userId: 'userId'
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  legalName: 'legalName',
+  taxId: 'taxId',
+  email: 'email',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 } as const
 
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
 
 
 export const SortOrder = {

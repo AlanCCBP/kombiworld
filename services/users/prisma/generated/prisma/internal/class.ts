@@ -17,10 +17,10 @@ import type * as Prisma from "./prismaNamespace"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.1.0",
-  "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
+  "clientVersion": "7.2.0",
+  "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Status {\n  ADMIN\n  USER\n  BANNED\n\n  @@map(\"status\")\n}\n\nenum DocType {\n  DNI\n  LC\n  LE\n  CUIT\n  CUIL\n  OTHER\n\n  @@map(\"doc_type\")\n}\n\nmodel Role {\n  id        Int        @id @default(autoincrement())\n  name      String     @unique\n  userRoles UserRole[]\n\n  @@map(\"role\")\n}\n\nmodel User {\n  id        String    @id @default(uuid()) @db.Uuid\n  firstName String    @map(\"first_name\")\n  lastName  String    @map(\"last_name\")\n  docType   DocType   @map(\"doc_type\")\n  docNumber String    @map(\"doc_number\")\n  email     String    @unique\n  phone     String?\n  altPhone  String?   @map(\"alt_phone\")\n  birthdate DateTime?\n  address   String?\n  password  String\n  status    Status    @default(USER)\n  createdAt DateTime  @default(now()) @map(\"created_at\")\n  updatedAt DateTime  @updatedAt @map(\"updated_at\")\n  deletedAt DateTime? @map(\"deleted_at\")\n\n  userRoles UserRole[]\n\n  @@map(\"user\")\n}\n\nmodel UserRole {\n  roleId Int    @map(\"role_id\")\n  userId String @map(\"user_id\") @db.Uuid\n\n  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)\n\n  @@id([roleId, userId])\n  @@map(\"user_role\")\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum DocType {\n  ID_CARD\n  PASSPORT\n  DRIVER_LICENSE\n\n  @@map(\"doc_type\")\n}\n\nenum UserStatus {\n  ACTIVE\n  BANNED\n  DELETED\n\n  @@map(\"user_status\")\n}\n\nenum GlobalRole {\n  SUPER_ADMIN\n  SUPPORT\n\n  @@map(\"global_role\")\n}\n\nenum CompanyRole {\n  OWNER\n  ADMIN\n  DRIVER\n  STAFF\n\n  @@map(\"company_role\")\n}\n\nenum MembershipStatus {\n  ACTIVE\n  INVITED\n  SUSPENDED\n\n  @@map(\"membership_status\")\n}\n\nmodel UserGlobalRole {\n  userId String     @map(\"user_id\") @db.Uuid\n  role   GlobalRole\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([userId, role])\n  @@map(\"user_global_role\")\n}\n\nmodel CompanyUser {\n  id        String           @id @default(uuid())\n  userId    String           @db.Uuid\n  companyId String\n  role      CompanyRole\n  status    MembershipStatus @default(ACTIVE)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)\n  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)\n\n  @@unique([userId, companyId])\n  @@map(\"company_user\")\n}\n\nmodel User {\n  id        String    @id @default(uuid()) @db.Uuid\n  firstName String    @map(\"first_name\")\n  lastName  String    @map(\"last_name\")\n  docType   DocType?  @map(\"doc_type\")\n  docNumber String?   @map(\"doc_number\")\n  email     String    @unique\n  phone     String?\n  altPhone  String?   @map(\"alt_phone\")\n  birthdate DateTime?\n  address   String?\n  password  String\n\n  status       UserStatus @default(ACTIVE)\n  tokenVersion Int        @default(0)\n\n  createdAt DateTime  @default(now()) @map(\"created_at\")\n  updatedAt DateTime  @updatedAt @map(\"updated_at\")\n  deletedAt DateTime? @map(\"deleted_at\")\n\n  globalRoles UserGlobalRole[]\n  memberships CompanyUser[]\n\n  @@map(\"user\")\n}\n\nmodel Company {\n  id        String  @id @default(uuid())\n  name      String\n  legalName String?\n  taxId     String? @unique\n  email     String?\n  phone     String?\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  members CompanyUser[]\n\n  @@map(\"company\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userRoles\",\"kind\":\"object\",\"type\":\"UserRole\",\"relationName\":\"RoleToUserRole\"}],\"dbName\":\"role\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"first_name\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"last_name\"},{\"name\":\"docType\",\"kind\":\"enum\",\"type\":\"DocType\",\"dbName\":\"doc_type\"},{\"name\":\"docNumber\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"doc_number\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"altPhone\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"alt_phone\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"deleted_at\"},{\"name\":\"userRoles\",\"kind\":\"object\",\"type\":\"UserRole\",\"relationName\":\"UserToUserRole\"}],\"dbName\":\"user\"},\"UserRole\":{\"fields\":[{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"role_id\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"user_id\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUserRole\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToUserRole\"}],\"dbName\":\"user_role\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"UserGlobalRole\":{\"fields\":[{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"user_id\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"GlobalRole\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToUserGlobalRole\"}],\"dbName\":\"user_global_role\"},\"CompanyUser\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"companyId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"CompanyRole\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"MembershipStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CompanyUserToUser\"},{\"name\":\"company\",\"kind\":\"object\",\"type\":\"Company\",\"relationName\":\"CompanyToCompanyUser\"}],\"dbName\":\"company_user\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"first_name\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"last_name\"},{\"name\":\"docType\",\"kind\":\"enum\",\"type\":\"DocType\",\"dbName\":\"doc_type\"},{\"name\":\"docNumber\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"doc_number\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"altPhone\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"alt_phone\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"UserStatus\"},{\"name\":\"tokenVersion\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"deleted_at\"},{\"name\":\"globalRoles\",\"kind\":\"object\",\"type\":\"UserGlobalRole\",\"relationName\":\"UserToUserGlobalRole\"},{\"name\":\"memberships\",\"kind\":\"object\",\"type\":\"CompanyUser\",\"relationName\":\"CompanyUserToUser\"}],\"dbName\":\"user\"},\"Company\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"legalName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"taxId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"members\",\"kind\":\"object\",\"type\":\"CompanyUser\",\"relationName\":\"CompanyToCompanyUser\"}],\"dbName\":\"company\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Roles
-   * const roles = await prisma.role.findMany()
+   * // Fetch zero or more UserGlobalRoles
+   * const userGlobalRoles = await prisma.userGlobalRole.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Roles
- * const roles = await prisma.role.findMany()
+ * // Fetch zero or more UserGlobalRoles
+ * const userGlobalRoles = await prisma.userGlobalRole.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,14 +175,24 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.role`: Exposes CRUD operations for the **Role** model.
+   * `prisma.userGlobalRole`: Exposes CRUD operations for the **UserGlobalRole** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Roles
-    * const roles = await prisma.role.findMany()
+    * // Fetch zero or more UserGlobalRoles
+    * const userGlobalRoles = await prisma.userGlobalRole.findMany()
     * ```
     */
-  get role(): Prisma.RoleDelegate<ExtArgs, { omit: OmitOpts }>;
+  get userGlobalRole(): Prisma.UserGlobalRoleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.companyUser`: Exposes CRUD operations for the **CompanyUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CompanyUsers
+    * const companyUsers = await prisma.companyUser.findMany()
+    * ```
+    */
+  get companyUser(): Prisma.CompanyUserDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -195,14 +205,14 @@ export interface PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.userRole`: Exposes CRUD operations for the **UserRole** model.
+   * `prisma.company`: Exposes CRUD operations for the **Company** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more UserRoles
-    * const userRoles = await prisma.userRole.findMany()
+    * // Fetch zero or more Companies
+    * const companies = await prisma.company.findMany()
     * ```
     */
-  get userRole(): Prisma.UserRoleDelegate<ExtArgs, { omit: OmitOpts }>;
+  get company(): Prisma.CompanyDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
