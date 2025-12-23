@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
+type Step = 1 | 2;
+
 export default function Register() {
+  const [step, setStep] = useState<Step>(1);
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -10,30 +14,43 @@ export default function Register() {
     email: "",
     phone: "",
     birthdate: "",
-    address: "",
     password: "",
     confirmPassword: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const validateStep1 = () => {
+    const { firstName, lastName, email, password, confirmPassword } = form;
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      alert("Completá todos los campos.");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateStep2 = () => {
+    const { docNumber, phone, birthdate } = form;
+    if (!docNumber || !phone || !birthdate) {
+      alert("Completá todos los campos.");
+      return false;
+    }
+    return true;
+  };
+
+  const handleNext = () => {
+    if (validateStep1()) setStep(2);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (form.password !== form.confirmPassword) {
-      alert("Las contraseñas no coinciden.");
-      return;
-    }
-
-    if (Object.values(form).some((v) => !v)) {
-      alert("Por favor completa todos los campos.");
-      return;
-    }
+    if (!validateStep2()) return;
 
     const userData = {
       user: {
@@ -49,148 +66,183 @@ export default function Register() {
         body: JSON.stringify(userData),
       });
 
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
-      }
+      if (!response.ok) throw new Error("Error al registrar usuario");
 
       const data = await response.json();
-      if (data.token) {
-        localStorage.setItem("authToken", data.token);
-      }
-
-      alert("✅ Registro exitoso");
-      setForm({
-        firstName: "",
-        lastName: "",
-        docNumber: "",
-        email: "",
-        phone: "",
-        birthdate: "",
-        address: "",
-        password: "",
-        confirmPassword: "",
-      });
+      if (data.token) localStorage.setItem("authToken", data.token);
     } catch (err) {
-      console.error("Error al registrar usuario:", err);
-      alert("❌ Error al registrar el usuario. Intenta nuevamente.");
+      console.error(err);
     }
   };
 
-  return (
-    <main className="p-6 sm:p-12 max-w-3xl mx-auto bg-[#FFBA38]">
-      <h1 className="text-3xl font-bold text-center mb-8">Crear nueva cuenta</h1>
+  const inputClass = `
+    w-full p-2 border border-gray-200 rounded-lg
+    transition
+    hover:border-orange-300
+    focus:outline-none focus:border-orange-400
+  `;
 
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-[#FF8554] to-[#FFBA38] flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white text-black p-8 rounded-2xl shadow-lg"
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg space-y-6"
       >
-        <div>
-          <label className="block text-sm font-semibold mb-2">Nombre</label>
-          <input
-            type="text"
-            name="firstName"
-            value={form.firstName}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-2">Crear cuenta</h1>
+          <p className="text-gray-600 text-sm">
+            Paso {step} de 2
+          </p>
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Apellido</label>
-          <input
-            type="text"
-            name="lastName"
-            value={form.lastName}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+        {/* STEP 1 */}
+        {step === 1 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Nombre
+                </label>
+                <input
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Número de DNI</label>
-          <input
-            type="text"
-            name="docNumber"
-            value={form.docNumber}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Apellido
+                </label>
+                <input
+                  name="lastName"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </div>
+            </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="tu@email.com"
+                className={inputClass}
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Número de teléfono</label>
-          <input
-            type="tel"
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Contraseña
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="········"
+                className={inputClass}
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Fecha de nacimiento</label>
-          <input
-            type="date"
-            name="birthdate"
-            value={form.birthdate}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Repetir contraseña
+              </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                placeholder="········"
+                className={inputClass}
+              />
+            </div>
 
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-semibold mb-2">Dirección</label>
-          <input
-            type="text"
-            name="address"
-            value={form.address}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="
+                w-full h-14 rounded-lg font-semibold text-white
+                bg-linear-to-r from-[#FF8554] to-[#FFBA38]
+                hover:opacity-90 transition
+              "
+            >
+              Continuar →
+            </button>
+          </>
+        )}
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+        {/* STEP 2 */}
+        {step === 2 && (
+          <>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                DNI
+              </label>
+              <input
+                name="docNumber"
+                value={form.docNumber}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-semibold mb-2">Repetir contraseña</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Teléfono
+              </label>
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-        <div className="sm:col-span-2">
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
-          >
-            Registrarse
-          </button>
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Fecha de nacimiento
+              </label>
+              <input
+                type="date"
+                name="birthdate"
+                value={form.birthdate}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => setStep(1)}
+                className="w-1/3 h-14 rounded-lg border font-semibold hover:bg-gray-50 transition"
+              >
+                ← Volver
+              </button>
+
+              <button
+                type="submit"
+                className="
+                  w-2/3 h-14 rounded-lg font-semibold text-white
+                  bg-linear-to-r from-[#FF8554] to-[#FFBA38]
+                  hover:opacity-90 transition
+                "
+              >
+                Crear cuenta
+              </button>
+            </div>
+          </>
+        )}
       </form>
     </main>
   );
