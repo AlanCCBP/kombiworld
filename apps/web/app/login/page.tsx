@@ -25,14 +25,11 @@ export default function Login() {
     }
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_USERS_SERVICE_URL}/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_USERS_SERVICE_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
       if (!response.ok) {
         throw new Error("Credenciales inválidas");
@@ -54,21 +51,17 @@ export default function Login() {
     <main className="min-h-screen bg-gradient-to-br from-[#FF8554] to-[#FFBA38] flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg space-y-6 md:-translate-y-[20%]"
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg space-y-6"
       >
         {/* Header */}
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-2">Bienvenido</h1>
-          <p className="text-gray-600 text-sm">
-            Iniciá sesión en tu cuenta
-          </p>
+          <p className="text-gray-600 text-sm">Iniciá sesión en tu cuenta</p>
         </div>
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Email
-          </label>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
           <input
             type="email"
             name="email"
@@ -86,9 +79,7 @@ export default function Login() {
 
         {/* Password */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Contraseña
-          </label>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
           <input
             type="password"
             name="password"
@@ -106,10 +97,7 @@ export default function Login() {
 
         {/* Forgot password */}
         <div className="text-right">
-          <Link
-            href="/forgot-password"
-            className="text-orange-400 text-sm hover:text-orange-500"
-          >
+          <Link href="/forgot-password" className="text-orange-400 text-sm hover:text-orange-500">
             ¿Olvidaste tu contraseña?
           </Link>
         </div>
@@ -129,10 +117,7 @@ export default function Login() {
         {/* Register */}
         <p className="text-sm text-center text-gray-700">
           ¿Todavía no tenés una cuenta?{" "}
-          <Link
-            href="/register"
-            className="text-orange-400 font-semibold hover:text-orange-500"
-          >
+          <Link href="/register" className="text-orange-400 font-semibold hover:text-orange-500">
             Registrate
           </Link>
         </p>
