@@ -38,8 +38,8 @@ app.use(
   }),
 );
 
-app.use(authMiddleware);
 app.use('/auth', authRouter);
+app.use(authMiddleware);
 
 async function start(): Promise<void> {
   try {
