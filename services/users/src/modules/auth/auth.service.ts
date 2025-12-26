@@ -1,106 +1,76 @@
+import { prisma } from '@/src/libs/prisma';
 import { GlobalRole } from '@/prisma/generated/prisma/enums';
 import { comparePassword, hashPassword } from '@/src/libs/hash';
-import { signAccessToken, signRefreshToken, verifyToken } from '@/src/libs/jwt';
-import { prisma } from '@/src/libs/prisma';
+import { signAccessToken, verifyToken } from '@/src/libs/jwt';
+import {
+  generateRefreshToken,
+  hashRefreshToken,
+} from '@/src/libs/refreshToken';
 
-export const registerUser = async (data: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}) => {
-  const exists = await prisma.user.findUnique({
-    where: { email: data.email },
-  });
-
-  if (exists) throw new Error('User already exists');
-
-  const user = await prisma.user.create({
-    data: {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: await hashPassword(data.password),
-      globalRoles: {
-        create: {
-          role: GlobalRole.SUPPORT,
-        },
-      },
-    },
-  });
-
-  return {
-    accessToken: signAccessToken({
-      sub: user.id,
-      globalRoles: [GlobalRole.SUPPORT],
-      companies: [],
-      tokenVersion: user.tokenVersion,
-    }),
-    refreshToken: signRefreshToken({
-      sub: user.id,
-      globalRoles: [GlobalRole.SUPPORT],
-      companies: [],
-      tokenVersion: user.tokenVersion,
-    }),
-  };
-};
+const REFRESH_TTL_DAYS = 7;
 
 export const loginUser = async (email: string, password: string) => {
   const user = await prisma.user.findUnique({
     where: { email },
     include: {
       globalRoles: true,
-      memberships: {
-        where: { status: 'ACTIVE' },
-      },
+      memberships: { where: { status: 'ACTIVE' } },
     },
   });
 
   if (!user) throw new Error('Invalid credentials');
-
-  const valid = await comparePassword(password, user.password);
-  if (!valid) throw new Error('Invalid credentials');
-
-  const globalRoles = user.globalRoles.map((r) => r.role);
-
-  const companies = user.memberships.map((m) => ({
-    companyId: m.companyId,
-    role: m.role,
-  }));
+  if (!(await comparePassword(password, user.password)))
+    throw new Error('Invalid credentials');
 
   const payload = {
     sub: user.id,
-    globalRoles,
-    companies,
     tokenVersion: user.tokenVersion,
+    globalRoles: user.globalRoles.map((r) => r.role),
+    companies: user.memberships.map((m) => ({
+      companyId: m.companyId,
+      role: m.role,
+    })),
   };
+
+  const refreshToken = await createSession(user.id);
 
   return {
     accessToken: signAccessToken(payload),
-    refreshToken: signRefreshToken(payload),
+    refreshToken,
   };
 };
 
-export const refreshToken = async (refreshToken: string) => {
-  const payload = verifyToken(refreshToken);
+export const refreshToken = async (rawToken: string) => {
+  const tokenHash = hashRefreshToken(rawToken);
 
-  const user = await prisma.user.findUnique({
-    where: { id: payload.sub },
+  const stored = await prisma.refreshToken.findFirst({
+    where: {
+      tokenHash,
+      revoked: false,
+      expiresAt: { gt: new Date() },
+    },
     include: {
-      globalRoles: true,
-      memberships: true,
+      user: {
+        include: {
+          globalRoles: true,
+          memberships: true,
+        },
+      },
     },
   });
 
-  if (!user) {
-    throw new Error('User not found');
-  }
+  if (!stored) throw new Error('Invalid refresh token');
 
-  if (user.tokenVersion !== payload.tokenVersion) {
-    throw new Error('Token revoked');
-  }
+  const user = stored.user;
 
-  const newPayload = {
+  await prisma.refreshToken.update({
+    where: { id: stored.id },
+    data: { revoked: true },
+  });
+
+  const newRefresh = await createSession(user.id);
+
+  const payload = {
     sub: user.id,
     tokenVersion: user.tokenVersion,
     globalRoles: user.globalRoles.map((r) => r.role),
@@ -111,14 +81,37 @@ export const refreshToken = async (refreshToken: string) => {
   };
 
   return {
-    accessToken: signAccessToken(newPayload),
-    refreshToken: signRefreshToken(newPayload),
+    accessToken: signAccessToken(payload),
+    refreshToken: newRefresh,
   };
 };
 
 export const logoutUser = async (userId: string) => {
-  return prisma.user.update({
+  await prisma.refreshToken.updateMany({
+    where: { userId },
+    data: { revoked: true },
+  });
+
+  await prisma.user.update({
     where: { id: userId },
     data: { tokenVersion: { increment: 1 } },
   });
 };
+
+export async function createSession(userId: string) {
+  const refreshToken = generateRefreshToken();
+  const tokenHash = hashRefreshToken(refreshToken);
+
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + REFRESH_TTL_DAYS);
+
+  await prisma.refreshToken.create({
+    data: {
+      userId,
+      tokenHash,
+      expiresAt,
+    },
+  });
+
+  return refreshToken;
+}

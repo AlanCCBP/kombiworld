@@ -5,8 +5,7 @@ import logger from 'morgan';
 import cors from 'cors';
 
 import 'dotenv/config';
-import userRoutes from './src/routes/userRoutes';
-import { authRouter } from './src/modules/auth/auth.routes';
+import authRouter from './src/modules/auth/auth.routes';
 
 import { authMiddleware } from './src/middlewares/auth.middleware';
 
@@ -22,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 const allowedOrigins = ['http://localhost:3000', 'http://booking-service:4002'];
 
@@ -39,7 +39,6 @@ app.use(
 );
 
 app.use(authMiddleware);
-app.use('/users', userRoutes);
 app.use('/auth', authRouter);
 
 async function start(): Promise<void> {

@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 const ACCESS_TOKEN_TTL = '15m';
-const REFRESH_TOKEN_TTL = '7d';
 
 export type JwtCompanyContext = {
   companyId: string;
@@ -20,12 +19,6 @@ export type JwtPayload = {
 export function signAccessToken(payload: JwtPayload) {
   return jwt.sign(payload, JWT_SECRET, {
     expiresIn: ACCESS_TOKEN_TTL,
-  });
-}
-
-export function signRefreshToken(payload: JwtPayload) {
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: REFRESH_TOKEN_TTL,
   });
 }
 
