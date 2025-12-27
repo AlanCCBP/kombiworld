@@ -9,6 +9,39 @@ import {
 
 const REFRESH_TTL_DAYS = 7;
 
+export async function registerUser(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}) {
+  const user = await prisma.user.create({
+    data: {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: await hashPassword(data.password),
+      globalRoles: {
+        create: { role: GlobalRole.SUPPORT },
+      },
+    },
+  });
+
+  const refreshToken = await createSession(user.id);
+
+  const accessToken = signAccessToken({
+    sub: user.id,
+    globalRoles: [GlobalRole.SUPPORT],
+    companies: [],
+    tokenVersion: user.tokenVersion,
+  });
+
+  return {
+    accessToken,
+    refreshToken,
+  };
+}
+
 export const loginUser = async (email: string, password: string) => {
   const user = await prisma.user.findUnique({
     where: { email },
@@ -33,9 +66,10 @@ export const loginUser = async (email: string, password: string) => {
   };
 
   const refreshToken = await createSession(user.id);
+  const accessToken = signAccessToken(payload);
 
   return {
-    accessToken: signAccessToken(payload),
+    accessToken,
     refreshToken,
   };
 };

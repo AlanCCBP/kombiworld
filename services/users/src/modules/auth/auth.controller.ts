@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as service from './auth.service';
 
 export const register = async (req: Request, res: Response) => {
-  const tokens = await service.createSession(req.body);
+  const tokens = await service.registerUser(req.body);
   res.status(201).json(tokens);
 };
 
