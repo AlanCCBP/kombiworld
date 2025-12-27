@@ -71,6 +71,18 @@ CREATE TABLE "company" (
     CONSTRAINT "company_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "refresh_tokens" (
+    "id" UUID NOT NULL,
+    "userId" UUID NOT NULL,
+    "token_hash" TEXT NOT NULL,
+    "expires_at" TIMESTAMP(3) NOT NULL,
+    "revoked" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "refresh_tokens_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "company_user_userId_companyId_key" ON "company_user"("userId", "companyId");
 
@@ -80,6 +92,9 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "company_taxId_key" ON "company"("taxId");
 
+-- CreateIndex
+CREATE INDEX "refresh_tokens_userId_idx" ON "refresh_tokens"("userId");
+
 -- AddForeignKey
 ALTER TABLE "user_global_role" ADD CONSTRAINT "user_global_role_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -88,3 +103,6 @@ ALTER TABLE "company_user" ADD CONSTRAINT "company_user_userId_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "company_user" ADD CONSTRAINT "company_user_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "company"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "refresh_tokens" ADD CONSTRAINT "refresh_tokens_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

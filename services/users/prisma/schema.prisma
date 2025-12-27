@@ -119,14 +119,15 @@ model Company {
 }
 
 model RefreshToken {
-  id        String   @id @default(uuid())
-  userId    String
-  tokenHash String
-  expiresAt DateTime
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  tokenHash String   @map("token_hash")
+  expiresAt DateTime @map("expires_at")
   revoked   Boolean  @default(false)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@map("refresh_tokens")
 }
