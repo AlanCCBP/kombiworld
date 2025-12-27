@@ -60,10 +60,9 @@ export default function Register() {
     };
 
     try {
-      const response = await fetch(`${process.env.USERS_SERVICE_URL}`, {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(form),
       });
 
       if (!response.ok) throw new Error("Error al registrar usuario");
@@ -91,9 +90,7 @@ export default function Register() {
         {/* Header */}
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-2">Crear cuenta</h1>
-          <p className="text-gray-600 text-sm">
-            Paso {step} de 2
-          </p>
+          <p className="text-gray-600 text-sm">Paso {step} de 2</p>
         </div>
 
         {/* STEP 1 */}
@@ -101,9 +98,7 @@ export default function Register() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Nombre
-                </label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre</label>
                 <input
                   name="firstName"
                   value={form.firstName}
@@ -113,9 +108,7 @@ export default function Register() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Apellido
-                </label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Apellido</label>
                 <input
                   name="lastName"
                   value={form.lastName}
@@ -126,9 +119,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Email
-              </label>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
               <input
                 type="email"
                 name="email"
@@ -140,9 +131,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Contraseña
-              </label>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
               <input
                 type="password"
                 name="password"
@@ -185,9 +174,7 @@ export default function Register() {
         {step === 2 && (
           <>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                DNI
-              </label>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">DNI</label>
               <input
                 name="docNumber"
                 value={form.docNumber}
@@ -197,9 +184,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Teléfono
-              </label>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
               <input
                 name="phone"
                 value={form.phone}
