@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app: Application = express();
+app.set('trust proxy', 1);
 const corsOrigins = process.env.CORS_ORIGINS || '';
 
 app.use(logger('dev'));

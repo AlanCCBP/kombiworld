@@ -1,22 +1,18 @@
-import { NextResponse } from "next/server";
-import { api } from "@/lib/api";
+import { NextRequest, NextResponse } from "next/server";
+import { apiServer } from "@/lib/api.server";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const res = await api.post("/auth/refresh", body);
-
-  const response = NextResponse.json(res.data);
-
-  response.cookies.set("accessToken", res.data.accessToken, {
-    httpOnly: true,
-    path: "/",
+  const res = await apiServer.post("/auth/register", body, {
+    headers: {
+      cookie: req.headers.get("cookie") ?? "",
+    },
+    withCredentials: true,
   });
 
-  response.cookies.set("refreshToken", res.data.refreshToken, {
-    httpOnly: true,
-    path: "/",
+  return NextResponse.json({
+    accessToken: res.data.accessToken,
+    user: res.data.user,
   });
-
-  return response;
 }

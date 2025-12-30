@@ -1,7 +1,7 @@
 import { prisma } from '@/src/libs/prisma';
 import { GlobalRole } from '@/prisma/generated/prisma/enums';
 import { comparePassword, hashPassword } from '@/src/libs/hash';
-import { signAccessToken, verifyToken } from '@/src/libs/jwt';
+import { signAccessToken } from '@/src/libs/jwt';
 import {
   generateRefreshToken,
   hashRefreshToken,

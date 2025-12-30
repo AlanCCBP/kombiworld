@@ -68,7 +68,10 @@ services:
       dockerfile: Dockerfile.prod
     container_name: kombi_nginx
     ports:
-      - "80:80"
+    - "80:80"
+    - "443:443"
+    volumes:
+      - ../infra/certs:/certs:ro
     depends_on:
       - web
       - users

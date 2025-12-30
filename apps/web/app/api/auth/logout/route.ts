@@ -1,22 +1,23 @@
-import { NextResponse } from "next/server";
-import { api } from "@/lib/api";
+import { NextRequest, NextResponse } from "next/server";
+import { apiServer } from "@/lib/api.server";
 
-export async function POST(req: Request) {
-  const body = await req.json();
+export async function POST(req: NextRequest) {
+  try {
+    const cookie = req.headers.get("cookie") ?? "";
 
-  const res = await api.post("/auth/logout", body);
+    await apiServer.post(
+      "/auth/logout",
+      {},
+      {
+        headers: { cookie },
+        withCredentials: true,
+      }
+    );
 
-  const response = NextResponse.json(res.data);
+    return NextResponse.json({ ok: true });
+  } catch (err: any) {
+    console.warn("Logout failed:", err.response?.status || err.message);
 
-  response.cookies.set("accessToken", res.data.accessToken, {
-    httpOnly: true,
-    path: "/",
-  });
-
-  response.cookies.set("refreshToken", res.data.refreshToken, {
-    httpOnly: true,
-    path: "/",
-  });
-
-  return response;
+    return NextResponse.json({ ok: false, message: "Logout failed" }, { status: 500 });
+  }
 }

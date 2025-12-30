@@ -1,9 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { sessionStore } from '@/lib/auth/sessionStore';
-
-const USERS_API = process.env.NEXT_PUBLIC_USERS_API!;
+import { useEffect, useState } from "react";
+import { sessionStore } from "@/lib/auth/sessionStore";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
@@ -11,14 +9,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function hydrate() {
       try {
-        const res = await fetch(`${USERS_API}/auth/refresh`, {
-          method: 'POST',
-          credentials: 'include',
+        const res = await fetch("/api/auth/refresh", {
+          method: "POST",
+          credentials: "include",
         });
 
         if (res.ok) {
           const { accessToken } = await res.json();
           sessionStore.setAccessToken(accessToken);
+        } else {
+          sessionStore.clear();
         }
       } catch {
         sessionStore.clear();

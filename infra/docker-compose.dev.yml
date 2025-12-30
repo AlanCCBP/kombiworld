@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     volumes:
       - ../apps/web:/usr/src/app
+    env_file:
+      - ../apps/web/.env.dev
     environment:
       - NODE_ENV=development
     depends_on:
@@ -80,7 +82,10 @@ services:
       dockerfile: Dockerfile.dev
     container_name: kombi_nginx
     ports:
-      - "80:80"
+    - "80:80"
+    - "443:443"
+    volumes:
+      - ../infra/certs:/certs:ro
     depends_on:
       - web
       - users
