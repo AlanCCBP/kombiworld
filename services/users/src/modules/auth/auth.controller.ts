@@ -13,7 +13,7 @@ export const login = async (req: Request, res: Response) => {
     req.body.password,
   );
 
-  res.json({ accessToken });
+  res.json({ accessToken, refreshToken });
 };
 
 export const refresh = async (req: Request, res: Response) => {
