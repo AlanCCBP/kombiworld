@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import 'dotenv/config';
 import authRouter from './src/modules/auth/auth.routes';
+import companiesRoutes from './modules/companies/companies.routes';
 
 import { authMiddleware } from './src/middlewares/auth.middleware';
 
@@ -39,6 +40,7 @@ app.use(
 );
 
 app.use('/auth', authRouter);
+app.use('/companies', companiesRoutes);
 app.use(authMiddleware);
 
 async function start(): Promise<void> {
