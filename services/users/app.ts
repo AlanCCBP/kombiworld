@@ -6,7 +6,7 @@ import cors from 'cors';
 
 import 'dotenv/config';
 import authRouter from './src/modules/auth/auth.routes';
-import companiesRoutes from './modules/companies/companies.routes';
+import companiesRoutes from './src/modules/companies/companies.routes';
 
 import { authMiddleware } from './src/middlewares/auth.middleware';
 
