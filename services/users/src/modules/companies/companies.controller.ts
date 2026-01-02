@@ -31,15 +31,38 @@ export class CompaniesController {
       const result = memberships.map((m) => ({
         id: m.company.id,
         name: m.company.name,
-        legalName: m.company.legalName,
-        taxId: m.company.taxId,
-        email: m.company.email,
-        phone: m.company.phone,
         role: m.role,
-        status: m.status,
       }));
 
-      return res.status(200).json(result);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const companyIdFromParams = req.params.id;
+      const companyIdFromContext = req.company?.id;
+
+      if (!companyIdFromContext) {
+        return res.status(500).json({
+          message: 'Company context not initialized',
+        });
+      }
+
+      if (companyIdFromParams !== companyIdFromContext) {
+        return res.status(403).json({
+          message: 'You cannot update another company',
+        });
+      }
+
+      const updatedCompany = await CompaniesService.updateCompany(
+        companyIdFromContext,
+        req.body,
+      );
+
+      return res.json(updatedCompany);
     } catch (error) {
       next(error);
     }

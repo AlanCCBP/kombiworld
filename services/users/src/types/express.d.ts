@@ -1,5 +1,5 @@
 import { User } from '../modules/users/users.types';
-
+import { CompanyRole } from '@prisma/client';
 declare global {
   namespace Express {
     interface Request {
@@ -9,6 +9,13 @@ declare global {
         firstName?: string;
         lastName?: string;
       };
+      company?: {
+        id: string;
+        role: CompanyRole;
+      };
+      membership?: CompanyUser;
     }
   }
 }
+
+export {};
