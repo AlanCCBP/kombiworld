@@ -3,6 +3,7 @@ import { CompanyRole } from '@prisma/client';
 declare global {
   namespace Express {
     interface Request {
+      auth?: AuthContext;
       user?: {
         id: string;
         email?: string;

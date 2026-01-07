@@ -1,24 +1,14 @@
-import { prisma } from '../libs/prisma';
+import { GlobalRole } from '@/prisma/generated/prisma/enums';
+import { Request, NextFunction } from 'express';
 
-export const requireRole = (...roles: string[]) => {
-  return async (req: any, res: any, next: any) => {
-    const userId = req.userId;
+export function requireGlobalRole(...roles: GlobalRole[]) {
+  return (req: Request, _res: Response, next: NextFunction) => {
+    const userRoles = req.auth?.globalRoles ?? [];
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      include: { userRoles: { include: { role: true } } },
-    });
-
-    if (!user) return res.status(401).json({ error: 'User not found' });
-
-    const hasRequiredRole = user.userRoles.some((ur) =>
-      roles.includes(ur.role.name),
-    );
-
-    if (!hasRequiredRole) {
-      return res.status(403).json({ error: 'Forbidden' });
+    if (!roles.some((r) => userRoles.includes(r))) {
+      return next(new Error('Forbidden'));
     }
 
     next();
   };
-};
+}

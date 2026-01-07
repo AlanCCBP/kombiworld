@@ -13,3 +13,12 @@ export interface UpdateCompanyDTO {
   email?: string;
   phone?: string;
 }
+
+export interface CompanyDTO {
+  id: string;
+  name: string;
+}
+
+export interface CreateCompanyInput {
+  name: string;
+}
