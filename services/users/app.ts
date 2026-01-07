@@ -9,6 +9,7 @@ import authRouter from './src/modules/auth/auth.routes';
 import companiesRoutes from './src/modules/companies/companies.routes';
 
 import { authMiddleware } from './src/middlewares/auth.middleware';
+import { errorMiddleware } from './src/middlewares/error.middleware';
 
 import { prisma } from './src/libs/prisma';
 import { fileURLToPath } from 'url';
@@ -38,6 +39,8 @@ app.use(
     credentials: true,
   }),
 );
+
+app.use(errorMiddleware);
 
 app.use('/auth', authRouter);
 app.use('/companies', companiesRoutes);
