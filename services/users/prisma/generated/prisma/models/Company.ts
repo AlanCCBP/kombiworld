@@ -215,6 +215,7 @@ export type CompanyWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   members?: Prisma.CompanyUserListRelationFilter
+  companyInvites?: Prisma.CompanyInviteListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -228,6 +229,7 @@ export type CompanyOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   members?: Prisma.CompanyUserOrderByRelationAggregateInput
+  companyInvites?: Prisma.CompanyInviteOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -244,6 +246,7 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   members?: Prisma.CompanyUserListRelationFilter
+  companyInvites?: Prisma.CompanyInviteListRelationFilter
 }, "id" | "taxId">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -287,6 +290,7 @@ export type CompanyCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   members?: Prisma.CompanyUserCreateNestedManyWithoutCompanyInput
+  companyInvites?: Prisma.CompanyInviteCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -300,6 +304,7 @@ export type CompanyUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   members?: Prisma.CompanyUserUncheckedCreateNestedManyWithoutCompanyInput
+  companyInvites?: Prisma.CompanyInviteUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -313,6 +318,7 @@ export type CompanyUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   members?: Prisma.CompanyUserUpdateManyWithoutCompanyNestedInput
+  companyInvites?: Prisma.CompanyInviteUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -326,6 +332,7 @@ export type CompanyUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   members?: Prisma.CompanyUserUncheckedUpdateManyWithoutCompanyNestedInput
+  companyInvites?: Prisma.CompanyInviteUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -419,6 +426,20 @@ export type CompanyUpdateOneRequiredWithoutMembersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutMembersInput, Prisma.CompanyUpdateWithoutMembersInput>, Prisma.CompanyUncheckedUpdateWithoutMembersInput>
 }
 
+export type CompanyCreateNestedOneWithoutCompanyInvitesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedCreateWithoutCompanyInvitesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCompanyInvitesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutCompanyInvitesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedCreateWithoutCompanyInvitesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCompanyInvitesInput
+  upsert?: Prisma.CompanyUpsertWithoutCompanyInvitesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutCompanyInvitesInput, Prisma.CompanyUpdateWithoutCompanyInvitesInput>, Prisma.CompanyUncheckedUpdateWithoutCompanyInvitesInput>
+}
+
 export type CompanyCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -429,6 +450,7 @@ export type CompanyCreateWithoutMembersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  companyInvites?: Prisma.CompanyInviteCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMembersInput = {
@@ -441,6 +463,7 @@ export type CompanyUncheckedCreateWithoutMembersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  companyInvites?: Prisma.CompanyInviteUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMembersInput = {
@@ -469,6 +492,7 @@ export type CompanyUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  companyInvites?: Prisma.CompanyInviteUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMembersInput = {
@@ -481,6 +505,75 @@ export type CompanyUncheckedUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  companyInvites?: Prisma.CompanyInviteUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutCompanyInvitesInput = {
+  id?: string
+  name: string
+  legalName?: string | null
+  taxId?: string | null
+  email?: string | null
+  phone?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  members?: Prisma.CompanyUserCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutCompanyInvitesInput = {
+  id?: string
+  name: string
+  legalName?: string | null
+  taxId?: string | null
+  email?: string | null
+  phone?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  members?: Prisma.CompanyUserUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutCompanyInvitesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedCreateWithoutCompanyInvitesInput>
+}
+
+export type CompanyUpsertWithoutCompanyInvitesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedUpdateWithoutCompanyInvitesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedCreateWithoutCompanyInvitesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutCompanyInvitesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutCompanyInvitesInput, Prisma.CompanyUncheckedUpdateWithoutCompanyInvitesInput>
+}
+
+export type CompanyUpdateWithoutCompanyInvitesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  members?: Prisma.CompanyUserUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutCompanyInvitesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  members?: Prisma.CompanyUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 
@@ -490,10 +583,12 @@ export type CompanyUncheckedUpdateWithoutMembersInput = {
 
 export type CompanyCountOutputType = {
   members: number
+  companyInvites: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | CompanyCountOutputTypeCountMembersArgs
+  companyInvites?: boolean | CompanyCountOutputTypeCountCompanyInvitesArgs
 }
 
 /**
@@ -513,6 +608,13 @@ export type CompanyCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types
   where?: Prisma.CompanyUserWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountCompanyInvitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyInviteWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -525,6 +627,7 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
   deletedAt?: boolean
   members?: boolean | Prisma.Company$membersArgs<ExtArgs>
+  companyInvites?: boolean | Prisma.Company$companyInvitesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -567,6 +670,7 @@ export type CompanySelectScalar = {
 export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "legalName" | "taxId" | "email" | "phone" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Company$membersArgs<ExtArgs>
+  companyInvites?: boolean | Prisma.Company$companyInvitesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -576,6 +680,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Company"
   objects: {
     members: Prisma.$CompanyUserPayload<ExtArgs>[]
+    companyInvites: Prisma.$CompanyInvitePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -982,6 +1087,7 @@ readonly fields: CompanyFieldRefs;
 export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   members<T extends Prisma.Company$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  companyInvites<T extends Prisma.Company$companyInvitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$companyInvitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyInvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1429,6 +1535,30 @@ export type Company$membersArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.CompanyUserScalarFieldEnum | Prisma.CompanyUserScalarFieldEnum[]
+}
+
+/**
+ * Company.companyInvites
+ */
+export type Company$companyInvitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanyInvite
+   */
+  select?: Prisma.CompanyInviteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanyInvite
+   */
+  omit?: Prisma.CompanyInviteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInviteInclude<ExtArgs> | null
+  where?: Prisma.CompanyInviteWhereInput
+  orderBy?: Prisma.CompanyInviteOrderByWithRelationInput | Prisma.CompanyInviteOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyInviteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompanyInviteScalarFieldEnum | Prisma.CompanyInviteScalarFieldEnum[]
 }
 
 /**

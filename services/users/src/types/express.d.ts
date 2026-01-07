@@ -15,6 +15,12 @@ declare global {
         role: CompanyRole;
       };
       membership?: CompanyUser;
+      body: {
+        email?: string;
+        role?: CompanyRole;
+        token?: string;
+        companyId?: string;
+      };
     }
   }
 }

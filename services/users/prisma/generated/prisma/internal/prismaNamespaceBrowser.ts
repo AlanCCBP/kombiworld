@@ -55,6 +55,7 @@ export const ModelName = {
   CompanyUser: 'CompanyUser',
   User: 'User',
   Company: 'Company',
+  CompanyInvite: 'CompanyInvite',
   RefreshToken: 'RefreshToken'
 } as const
 
@@ -130,6 +131,21 @@ export const CompanyScalarFieldEnum = {
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CompanyInviteScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  email: 'email',
+  role: 'role',
+  token: 'token',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyInviteScalarFieldEnum = (typeof CompanyInviteScalarFieldEnum)[keyof typeof CompanyInviteScalarFieldEnum]
 
 
 export const RefreshTokenScalarFieldEnum = {

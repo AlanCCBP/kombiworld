@@ -38,6 +38,11 @@ export type User = Prisma.UserModel
  */
 export type Company = Prisma.CompanyModel
 /**
+ * Model CompanyInvite
+ * 
+ */
+export type CompanyInvite = Prisma.CompanyInviteModel
+/**
  * Model RefreshToken
  * 
  */

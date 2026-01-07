@@ -113,9 +113,23 @@ model Company {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  members CompanyUser[]
+  members        CompanyUser[]
+  companyInvites CompanyInvite[]
 
   @@map("company")
+}
+
+model CompanyInvite {
+  id        String      @id @default(uuid())
+  companyId String
+  company   Company     @relation(fields: [companyId], references: [id])
+  email     String
+  role      CompanyRole
+  token     String      @unique
+  status    String // 'PENDING', 'ACCEPTED', 'EXPIRED'
+  expiresAt DateTime
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 }
 
 model RefreshToken {
