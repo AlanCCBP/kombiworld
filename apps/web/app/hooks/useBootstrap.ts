@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { apiClient } from "@/lib/api.client";
 import { useAuth } from "@/contexts/authContext";
 import { useCompany } from "@/contexts/companyContext";
-import { apiClient } from "@/lib/api.client";
 
 export function useBootstrap() {
-  const { setUser, loading, user } = useAuth();
+  const router = useRouter();
+  const { setUser } = useAuth();
   const { setCompanies, setActiveCompany } = useCompany();
 
   useEffect(() => {
@@ -27,16 +29,30 @@ export function useBootstrap() {
         setUser(me);
         setCompanies(companies);
 
+        if (typeof window !== "undefined") {
+          const storedCompanyId = localStorage.getItem("activeCompanyId");
+
+          if (storedCompanyId) {
+            const match = companies.find((c: any) => c.id === storedCompanyId);
+
+            if (match) {
+              setActiveCompany(match);
+              return;
+            }
+          }
+        }
+
         if (companies.length === 1) {
           setActiveCompany(companies[0]);
         }
       } catch (err) {
         setUser(null);
-        window.location.href = "/login";
+        router.replace("/login");
       }
     }
 
     bootstrap();
+
     return () => {
       cancelled = true;
     };
