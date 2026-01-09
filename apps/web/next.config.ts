@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["kombiworld.local", "*.kombiworld.local"],
   output: "standalone",
 
   reactStrictMode: true,

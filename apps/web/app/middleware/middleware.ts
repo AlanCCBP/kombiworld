@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { config } from "./middleware.config";
+
+const PUBLIC_ROUTES = ["/login", "/register", "/api/auth"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  const isProtected = config.matcher.some((route) => pathname.startsWith(route));
+  if (PUBLIC_ROUTES.some((p) => pathname.startsWith(p))) {
+    return NextResponse.next();
+  }
 
-  if (!isProtected) return NextResponse.next();
+  const token = req.cookies.get("accessToken")?.value;
 
-  const hasRefresh = req.cookies.get("refresh_token");
-
-  if (!hasRefresh) {
+  if (!token) {
     const loginUrl = new URL("/login", req.url);
     return NextResponse.redirect(loginUrl);
   }

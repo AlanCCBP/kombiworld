@@ -21,6 +21,7 @@ export class CompaniesController {
   static async myCompanies(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.user?.id;
+      console.log('req.auth:', req.auth, req.user);
 
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });

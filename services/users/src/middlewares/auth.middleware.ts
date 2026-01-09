@@ -2,14 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../libs/jwt';
 import { buildAuthContext } from '../libs/authContext';
 
-declare global {
-  namespace Express {
-    interface Request {
-      auth?: ReturnType<typeof buildAuthContext>;
-    }
-  }
-}
-
 export function authMiddleware(
   req: Request,
   res: Response,

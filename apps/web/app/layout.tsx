@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import NavbarPublic from "@/components/NavbarPublic";
-import { AuthProvider } from "./contexts/authContext";
-import { CompanyProvider } from "./contexts/companyContext";
-import { AppBootstrap } from "./components/appBootstrap";
+import { AppBootstrap } from "@/components/AppBootstrap";
+import { AuthProvider } from "@/contexts/authContext";
+import { CompanyProvider } from "@/contexts/companyContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,7 +34,7 @@ export default function RootLayout({
             <AppBootstrap>
               <div className="min-h-screen font-sans text-black">
                 <NavbarPublic />
-                <AuthProvider>{children}</AuthProvider>
+                {children}
               </div>
             </AppBootstrap>
           </CompanyProvider>

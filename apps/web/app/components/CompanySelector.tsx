@@ -1,37 +1,31 @@
-import { CompanyMembership } from "@/types/company";
-import { setActiveCompany } from "@/lib/activeCompanyStorage";
+import { useCompany } from "@/contexts/companyContext";
 
-interface CompanySelectorProps {
-  memberships: CompanyMembership[];
-  onChange?: (companyId: string) => void;
-}
+export function CompanySelector() {
+  const { companies, activeCompany, setActiveCompany, loading } = useCompany();
 
-export function CompanySelector({ memberships, onChange }: CompanySelectorProps) {
-  const activeMemberships = memberships.filter((m) => m.status === "ACTIVE");
+  if (loading) return null;
+  if (!Array.isArray(companies)) return null;
 
-  function handleSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    const companyId = e.target.value;
-    const membership = activeMemberships.find((m) => m.company.id === companyId);
+  const validCompanies = companies.filter((c) => c?.id);
 
-    if (!membership) return;
-
-    setActiveCompany({
-      id: membership.company.id,
-      name: membership.company.name,
-    });
-
-    onChange?.(membership.company.id);
-  }
+  if (validCompanies.length <= 1) return null;
 
   return (
-    <select onChange={handleSelect} defaultValue="">
+    <select
+      value={activeCompany?.id ?? ""}
+      onChange={(e) => {
+        const company = validCompanies.find((c) => c.id === e.target.value);
+        if (company) setActiveCompany(company);
+      }}
+      className="border rounded px-2 py-1 text-sm"
+    >
       <option value="" disabled>
-        Seleccioná una empresa
+        Seleccionar empresa
       </option>
 
-      {activeMemberships.map((m) => (
-        <option key={m.company.id} value={m.company.id}>
-          {m.company.name}
+      {validCompanies.map((company) => (
+        <option key={company.id} value={company.id}>
+          {company.name}
         </option>
       ))}
     </select>

@@ -3,77 +3,76 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { MenuItem } from "@/types";
+import { useAuth } from "@/contexts/authContext";
+import { CompanySelector } from "@/components/CompanySelector";
 
-export default function NavbarPublic() {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, loading, logout } = useAuth();
 
-  const menu: MenuItem[] = [
-    {
-      label: "Home",
-      path: "/",
-    },
-    {
-      label: "Registro",
-      path: "/register",
-    },
-    {
-      label: "Ingresar",
-      path: "/login",
-    },
-  ];
+  if (loading) return null;
 
   return (
     <nav className="bg-[#3D4F63] text-white px-6 py-4 shadow-md">
       <div className="flex justify-between items-center">
         <Link href="/">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer">
             <img src="/logo.png" alt="Logo KombiWorld" className="h-10 w-10" />
             <span className="font-bold text-lg">KombiWorld</span>
           </div>
         </Link>
-        <div className="hidden md:flex space-x-6 items-center">
-          {menu.map(({ label, path, icon: Icon }, i) => (
-            <Link
-              href={path}
-              className="flex items-center gap-3 p-2 rounded-md transition-colors"
-              key={i}
-            >
-              <span>{label}</span>
-            </Link>
-          ))}
+
+        <div className="hidden md:flex items-center gap-6">
+          {!user && (
+            <>
+              <Link href="/register">Registro</Link>
+              <Link href="/login">Ingresar</Link>
+            </>
+          )}
+
+          {user && (
+            <>
+              <CompanySelector />
+              <span className="text-sm text-gray-200">Hola {user.firstName ?? user.email}</span>
+              <button onClick={logout} className="text-sm text-red-300 hover:underline">
+                Logout
+              </button>
+            </>
+          )}
         </div>
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
-
       {open && (
         <div className="md:hidden mt-4 flex flex-col space-y-4">
-          {menu.map(({ label, path }, i) => (
-            <Link
-              href={path}
-              className="flex items-center gap-3 p-2 rounded-md transition-colors"
-              key={i}
-              onClick={() => setOpen(false)}
-            >
-              <span>{label}</span>
-            </Link>
-          ))}
-          <a
-            href="#cta"
-            className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600 text-center"
-            onClick={() => setOpen(false)}
-          >
-            Registrarse
-          </a>
-          <a
-            href="#cta"
-            className="bg-[#FF8554] px-4 py-2 rounded-lg hover:bg-orange-600 text-center"
-            onClick={() => setOpen(false)}
-          >
-            Ingresar
-          </a>
+          {!user && (
+            <>
+              <Link href="/register" onClick={() => setOpen(false)}>
+                Registro
+              </Link>
+              <Link href="/login" onClick={() => setOpen(false)}>
+                Ingresar
+              </Link>
+            </>
+          )}
+          {user && (
+            <>
+              <CompanySelector />
+
+              <span className="text-sm text-gray-200">Hola {user.firstName ?? user.email}</span>
+
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  logout();
+                }}
+                className="text-left text-red-300"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
       )}
     </nav>

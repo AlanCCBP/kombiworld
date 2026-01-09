@@ -9,4 +9,5 @@ if (!baseURL) {
 export const apiServer = axios.create({
   baseURL,
   withCredentials: true,
+  proxy: false,
 });

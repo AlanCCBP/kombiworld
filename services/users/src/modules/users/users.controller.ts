@@ -6,7 +6,7 @@ export async function getMe(req: Request, res: Response, next: NextFunction) {
     if (!req.auth) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-
+    console.log('req.auth:', req.auth);
     const user = await usersService.getMe(req.auth.userId);
 
     res.json(user);
