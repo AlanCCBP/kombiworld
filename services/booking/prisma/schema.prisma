@@ -7,61 +7,234 @@ datasource db {
   provider = "postgresql"
 }
 
-model Route {
-  id          String    @id @default(uuid())
-  name        String
-  ticketPrice Decimal   @db.Decimal(10,2)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime?
+enum CompanyStatus {
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
 
-  stops       Stop[]
-  trips       Trip[]
+enum VehicleStatus {
+  ACTIVE
+  MAINTENANCE
+  INACTIVE
+}
+
+enum DriverStatus {
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
+
+enum TripStatus {
+  SCHEDULED
+  BOARDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum TicketStatus {
+  PENDING
+  CONFIRMED
+  USED
+  CANCELLED
+  REFUNDED
+}
+
+enum JourneyStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Route {
+  id        String  @id @default(uuid())
+  companyId String
+  name      String
+  basePrice Decimal @db.Decimal(10, 2)
+
+  aiFlags     Json?
+  aiCheckedAt DateTime?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  company Company @relation(fields: [companyId], references: [id])
+  stops   Stop[]
+  trips   Trip[]
 }
 
 model Stop {
-  id          String    @id @default(uuid())
-  routeId     String
-  name        String
-  latitude    Decimal   @db.Decimal(9,6)
-  longitude   Decimal   @db.Decimal(9,6)
-  plusMins    Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime?
+  id      String @id @default(uuid())
+  routeId String
 
-  route       Route     @relation(fields: [routeId], references: [id])
-  ticketsOrigin Ticket[] @relation("TicketOrigin")
-  ticketsDestination Ticket[] @relation("TicketDestination")
+  nameRaw        String
+  nameNormalized String?
+  city           String?
+  province       String?
+
+  latitude  Decimal? @db.Decimal(9, 6)
+  longitude Decimal? @db.Decimal(9, 6)
+
+  aiConfidence Float?
+  needsReview  Boolean   @default(false)
+  aiCheckedAt  DateTime?
+
+  plusMinutes Int @default(0)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  route Route @relation(fields: [routeId], references: [id])
+
+  ticketsAsOrigin      Ticket[] @relation("TicketOrigin")
+  ticketsAsDestination Ticket[] @relation("TicketDestination")
+
+  @@index([routeId])
+  @@index([nameNormalized])
+  @@index([city, province])
 }
 
 model Trip {
-  id          String    @id @default(uuid())
-  routeId     String
-  departureTime DateTime
-  available   Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime?
-  driverId    String
+  id        String  @id @default(uuid())
+  routeId   String
+  vehicleId String?
+  driverId  String
 
-  route       Route     @relation(fields: [routeId], references: [id])
-  tickets     Ticket[]
+  departureTime DateTime
+  capacity      Int
+  available     Int
+  status        TripStatus @default(SCHEDULED)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  route   Route    @relation(fields: [routeId], references: [id])
+  vehicle Vehicle? @relation(fields: [vehicleId], references: [id])
+  driver  Driver   @relation(fields: [driverId], references: [id])
+  tickets Ticket[]
+
+  @@index([routeId, departureTime])
+  @@index([status])
 }
 
 model Ticket {
-  id            String   @id @default(uuid())
-  tripId        String
-  passengerId   String
-  originStopId  String
-  destinationStopId String
-  paymentStatus Boolean  @default(false)
-  invoiceId     String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  deletedAt     DateTime?
+  id          String @id @default(uuid())
+  tripId      String
+  passengerId String
 
-  trip          Trip     @relation(fields: [tripId], references: [id])
-  originStop    Stop     @relation("TicketOrigin", fields: [originStopId], references: [id])
-  destinationStop Stop   @relation("TicketDestination", fields: [destinationStopId], references: [id])
+  originStopId      String
+  destinationStopId String
+
+  price              Decimal @db.Decimal(10, 2)
+  companyRevenue     Decimal @db.Decimal(10, 2)
+  platformCommission Decimal @db.Decimal(10, 2)
+
+  seatNumber Int?
+  status     TicketStatus @default(PENDING)
+  qrCode     String?      @unique
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  trip Trip @relation(fields: [tripId], references: [id])
+
+  originStop      Stop @relation("TicketOrigin", fields: [originStopId], references: [id])
+  destinationStop Stop @relation("TicketDestination", fields: [destinationStopId], references: [id])
+
+  journeyLeg JourneyLeg?
+
+  @@index([tripId])
+  @@index([passengerId])
+  @@index([status])
+}
+
+model Company {
+  id         String        @id @default(uuid())
+  name       String
+  legalName  String
+  cuit       String        @unique
+  email      String
+  phone      String
+  logo       String?
+  commission Decimal       @db.Decimal(5, 2)
+  status     CompanyStatus @default(ACTIVE)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  routes   Route[]
+  vehicles Vehicle[]
+  drivers  Driver[]
+}
+
+model Vehicle {
+  id           String        @id @default(uuid())
+  companyId    String
+  licensePlate String        @unique
+  capacity     Int
+  model        String?
+  year         Int?
+  status       VehicleStatus @default(ACTIVE)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  company Company @relation(fields: [companyId], references: [id])
+  trips   Trip[]
+}
+
+model Driver {
+  id            String       @id @default(uuid())
+  companyId     String
+  firstName     String
+  lastName      String
+  licenseNumber String       @unique
+  phone         String
+  status        DriverStatus @default(ACTIVE)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  company Company @relation(fields: [companyId], references: [id])
+  trips   Trip[]
+}
+
+model Journey {
+  id          String        @id @default(uuid())
+  passengerId String
+  totalPrice  Decimal       @db.Decimal(10, 2)
+  platformFee Decimal       @db.Decimal(10, 2)
+  status      JourneyStatus @default(PENDING)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  legs JourneyLeg[]
+
+  @@index([passengerId])
+  @@index([status])
+}
+
+model JourneyLeg {
+  id        String    @id @default(uuid())
+  journeyId String
+  ticketId  String    @unique
+  sequence  Int
+  deletedAt DateTime?
+
+  journey Journey @relation(fields: [journeyId], references: [id])
+  ticket  Ticket  @relation(fields: [ticketId], references: [id])
+
+  @@unique([journeyId, sequence])
 }
