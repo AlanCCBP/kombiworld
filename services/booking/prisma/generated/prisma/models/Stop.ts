@@ -29,22 +29,30 @@ export type AggregateStop = {
 export type StopAvgAggregateOutputType = {
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
-  plusMins: number | null
+  aiConfidence: number | null
+  plusMinutes: number | null
 }
 
 export type StopSumAggregateOutputType = {
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
-  plusMins: number | null
+  aiConfidence: number | null
+  plusMinutes: number | null
 }
 
 export type StopMinAggregateOutputType = {
   id: string | null
   routeId: string | null
-  name: string | null
+  nameRaw: string | null
+  nameNormalized: string | null
+  city: string | null
+  province: string | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
-  plusMins: number | null
+  aiConfidence: number | null
+  needsReview: boolean | null
+  aiCheckedAt: Date | null
+  plusMinutes: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -53,10 +61,16 @@ export type StopMinAggregateOutputType = {
 export type StopMaxAggregateOutputType = {
   id: string | null
   routeId: string | null
-  name: string | null
+  nameRaw: string | null
+  nameNormalized: string | null
+  city: string | null
+  province: string | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
-  plusMins: number | null
+  aiConfidence: number | null
+  needsReview: boolean | null
+  aiCheckedAt: Date | null
+  plusMinutes: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -65,10 +79,16 @@ export type StopMaxAggregateOutputType = {
 export type StopCountAggregateOutputType = {
   id: number
   routeId: number
-  name: number
+  nameRaw: number
+  nameNormalized: number
+  city: number
+  province: number
   latitude: number
   longitude: number
-  plusMins: number
+  aiConfidence: number
+  needsReview: number
+  aiCheckedAt: number
+  plusMinutes: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -79,22 +99,30 @@ export type StopCountAggregateOutputType = {
 export type StopAvgAggregateInputType = {
   latitude?: true
   longitude?: true
-  plusMins?: true
+  aiConfidence?: true
+  plusMinutes?: true
 }
 
 export type StopSumAggregateInputType = {
   latitude?: true
   longitude?: true
-  plusMins?: true
+  aiConfidence?: true
+  plusMinutes?: true
 }
 
 export type StopMinAggregateInputType = {
   id?: true
   routeId?: true
-  name?: true
+  nameRaw?: true
+  nameNormalized?: true
+  city?: true
+  province?: true
   latitude?: true
   longitude?: true
-  plusMins?: true
+  aiConfidence?: true
+  needsReview?: true
+  aiCheckedAt?: true
+  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -103,10 +131,16 @@ export type StopMinAggregateInputType = {
 export type StopMaxAggregateInputType = {
   id?: true
   routeId?: true
-  name?: true
+  nameRaw?: true
+  nameNormalized?: true
+  city?: true
+  province?: true
   latitude?: true
   longitude?: true
-  plusMins?: true
+  aiConfidence?: true
+  needsReview?: true
+  aiCheckedAt?: true
+  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -115,10 +149,16 @@ export type StopMaxAggregateInputType = {
 export type StopCountAggregateInputType = {
   id?: true
   routeId?: true
-  name?: true
+  nameRaw?: true
+  nameNormalized?: true
+  city?: true
+  province?: true
   latitude?: true
   longitude?: true
-  plusMins?: true
+  aiConfidence?: true
+  needsReview?: true
+  aiCheckedAt?: true
+  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -214,10 +254,16 @@ export type StopGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type StopGroupByOutputType = {
   id: string
   routeId: string
-  name: string
-  latitude: runtime.Decimal
-  longitude: runtime.Decimal
-  plusMins: number
+  nameRaw: string
+  nameNormalized: string | null
+  city: string | null
+  province: string | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
+  aiConfidence: number | null
+  needsReview: boolean
+  aiCheckedAt: Date | null
+  plusMinutes: number
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -249,31 +295,43 @@ export type StopWhereInput = {
   NOT?: Prisma.StopWhereInput | Prisma.StopWhereInput[]
   id?: Prisma.StringFilter<"Stop"> | string
   routeId?: Prisma.StringFilter<"Stop"> | string
-  name?: Prisma.StringFilter<"Stop"> | string
-  latitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFilter<"Stop"> | number
+  nameRaw?: Prisma.StringFilter<"Stop"> | string
+  nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
+  city?: Prisma.StringNullableFilter<"Stop"> | string | null
+  province?: Prisma.StringNullableFilter<"Stop"> | string | null
+  latitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
+  needsReview?: Prisma.BoolFilter<"Stop"> | boolean
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
-  ticketsOrigin?: Prisma.TicketListRelationFilter
-  ticketsDestination?: Prisma.TicketListRelationFilter
+  ticketsAsOrigin?: Prisma.TicketListRelationFilter
+  ticketsAsDestination?: Prisma.TicketListRelationFilter
 }
 
 export type StopOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  latitude?: Prisma.SortOrder
-  longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  nameRaw?: Prisma.SortOrder
+  nameNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  needsReview?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   route?: Prisma.RouteOrderByWithRelationInput
-  ticketsOrigin?: Prisma.TicketOrderByRelationAggregateInput
-  ticketsDestination?: Prisma.TicketOrderByRelationAggregateInput
+  ticketsAsOrigin?: Prisma.TicketOrderByRelationAggregateInput
+  ticketsAsDestination?: Prisma.TicketOrderByRelationAggregateInput
 }
 
 export type StopWhereUniqueInput = Prisma.AtLeast<{
@@ -282,25 +340,37 @@ export type StopWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StopWhereInput[]
   NOT?: Prisma.StopWhereInput | Prisma.StopWhereInput[]
   routeId?: Prisma.StringFilter<"Stop"> | string
-  name?: Prisma.StringFilter<"Stop"> | string
-  latitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFilter<"Stop"> | number
+  nameRaw?: Prisma.StringFilter<"Stop"> | string
+  nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
+  city?: Prisma.StringNullableFilter<"Stop"> | string | null
+  province?: Prisma.StringNullableFilter<"Stop"> | string | null
+  latitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
+  needsReview?: Prisma.BoolFilter<"Stop"> | boolean
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
-  ticketsOrigin?: Prisma.TicketListRelationFilter
-  ticketsDestination?: Prisma.TicketListRelationFilter
+  ticketsAsOrigin?: Prisma.TicketListRelationFilter
+  ticketsAsDestination?: Prisma.TicketListRelationFilter
 }, "id">
 
 export type StopOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  latitude?: Prisma.SortOrder
-  longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  nameRaw?: Prisma.SortOrder
+  nameNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  needsReview?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -317,10 +387,16 @@ export type StopScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StopScalarWhereWithAggregatesInput | Prisma.StopScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Stop"> | string
   routeId?: Prisma.StringWithAggregatesFilter<"Stop"> | string
-  name?: Prisma.StringWithAggregatesFilter<"Stop"> | string
-  latitude?: Prisma.DecimalWithAggregatesFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalWithAggregatesFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntWithAggregatesFilter<"Stop"> | number
+  nameRaw?: Prisma.StringWithAggregatesFilter<"Stop"> | string
+  nameNormalized?: Prisma.StringNullableWithAggregatesFilter<"Stop"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"Stop"> | string | null
+  province?: Prisma.StringNullableWithAggregatesFilter<"Stop"> | string | null
+  latitude?: Prisma.DecimalNullableWithAggregatesFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableWithAggregatesFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.FloatNullableWithAggregatesFilter<"Stop"> | number | null
+  needsReview?: Prisma.BoolWithAggregatesFilter<"Stop"> | boolean
+  aiCheckedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Stop"> | Date | string | null
+  plusMinutes?: Prisma.IntWithAggregatesFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Stop"> | Date | string | null
@@ -328,67 +404,97 @@ export type StopScalarWhereWithAggregatesInput = {
 
 export type StopCreateInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   route: Prisma.RouteCreateNestedOneWithoutStopsInput
-  ticketsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
-  ticketsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
+  ticketsAsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
+  ticketsAsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
 }
 
 export type StopUncheckedCreateInput = {
   id?: string
   routeId: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
-  ticketsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
+  ticketsAsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
 }
 
 export type StopUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   route?: Prisma.RouteUpdateOneRequiredWithoutStopsNestedInput
-  ticketsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
-  ticketsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
 }
 
 export type StopUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
-  ticketsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
 }
 
 export type StopCreateManyInput = {
   id?: string
   routeId: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -396,10 +502,16 @@ export type StopCreateManyInput = {
 
 export type StopUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -408,10 +520,16 @@ export type StopUpdateManyMutationInput = {
 export type StopUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -430,10 +548,16 @@ export type StopOrderByRelationAggregateInput = {
 export type StopCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nameRaw?: Prisma.SortOrder
+  nameNormalized?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  needsReview?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -442,16 +566,23 @@ export type StopCountOrderByAggregateInput = {
 export type StopAvgOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
 }
 
 export type StopMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nameRaw?: Prisma.SortOrder
+  nameNormalized?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  needsReview?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -460,10 +591,16 @@ export type StopMaxOrderByAggregateInput = {
 export type StopMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nameRaw?: Prisma.SortOrder
+  nameNormalized?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  needsReview?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -472,7 +609,8 @@ export type StopMinOrderByAggregateInput = {
 export type StopSumOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
-  plusMins?: Prisma.SortOrder
+  aiConfidence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
 }
 
 export type StopScalarRelationFilter = {
@@ -522,6 +660,30 @@ export type StopUncheckedUpdateManyWithoutRouteNestedInput = {
   deleteMany?: Prisma.StopScalarWhereInput | Prisma.StopScalarWhereInput[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -530,58 +692,70 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type StopCreateNestedOneWithoutTicketsOriginInput = {
-  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsOriginInput>
-  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsOriginInput
+export type StopCreateNestedOneWithoutTicketsAsOriginInput = {
+  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsAsOriginInput>
+  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsAsOriginInput
   connect?: Prisma.StopWhereUniqueInput
 }
 
-export type StopCreateNestedOneWithoutTicketsDestinationInput = {
-  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsDestinationInput>
-  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsDestinationInput
+export type StopCreateNestedOneWithoutTicketsAsDestinationInput = {
+  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsAsDestinationInput>
+  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsAsDestinationInput
   connect?: Prisma.StopWhereUniqueInput
 }
 
-export type StopUpdateOneRequiredWithoutTicketsOriginNestedInput = {
-  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsOriginInput>
-  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsOriginInput
-  upsert?: Prisma.StopUpsertWithoutTicketsOriginInput
+export type StopUpdateOneRequiredWithoutTicketsAsOriginNestedInput = {
+  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsAsOriginInput>
+  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsAsOriginInput
+  upsert?: Prisma.StopUpsertWithoutTicketsAsOriginInput
   connect?: Prisma.StopWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.StopUpdateToOneWithWhereWithoutTicketsOriginInput, Prisma.StopUpdateWithoutTicketsOriginInput>, Prisma.StopUncheckedUpdateWithoutTicketsOriginInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StopUpdateToOneWithWhereWithoutTicketsAsOriginInput, Prisma.StopUpdateWithoutTicketsAsOriginInput>, Prisma.StopUncheckedUpdateWithoutTicketsAsOriginInput>
 }
 
-export type StopUpdateOneRequiredWithoutTicketsDestinationNestedInput = {
-  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsDestinationInput>
-  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsDestinationInput
-  upsert?: Prisma.StopUpsertWithoutTicketsDestinationInput
+export type StopUpdateOneRequiredWithoutTicketsAsDestinationNestedInput = {
+  create?: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsAsDestinationInput>
+  connectOrCreate?: Prisma.StopCreateOrConnectWithoutTicketsAsDestinationInput
+  upsert?: Prisma.StopUpsertWithoutTicketsAsDestinationInput
   connect?: Prisma.StopWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.StopUpdateToOneWithWhereWithoutTicketsDestinationInput, Prisma.StopUpdateWithoutTicketsDestinationInput>, Prisma.StopUncheckedUpdateWithoutTicketsDestinationInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StopUpdateToOneWithWhereWithoutTicketsAsDestinationInput, Prisma.StopUpdateWithoutTicketsAsDestinationInput>, Prisma.StopUncheckedUpdateWithoutTicketsAsDestinationInput>
 }
 
 export type StopCreateWithoutRouteInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  ticketsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
-  ticketsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
+  ticketsAsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
+  ticketsAsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
 }
 
 export type StopUncheckedCreateWithoutRouteInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
-  ticketsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
+  ticketsAsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
 }
 
 export type StopCreateOrConnectWithoutRouteInput = {
@@ -616,157 +790,217 @@ export type StopScalarWhereInput = {
   NOT?: Prisma.StopScalarWhereInput | Prisma.StopScalarWhereInput[]
   id?: Prisma.StringFilter<"Stop"> | string
   routeId?: Prisma.StringFilter<"Stop"> | string
-  name?: Prisma.StringFilter<"Stop"> | string
-  latitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFilter<"Stop"> | number
+  nameRaw?: Prisma.StringFilter<"Stop"> | string
+  nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
+  city?: Prisma.StringNullableFilter<"Stop"> | string | null
+  province?: Prisma.StringNullableFilter<"Stop"> | string | null
+  latitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Stop"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
+  needsReview?: Prisma.BoolFilter<"Stop"> | boolean
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
 }
 
-export type StopCreateWithoutTicketsOriginInput = {
+export type StopCreateWithoutTicketsAsOriginInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   route: Prisma.RouteCreateNestedOneWithoutStopsInput
-  ticketsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
+  ticketsAsDestination?: Prisma.TicketCreateNestedManyWithoutDestinationStopInput
 }
 
-export type StopUncheckedCreateWithoutTicketsOriginInput = {
+export type StopUncheckedCreateWithoutTicketsAsOriginInput = {
   id?: string
   routeId: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  ticketsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
+  ticketsAsDestination?: Prisma.TicketUncheckedCreateNestedManyWithoutDestinationStopInput
 }
 
-export type StopCreateOrConnectWithoutTicketsOriginInput = {
+export type StopCreateOrConnectWithoutTicketsAsOriginInput = {
   where: Prisma.StopWhereUniqueInput
-  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsOriginInput>
+  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsAsOriginInput>
 }
 
-export type StopCreateWithoutTicketsDestinationInput = {
+export type StopCreateWithoutTicketsAsDestinationInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   route: Prisma.RouteCreateNestedOneWithoutStopsInput
-  ticketsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
+  ticketsAsOrigin?: Prisma.TicketCreateNestedManyWithoutOriginStopInput
 }
 
-export type StopUncheckedCreateWithoutTicketsDestinationInput = {
+export type StopUncheckedCreateWithoutTicketsAsDestinationInput = {
   id?: string
   routeId: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedCreateNestedManyWithoutOriginStopInput
 }
 
-export type StopCreateOrConnectWithoutTicketsDestinationInput = {
+export type StopCreateOrConnectWithoutTicketsAsDestinationInput = {
   where: Prisma.StopWhereUniqueInput
-  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsDestinationInput>
+  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsAsDestinationInput>
 }
 
-export type StopUpsertWithoutTicketsOriginInput = {
-  update: Prisma.XOR<Prisma.StopUpdateWithoutTicketsOriginInput, Prisma.StopUncheckedUpdateWithoutTicketsOriginInput>
-  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsOriginInput>
+export type StopUpsertWithoutTicketsAsOriginInput = {
+  update: Prisma.XOR<Prisma.StopUpdateWithoutTicketsAsOriginInput, Prisma.StopUncheckedUpdateWithoutTicketsAsOriginInput>
+  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsOriginInput, Prisma.StopUncheckedCreateWithoutTicketsAsOriginInput>
   where?: Prisma.StopWhereInput
 }
 
-export type StopUpdateToOneWithWhereWithoutTicketsOriginInput = {
+export type StopUpdateToOneWithWhereWithoutTicketsAsOriginInput = {
   where?: Prisma.StopWhereInput
-  data: Prisma.XOR<Prisma.StopUpdateWithoutTicketsOriginInput, Prisma.StopUncheckedUpdateWithoutTicketsOriginInput>
+  data: Prisma.XOR<Prisma.StopUpdateWithoutTicketsAsOriginInput, Prisma.StopUncheckedUpdateWithoutTicketsAsOriginInput>
 }
 
-export type StopUpdateWithoutTicketsOriginInput = {
+export type StopUpdateWithoutTicketsAsOriginInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   route?: Prisma.RouteUpdateOneRequiredWithoutStopsNestedInput
-  ticketsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
 }
 
-export type StopUncheckedUpdateWithoutTicketsOriginInput = {
+export type StopUncheckedUpdateWithoutTicketsAsOriginInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ticketsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
 }
 
-export type StopUpsertWithoutTicketsDestinationInput = {
-  update: Prisma.XOR<Prisma.StopUpdateWithoutTicketsDestinationInput, Prisma.StopUncheckedUpdateWithoutTicketsDestinationInput>
-  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsDestinationInput>
+export type StopUpsertWithoutTicketsAsDestinationInput = {
+  update: Prisma.XOR<Prisma.StopUpdateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedUpdateWithoutTicketsAsDestinationInput>
+  create: Prisma.XOR<Prisma.StopCreateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedCreateWithoutTicketsAsDestinationInput>
   where?: Prisma.StopWhereInput
 }
 
-export type StopUpdateToOneWithWhereWithoutTicketsDestinationInput = {
+export type StopUpdateToOneWithWhereWithoutTicketsAsDestinationInput = {
   where?: Prisma.StopWhereInput
-  data: Prisma.XOR<Prisma.StopUpdateWithoutTicketsDestinationInput, Prisma.StopUncheckedUpdateWithoutTicketsDestinationInput>
+  data: Prisma.XOR<Prisma.StopUpdateWithoutTicketsAsDestinationInput, Prisma.StopUncheckedUpdateWithoutTicketsAsDestinationInput>
 }
 
-export type StopUpdateWithoutTicketsDestinationInput = {
+export type StopUpdateWithoutTicketsAsDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   route?: Prisma.RouteUpdateOneRequiredWithoutStopsNestedInput
-  ticketsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
 }
 
-export type StopUncheckedUpdateWithoutTicketsDestinationInput = {
+export type StopUncheckedUpdateWithoutTicketsAsDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
 }
 
 export type StopCreateManyRouteInput = {
   id?: string
-  name: string
-  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins: number
+  nameRaw: string
+  nameNormalized?: string | null
+  city?: string | null
+  province?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: number | null
+  needsReview?: boolean
+  aiCheckedAt?: Date | string | null
+  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -774,36 +1008,54 @@ export type StopCreateManyRouteInput = {
 
 export type StopUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ticketsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
-  ticketsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUpdateManyWithoutOriginStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUpdateManyWithoutDestinationStopNestedInput
 }
 
 export type StopUncheckedUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ticketsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
-  ticketsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
+  ticketsAsOrigin?: Prisma.TicketUncheckedUpdateManyWithoutOriginStopNestedInput
+  ticketsAsDestination?: Prisma.TicketUncheckedUpdateManyWithoutDestinationStopNestedInput
 }
 
 export type StopUncheckedUpdateManyWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  plusMins?: Prisma.IntFieldUpdateOperationsInput | number
+  nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -815,13 +1067,13 @@ export type StopUncheckedUpdateManyWithoutRouteInput = {
  */
 
 export type StopCountOutputType = {
-  ticketsOrigin: number
-  ticketsDestination: number
+  ticketsAsOrigin: number
+  ticketsAsDestination: number
 }
 
 export type StopCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ticketsOrigin?: boolean | StopCountOutputTypeCountTicketsOriginArgs
-  ticketsDestination?: boolean | StopCountOutputTypeCountTicketsDestinationArgs
+  ticketsAsOrigin?: boolean | StopCountOutputTypeCountTicketsAsOriginArgs
+  ticketsAsDestination?: boolean | StopCountOutputTypeCountTicketsAsDestinationArgs
 }
 
 /**
@@ -837,14 +1089,14 @@ export type StopCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * StopCountOutputType without action
  */
-export type StopCountOutputTypeCountTicketsOriginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StopCountOutputTypeCountTicketsAsOriginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TicketWhereInput
 }
 
 /**
  * StopCountOutputType without action
  */
-export type StopCountOutputTypeCountTicketsDestinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StopCountOutputTypeCountTicketsAsDestinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TicketWhereInput
 }
 
@@ -852,26 +1104,38 @@ export type StopCountOutputTypeCountTicketsDestinationArgs<ExtArgs extends runti
 export type StopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
-  name?: boolean
+  nameRaw?: boolean
+  nameNormalized?: boolean
+  city?: boolean
+  province?: boolean
   latitude?: boolean
   longitude?: boolean
-  plusMins?: boolean
+  aiConfidence?: boolean
+  needsReview?: boolean
+  aiCheckedAt?: boolean
+  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
-  ticketsOrigin?: boolean | Prisma.Stop$ticketsOriginArgs<ExtArgs>
-  ticketsDestination?: boolean | Prisma.Stop$ticketsDestinationArgs<ExtArgs>
+  ticketsAsOrigin?: boolean | Prisma.Stop$ticketsAsOriginArgs<ExtArgs>
+  ticketsAsDestination?: boolean | Prisma.Stop$ticketsAsDestinationArgs<ExtArgs>
   _count?: boolean | Prisma.StopCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stop"]>
 
 export type StopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
-  name?: boolean
+  nameRaw?: boolean
+  nameNormalized?: boolean
+  city?: boolean
+  province?: boolean
   latitude?: boolean
   longitude?: boolean
-  plusMins?: boolean
+  aiConfidence?: boolean
+  needsReview?: boolean
+  aiCheckedAt?: boolean
+  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -881,10 +1145,16 @@ export type StopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type StopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
-  name?: boolean
+  nameRaw?: boolean
+  nameNormalized?: boolean
+  city?: boolean
+  province?: boolean
   latitude?: boolean
   longitude?: boolean
-  plusMins?: boolean
+  aiConfidence?: boolean
+  needsReview?: boolean
+  aiCheckedAt?: boolean
+  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -894,20 +1164,26 @@ export type StopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type StopSelectScalar = {
   id?: boolean
   routeId?: boolean
-  name?: boolean
+  nameRaw?: boolean
+  nameNormalized?: boolean
+  city?: boolean
+  province?: boolean
   latitude?: boolean
   longitude?: boolean
-  plusMins?: boolean
+  aiConfidence?: boolean
+  needsReview?: boolean
+  aiCheckedAt?: boolean
+  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type StopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "name" | "latitude" | "longitude" | "plusMins" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["stop"]>
+export type StopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "nameRaw" | "nameNormalized" | "city" | "province" | "latitude" | "longitude" | "aiConfidence" | "needsReview" | "aiCheckedAt" | "plusMinutes" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["stop"]>
 export type StopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
-  ticketsOrigin?: boolean | Prisma.Stop$ticketsOriginArgs<ExtArgs>
-  ticketsDestination?: boolean | Prisma.Stop$ticketsDestinationArgs<ExtArgs>
+  ticketsAsOrigin?: boolean | Prisma.Stop$ticketsAsOriginArgs<ExtArgs>
+  ticketsAsDestination?: boolean | Prisma.Stop$ticketsAsDestinationArgs<ExtArgs>
   _count?: boolean | Prisma.StopCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StopIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -921,16 +1197,22 @@ export type $StopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Stop"
   objects: {
     route: Prisma.$RoutePayload<ExtArgs>
-    ticketsOrigin: Prisma.$TicketPayload<ExtArgs>[]
-    ticketsDestination: Prisma.$TicketPayload<ExtArgs>[]
+    ticketsAsOrigin: Prisma.$TicketPayload<ExtArgs>[]
+    ticketsAsDestination: Prisma.$TicketPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     routeId: string
-    name: string
-    latitude: runtime.Decimal
-    longitude: runtime.Decimal
-    plusMins: number
+    nameRaw: string
+    nameNormalized: string | null
+    city: string | null
+    province: string | null
+    latitude: runtime.Decimal | null
+    longitude: runtime.Decimal | null
+    aiConfidence: number | null
+    needsReview: boolean
+    aiCheckedAt: Date | null
+    plusMinutes: number
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1329,8 +1611,8 @@ readonly fields: StopFieldRefs;
 export interface Prisma__StopClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   route<T extends Prisma.RouteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RouteDefaultArgs<ExtArgs>>): Prisma.Prisma__RouteClient<runtime.Types.Result.GetResult<Prisma.$RoutePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  ticketsOrigin<T extends Prisma.Stop$ticketsOriginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stop$ticketsOriginArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ticketsDestination<T extends Prisma.Stop$ticketsDestinationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stop$ticketsDestinationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ticketsAsOrigin<T extends Prisma.Stop$ticketsAsOriginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stop$ticketsAsOriginArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ticketsAsDestination<T extends Prisma.Stop$ticketsAsDestinationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stop$ticketsAsDestinationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1362,10 +1644,16 @@ export interface Prisma__StopClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface StopFieldRefs {
   readonly id: Prisma.FieldRef<"Stop", 'String'>
   readonly routeId: Prisma.FieldRef<"Stop", 'String'>
-  readonly name: Prisma.FieldRef<"Stop", 'String'>
+  readonly nameRaw: Prisma.FieldRef<"Stop", 'String'>
+  readonly nameNormalized: Prisma.FieldRef<"Stop", 'String'>
+  readonly city: Prisma.FieldRef<"Stop", 'String'>
+  readonly province: Prisma.FieldRef<"Stop", 'String'>
   readonly latitude: Prisma.FieldRef<"Stop", 'Decimal'>
   readonly longitude: Prisma.FieldRef<"Stop", 'Decimal'>
-  readonly plusMins: Prisma.FieldRef<"Stop", 'Int'>
+  readonly aiConfidence: Prisma.FieldRef<"Stop", 'Float'>
+  readonly needsReview: Prisma.FieldRef<"Stop", 'Boolean'>
+  readonly aiCheckedAt: Prisma.FieldRef<"Stop", 'DateTime'>
+  readonly plusMinutes: Prisma.FieldRef<"Stop", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Stop", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Stop", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Stop", 'DateTime'>
@@ -1765,9 +2053,9 @@ export type StopDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Stop.ticketsOrigin
+ * Stop.ticketsAsOrigin
  */
-export type Stop$ticketsOriginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Stop$ticketsAsOriginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Ticket
    */
@@ -1789,9 +2077,9 @@ export type Stop$ticketsOriginArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Stop.ticketsDestination
+ * Stop.ticketsAsDestination
  */
-export type Stop$ticketsDestinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Stop$ticketsAsDestinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Ticket
    */

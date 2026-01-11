@@ -54,7 +54,12 @@ export const ModelName = {
   Route: 'Route',
   Stop: 'Stop',
   Trip: 'Trip',
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  Company: 'Company',
+  Vehicle: 'Vehicle',
+  Driver: 'Driver',
+  Journey: 'Journey',
+  JourneyLeg: 'JourneyLeg'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,8 +80,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const RouteScalarFieldEnum = {
   id: 'id',
+  companyId: 'companyId',
   name: 'name',
-  ticketPrice: 'ticketPrice',
+  basePrice: 'basePrice',
+  aiFlags: 'aiFlags',
+  aiCheckedAt: 'aiCheckedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -88,10 +96,16 @@ export type RouteScalarFieldEnum = (typeof RouteScalarFieldEnum)[keyof typeof Ro
 export const StopScalarFieldEnum = {
   id: 'id',
   routeId: 'routeId',
-  name: 'name',
+  nameRaw: 'nameRaw',
+  nameNormalized: 'nameNormalized',
+  city: 'city',
+  province: 'province',
   latitude: 'latitude',
   longitude: 'longitude',
-  plusMins: 'plusMins',
+  aiConfidence: 'aiConfidence',
+  needsReview: 'needsReview',
+  aiCheckedAt: 'aiCheckedAt',
+  plusMinutes: 'plusMinutes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -103,12 +117,15 @@ export type StopScalarFieldEnum = (typeof StopScalarFieldEnum)[keyof typeof Stop
 export const TripScalarFieldEnum = {
   id: 'id',
   routeId: 'routeId',
+  vehicleId: 'vehicleId',
+  driverId: 'driverId',
   departureTime: 'departureTime',
+  capacity: 'capacity',
   available: 'available',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  driverId: 'driverId'
+  deletedAt: 'deletedAt'
 } as const
 
 export type TripScalarFieldEnum = (typeof TripScalarFieldEnum)[keyof typeof TripScalarFieldEnum]
@@ -120,14 +137,93 @@ export const TicketScalarFieldEnum = {
   passengerId: 'passengerId',
   originStopId: 'originStopId',
   destinationStopId: 'destinationStopId',
-  paymentStatus: 'paymentStatus',
-  invoiceId: 'invoiceId',
+  price: 'price',
+  companyRevenue: 'companyRevenue',
+  platformCommission: 'platformCommission',
+  seatNumber: 'seatNumber',
+  status: 'status',
+  qrCode: 'qrCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  legalName: 'legalName',
+  cuit: 'cuit',
+  email: 'email',
+  phone: 'phone',
+  logo: 'logo',
+  commission: 'commission',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const VehicleScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  licensePlate: 'licensePlate',
+  capacity: 'capacity',
+  model: 'model',
+  year: 'year',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
+
+
+export const DriverScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  licenseNumber: 'licenseNumber',
+  phone: 'phone',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type DriverScalarFieldEnum = (typeof DriverScalarFieldEnum)[keyof typeof DriverScalarFieldEnum]
+
+
+export const JourneyScalarFieldEnum = {
+  id: 'id',
+  passengerId: 'passengerId',
+  totalPrice: 'totalPrice',
+  platformFee: 'platformFee',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type JourneyScalarFieldEnum = (typeof JourneyScalarFieldEnum)[keyof typeof JourneyScalarFieldEnum]
+
+
+export const JourneyLegScalarFieldEnum = {
+  id: 'id',
+  journeyId: 'journeyId',
+  ticketId: 'ticketId',
+  sequence: 'sequence',
+  deletedAt: 'deletedAt'
+} as const
+
+export type JourneyLegScalarFieldEnum = (typeof JourneyLegScalarFieldEnum)[keyof typeof JourneyLegScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -138,12 +234,29 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull'
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 export const NullsOrder = {

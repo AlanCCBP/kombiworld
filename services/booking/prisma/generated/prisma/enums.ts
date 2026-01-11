@@ -9,7 +9,61 @@
 * 🟢 You can import this file directly.
 */
 
+export const CompanyStatus = {
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type CompanyStatus = (typeof CompanyStatus)[keyof typeof CompanyStatus]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const VehicleStatus = {
+  ACTIVE: 'ACTIVE',
+  MAINTENANCE: 'MAINTENANCE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type VehicleStatus = (typeof VehicleStatus)[keyof typeof VehicleStatus]
+
+
+export const DriverStatus = {
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type DriverStatus = (typeof DriverStatus)[keyof typeof DriverStatus]
+
+
+export const TripStatus = {
+  SCHEDULED: 'SCHEDULED',
+  BOARDING: 'BOARDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type TripStatus = (typeof TripStatus)[keyof typeof TripStatus]
+
+
+export const TicketStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  USED: 'USED',
+  CANCELLED: 'CANCELLED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type TicketStatus = (typeof TicketStatus)[keyof typeof TicketStatus]
+
+
+export const JourneyStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type JourneyStatus = (typeof JourneyStatus)[keyof typeof JourneyStatus]

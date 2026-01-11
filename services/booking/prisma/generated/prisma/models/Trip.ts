@@ -20,76 +20,116 @@ export type TripModel = runtime.Types.Result.DefaultSelection<Prisma.$TripPayloa
 
 export type AggregateTrip = {
   _count: TripCountAggregateOutputType | null
+  _avg: TripAvgAggregateOutputType | null
+  _sum: TripSumAggregateOutputType | null
   _min: TripMinAggregateOutputType | null
   _max: TripMaxAggregateOutputType | null
+}
+
+export type TripAvgAggregateOutputType = {
+  capacity: number | null
+  available: number | null
+}
+
+export type TripSumAggregateOutputType = {
+  capacity: number | null
+  available: number | null
 }
 
 export type TripMinAggregateOutputType = {
   id: string | null
   routeId: string | null
+  vehicleId: string | null
+  driverId: string | null
   departureTime: Date | null
-  available: boolean | null
+  capacity: number | null
+  available: number | null
+  status: $Enums.TripStatus | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
-  driverId: string | null
 }
 
 export type TripMaxAggregateOutputType = {
   id: string | null
   routeId: string | null
+  vehicleId: string | null
+  driverId: string | null
   departureTime: Date | null
-  available: boolean | null
+  capacity: number | null
+  available: number | null
+  status: $Enums.TripStatus | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
-  driverId: string | null
 }
 
 export type TripCountAggregateOutputType = {
   id: number
   routeId: number
+  vehicleId: number
+  driverId: number
   departureTime: number
+  capacity: number
   available: number
+  status: number
   createdAt: number
   updatedAt: number
   deletedAt: number
-  driverId: number
   _all: number
 }
 
 
+export type TripAvgAggregateInputType = {
+  capacity?: true
+  available?: true
+}
+
+export type TripSumAggregateInputType = {
+  capacity?: true
+  available?: true
+}
+
 export type TripMinAggregateInputType = {
   id?: true
   routeId?: true
+  vehicleId?: true
+  driverId?: true
   departureTime?: true
+  capacity?: true
   available?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  driverId?: true
 }
 
 export type TripMaxAggregateInputType = {
   id?: true
   routeId?: true
+  vehicleId?: true
+  driverId?: true
   departureTime?: true
+  capacity?: true
   available?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  driverId?: true
 }
 
 export type TripCountAggregateInputType = {
   id?: true
   routeId?: true
+  vehicleId?: true
+  driverId?: true
   departureTime?: true
+  capacity?: true
   available?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  driverId?: true
   _all?: true
 }
 
@@ -131,6 +171,18 @@ export type TripAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: TripAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: TripSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: TripMinAggregateInputType
@@ -161,6 +213,8 @@ export type TripGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: TripCountAggregateInputType | true
+  _avg?: TripAvgAggregateInputType
+  _sum?: TripSumAggregateInputType
   _min?: TripMinAggregateInputType
   _max?: TripMaxAggregateInputType
 }
@@ -168,13 +222,18 @@ export type TripGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type TripGroupByOutputType = {
   id: string
   routeId: string
+  vehicleId: string | null
+  driverId: string
   departureTime: Date
-  available: boolean
+  capacity: number
+  available: number
+  status: $Enums.TripStatus
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
-  driverId: string
   _count: TripCountAggregateOutputType | null
+  _avg: TripAvgAggregateOutputType | null
+  _sum: TripSumAggregateOutputType | null
   _min: TripMinAggregateOutputType | null
   _max: TripMaxAggregateOutputType | null
 }
@@ -200,26 +259,36 @@ export type TripWhereInput = {
   NOT?: Prisma.TripWhereInput | Prisma.TripWhereInput[]
   id?: Prisma.StringFilter<"Trip"> | string
   routeId?: Prisma.StringFilter<"Trip"> | string
+  vehicleId?: Prisma.StringNullableFilter<"Trip"> | string | null
+  driverId?: Prisma.StringFilter<"Trip"> | string
   departureTime?: Prisma.DateTimeFilter<"Trip"> | Date | string
-  available?: Prisma.BoolFilter<"Trip"> | boolean
+  capacity?: Prisma.IntFilter<"Trip"> | number
+  available?: Prisma.IntFilter<"Trip"> | number
+  status?: Prisma.EnumTripStatusFilter<"Trip"> | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Trip"> | Date | string | null
-  driverId?: Prisma.StringFilter<"Trip"> | string
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   tickets?: Prisma.TicketListRelationFilter
 }
 
 export type TripOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  driverId?: Prisma.SortOrder
   departureTime?: Prisma.SortOrder
+  capacity?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  driverId?: Prisma.SortOrder
   route?: Prisma.RouteOrderByWithRelationInput
+  vehicle?: Prisma.VehicleOrderByWithRelationInput
+  driver?: Prisma.DriverOrderByWithRelationInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
 }
 
@@ -229,28 +298,38 @@ export type TripWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TripWhereInput[]
   NOT?: Prisma.TripWhereInput | Prisma.TripWhereInput[]
   routeId?: Prisma.StringFilter<"Trip"> | string
+  vehicleId?: Prisma.StringNullableFilter<"Trip"> | string | null
+  driverId?: Prisma.StringFilter<"Trip"> | string
   departureTime?: Prisma.DateTimeFilter<"Trip"> | Date | string
-  available?: Prisma.BoolFilter<"Trip"> | boolean
+  capacity?: Prisma.IntFilter<"Trip"> | number
+  available?: Prisma.IntFilter<"Trip"> | number
+  status?: Prisma.EnumTripStatusFilter<"Trip"> | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Trip"> | Date | string | null
-  driverId?: Prisma.StringFilter<"Trip"> | string
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   tickets?: Prisma.TicketListRelationFilter
 }, "id">
 
 export type TripOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  driverId?: Prisma.SortOrder
   departureTime?: Prisma.SortOrder
+  capacity?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  driverId?: Prisma.SortOrder
   _count?: Prisma.TripCountOrderByAggregateInput
+  _avg?: Prisma.TripAvgOrderByAggregateInput
   _max?: Prisma.TripMaxOrderByAggregateInput
   _min?: Prisma.TripMinOrderByAggregateInput
+  _sum?: Prisma.TripSumOrderByAggregateInput
 }
 
 export type TripScalarWhereWithAggregatesInput = {
@@ -259,92 +338,114 @@ export type TripScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TripScalarWhereWithAggregatesInput | Prisma.TripScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Trip"> | string
   routeId?: Prisma.StringWithAggregatesFilter<"Trip"> | string
+  vehicleId?: Prisma.StringNullableWithAggregatesFilter<"Trip"> | string | null
+  driverId?: Prisma.StringWithAggregatesFilter<"Trip"> | string
   departureTime?: Prisma.DateTimeWithAggregatesFilter<"Trip"> | Date | string
-  available?: Prisma.BoolWithAggregatesFilter<"Trip"> | boolean
+  capacity?: Prisma.IntWithAggregatesFilter<"Trip"> | number
+  available?: Prisma.IntWithAggregatesFilter<"Trip"> | number
+  status?: Prisma.EnumTripStatusWithAggregatesFilter<"Trip"> | $Enums.TripStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Trip"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Trip"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Trip"> | Date | string | null
-  driverId?: Prisma.StringWithAggregatesFilter<"Trip"> | string
 }
 
 export type TripCreateInput = {
   id?: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
   route: Prisma.RouteCreateNestedOneWithoutTripsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutTripsInput
+  driver: Prisma.DriverCreateNestedOneWithoutTripsInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTripInput
 }
 
 export type TripUncheckedCreateInput = {
   id?: string
   routeId: string
+  vehicleId?: string | null
+  driverId: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTripInput
 }
 
 export type TripUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   route?: Prisma.RouteUpdateOneRequiredWithoutTripsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutTripsNestedInput
+  driver?: Prisma.DriverUpdateOneRequiredWithoutTripsNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTripNestedInput
 }
 
 export type TripUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTripNestedInput
 }
 
 export type TripCreateManyInput = {
   id?: string
   routeId: string
+  vehicleId?: string | null
+  driverId: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
 }
 
 export type TripUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TripUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TripListRelationFilter = {
@@ -360,34 +461,53 @@ export type TripOrderByRelationAggregateInput = {
 export type TripCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  driverId?: Prisma.SortOrder
   departureTime?: Prisma.SortOrder
+  capacity?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
+}
+
+export type TripAvgOrderByAggregateInput = {
+  capacity?: Prisma.SortOrder
+  available?: Prisma.SortOrder
 }
 
 export type TripMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  driverId?: Prisma.SortOrder
   departureTime?: Prisma.SortOrder
+  capacity?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
 }
 
 export type TripMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  driverId?: Prisma.SortOrder
   departureTime?: Prisma.SortOrder
+  capacity?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
+}
+
+export type TripSumOrderByAggregateInput = {
+  capacity?: Prisma.SortOrder
+  available?: Prisma.SortOrder
 }
 
 export type TripScalarRelationFilter = {
@@ -437,8 +557,8 @@ export type TripUncheckedUpdateManyWithoutRouteNestedInput = {
   deleteMany?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
+export type EnumTripStatusFieldUpdateOperationsInput = {
+  set?: $Enums.TripStatus
 }
 
 export type TripCreateNestedOneWithoutTicketsInput = {
@@ -455,25 +575,115 @@ export type TripUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TripUpdateToOneWithWhereWithoutTicketsInput, Prisma.TripUpdateWithoutTicketsInput>, Prisma.TripUncheckedUpdateWithoutTicketsInput>
 }
 
+export type TripCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput> | Prisma.TripCreateWithoutVehicleInput[] | Prisma.TripUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutVehicleInput | Prisma.TripCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.TripCreateManyVehicleInputEnvelope
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+}
+
+export type TripUncheckedCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput> | Prisma.TripCreateWithoutVehicleInput[] | Prisma.TripUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutVehicleInput | Prisma.TripCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.TripCreateManyVehicleInputEnvelope
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+}
+
+export type TripUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput> | Prisma.TripCreateWithoutVehicleInput[] | Prisma.TripUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutVehicleInput | Prisma.TripCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.TripUpsertWithWhereUniqueWithoutVehicleInput | Prisma.TripUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.TripCreateManyVehicleInputEnvelope
+  set?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  disconnect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  delete?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  update?: Prisma.TripUpdateWithWhereUniqueWithoutVehicleInput | Prisma.TripUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.TripUpdateManyWithWhereWithoutVehicleInput | Prisma.TripUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
+}
+
+export type TripUncheckedUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput> | Prisma.TripCreateWithoutVehicleInput[] | Prisma.TripUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutVehicleInput | Prisma.TripCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.TripUpsertWithWhereUniqueWithoutVehicleInput | Prisma.TripUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.TripCreateManyVehicleInputEnvelope
+  set?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  disconnect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  delete?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  update?: Prisma.TripUpdateWithWhereUniqueWithoutVehicleInput | Prisma.TripUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.TripUpdateManyWithWhereWithoutVehicleInput | Prisma.TripUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
+}
+
+export type TripCreateNestedManyWithoutDriverInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput> | Prisma.TripCreateWithoutDriverInput[] | Prisma.TripUncheckedCreateWithoutDriverInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutDriverInput | Prisma.TripCreateOrConnectWithoutDriverInput[]
+  createMany?: Prisma.TripCreateManyDriverInputEnvelope
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+}
+
+export type TripUncheckedCreateNestedManyWithoutDriverInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput> | Prisma.TripCreateWithoutDriverInput[] | Prisma.TripUncheckedCreateWithoutDriverInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutDriverInput | Prisma.TripCreateOrConnectWithoutDriverInput[]
+  createMany?: Prisma.TripCreateManyDriverInputEnvelope
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+}
+
+export type TripUpdateManyWithoutDriverNestedInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput> | Prisma.TripCreateWithoutDriverInput[] | Prisma.TripUncheckedCreateWithoutDriverInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutDriverInput | Prisma.TripCreateOrConnectWithoutDriverInput[]
+  upsert?: Prisma.TripUpsertWithWhereUniqueWithoutDriverInput | Prisma.TripUpsertWithWhereUniqueWithoutDriverInput[]
+  createMany?: Prisma.TripCreateManyDriverInputEnvelope
+  set?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  disconnect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  delete?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  update?: Prisma.TripUpdateWithWhereUniqueWithoutDriverInput | Prisma.TripUpdateWithWhereUniqueWithoutDriverInput[]
+  updateMany?: Prisma.TripUpdateManyWithWhereWithoutDriverInput | Prisma.TripUpdateManyWithWhereWithoutDriverInput[]
+  deleteMany?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
+}
+
+export type TripUncheckedUpdateManyWithoutDriverNestedInput = {
+  create?: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput> | Prisma.TripCreateWithoutDriverInput[] | Prisma.TripUncheckedCreateWithoutDriverInput[]
+  connectOrCreate?: Prisma.TripCreateOrConnectWithoutDriverInput | Prisma.TripCreateOrConnectWithoutDriverInput[]
+  upsert?: Prisma.TripUpsertWithWhereUniqueWithoutDriverInput | Prisma.TripUpsertWithWhereUniqueWithoutDriverInput[]
+  createMany?: Prisma.TripCreateManyDriverInputEnvelope
+  set?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  disconnect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  delete?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  connect?: Prisma.TripWhereUniqueInput | Prisma.TripWhereUniqueInput[]
+  update?: Prisma.TripUpdateWithWhereUniqueWithoutDriverInput | Prisma.TripUpdateWithWhereUniqueWithoutDriverInput[]
+  updateMany?: Prisma.TripUpdateManyWithWhereWithoutDriverInput | Prisma.TripUpdateManyWithWhereWithoutDriverInput[]
+  deleteMany?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
+}
+
 export type TripCreateWithoutRouteInput = {
   id?: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutTripsInput
+  driver: Prisma.DriverCreateNestedOneWithoutTripsInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTripInput
 }
 
 export type TripUncheckedCreateWithoutRouteInput = {
   id?: string
+  vehicleId?: string | null
+  driverId: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTripInput
 }
 
@@ -509,34 +719,43 @@ export type TripScalarWhereInput = {
   NOT?: Prisma.TripScalarWhereInput | Prisma.TripScalarWhereInput[]
   id?: Prisma.StringFilter<"Trip"> | string
   routeId?: Prisma.StringFilter<"Trip"> | string
+  vehicleId?: Prisma.StringNullableFilter<"Trip"> | string | null
+  driverId?: Prisma.StringFilter<"Trip"> | string
   departureTime?: Prisma.DateTimeFilter<"Trip"> | Date | string
-  available?: Prisma.BoolFilter<"Trip"> | boolean
+  capacity?: Prisma.IntFilter<"Trip"> | number
+  available?: Prisma.IntFilter<"Trip"> | number
+  status?: Prisma.EnumTripStatusFilter<"Trip"> | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trip"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Trip"> | Date | string | null
-  driverId?: Prisma.StringFilter<"Trip"> | string
 }
 
 export type TripCreateWithoutTicketsInput = {
   id?: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
   route: Prisma.RouteCreateNestedOneWithoutTripsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutTripsInput
+  driver: Prisma.DriverCreateNestedOneWithoutTripsInput
 }
 
 export type TripUncheckedCreateWithoutTicketsInput = {
   id?: string
   routeId: string
+  vehicleId?: string | null
+  driverId: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
 }
 
 export type TripCreateOrConnectWithoutTicketsInput = {
@@ -558,65 +777,299 @@ export type TripUpdateToOneWithWhereWithoutTicketsInput = {
 export type TripUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   route?: Prisma.RouteUpdateOneRequiredWithoutTripsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutTripsNestedInput
+  driver?: Prisma.DriverUpdateOneRequiredWithoutTripsNestedInput
 }
 
 export type TripUncheckedUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TripCreateWithoutVehicleInput = {
+  id?: string
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  route: Prisma.RouteCreateNestedOneWithoutTripsInput
+  driver: Prisma.DriverCreateNestedOneWithoutTripsInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTripInput
+}
+
+export type TripUncheckedCreateWithoutVehicleInput = {
+  id?: string
+  routeId: string
+  driverId: string
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTripInput
+}
+
+export type TripCreateOrConnectWithoutVehicleInput = {
+  where: Prisma.TripWhereUniqueInput
+  create: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput>
+}
+
+export type TripCreateManyVehicleInputEnvelope = {
+  data: Prisma.TripCreateManyVehicleInput | Prisma.TripCreateManyVehicleInput[]
+  skipDuplicates?: boolean
+}
+
+export type TripUpsertWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.TripWhereUniqueInput
+  update: Prisma.XOR<Prisma.TripUpdateWithoutVehicleInput, Prisma.TripUncheckedUpdateWithoutVehicleInput>
+  create: Prisma.XOR<Prisma.TripCreateWithoutVehicleInput, Prisma.TripUncheckedCreateWithoutVehicleInput>
+}
+
+export type TripUpdateWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.TripWhereUniqueInput
+  data: Prisma.XOR<Prisma.TripUpdateWithoutVehicleInput, Prisma.TripUncheckedUpdateWithoutVehicleInput>
+}
+
+export type TripUpdateManyWithWhereWithoutVehicleInput = {
+  where: Prisma.TripScalarWhereInput
+  data: Prisma.XOR<Prisma.TripUpdateManyMutationInput, Prisma.TripUncheckedUpdateManyWithoutVehicleInput>
+}
+
+export type TripCreateWithoutDriverInput = {
+  id?: string
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  route: Prisma.RouteCreateNestedOneWithoutTripsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutTripsInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTripInput
+}
+
+export type TripUncheckedCreateWithoutDriverInput = {
+  id?: string
+  routeId: string
+  vehicleId?: string | null
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTripInput
+}
+
+export type TripCreateOrConnectWithoutDriverInput = {
+  where: Prisma.TripWhereUniqueInput
+  create: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput>
+}
+
+export type TripCreateManyDriverInputEnvelope = {
+  data: Prisma.TripCreateManyDriverInput | Prisma.TripCreateManyDriverInput[]
+  skipDuplicates?: boolean
+}
+
+export type TripUpsertWithWhereUniqueWithoutDriverInput = {
+  where: Prisma.TripWhereUniqueInput
+  update: Prisma.XOR<Prisma.TripUpdateWithoutDriverInput, Prisma.TripUncheckedUpdateWithoutDriverInput>
+  create: Prisma.XOR<Prisma.TripCreateWithoutDriverInput, Prisma.TripUncheckedCreateWithoutDriverInput>
+}
+
+export type TripUpdateWithWhereUniqueWithoutDriverInput = {
+  where: Prisma.TripWhereUniqueInput
+  data: Prisma.XOR<Prisma.TripUpdateWithoutDriverInput, Prisma.TripUncheckedUpdateWithoutDriverInput>
+}
+
+export type TripUpdateManyWithWhereWithoutDriverInput = {
+  where: Prisma.TripScalarWhereInput
+  data: Prisma.XOR<Prisma.TripUpdateManyMutationInput, Prisma.TripUncheckedUpdateManyWithoutDriverInput>
 }
 
 export type TripCreateManyRouteInput = {
   id?: string
+  vehicleId?: string | null
+  driverId: string
   departureTime: Date | string
-  available?: boolean
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  driverId: string
 }
 
 export type TripUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicle?: Prisma.VehicleUpdateOneWithoutTripsNestedInput
+  driver?: Prisma.DriverUpdateOneRequiredWithoutTripsNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTripNestedInput
 }
 
 export type TripUncheckedUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTripNestedInput
 }
 
 export type TripUncheckedUpdateManyWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
   departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type TripCreateManyVehicleInput = {
+  id?: string
+  routeId: string
+  driverId: string
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type TripUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  route?: Prisma.RouteUpdateOneRequiredWithoutTripsNestedInput
+  driver?: Prisma.DriverUpdateOneRequiredWithoutTripsNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTripNestedInput
+}
+
+export type TripUncheckedUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  routeId?: Prisma.StringFieldUpdateOperationsInput | string
   driverId?: Prisma.StringFieldUpdateOperationsInput | string
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTripNestedInput
+}
+
+export type TripUncheckedUpdateManyWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  driverId?: Prisma.StringFieldUpdateOperationsInput | string
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type TripCreateManyDriverInput = {
+  id?: string
+  routeId: string
+  vehicleId?: string | null
+  departureTime: Date | string
+  capacity: number
+  available: number
+  status?: $Enums.TripStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type TripUpdateWithoutDriverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  route?: Prisma.RouteUpdateOneRequiredWithoutTripsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutTripsNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTripNestedInput
+}
+
+export type TripUncheckedUpdateWithoutDriverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTripNestedInput
+}
+
+export type TripUncheckedUpdateManyWithoutDriverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departureTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  available?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTripStatusFieldUpdateOperationsInput | $Enums.TripStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -653,13 +1106,18 @@ export type TripCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Ex
 export type TripSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  vehicleId?: boolean
+  driverId?: boolean
   departureTime?: boolean
+  capacity?: boolean
   available?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  driverId?: boolean
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Trip$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.TripCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trip"]>
@@ -667,66 +1125,90 @@ export type TripSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type TripSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  vehicleId?: boolean
+  driverId?: boolean
   departureTime?: boolean
+  capacity?: boolean
   available?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  driverId?: boolean
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trip"]>
 
 export type TripSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  vehicleId?: boolean
+  driverId?: boolean
   departureTime?: boolean
+  capacity?: boolean
   available?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  driverId?: boolean
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trip"]>
 
 export type TripSelectScalar = {
   id?: boolean
   routeId?: boolean
+  vehicleId?: boolean
+  driverId?: boolean
   departureTime?: boolean
+  capacity?: boolean
   available?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  driverId?: boolean
 }
 
-export type TripOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "departureTime" | "available" | "createdAt" | "updatedAt" | "deletedAt" | "driverId", ExtArgs["result"]["trip"]>
+export type TripOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "vehicleId" | "driverId" | "departureTime" | "capacity" | "available" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["trip"]>
 export type TripInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Trip$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.TripCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TripIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
 }
 export type TripIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.Trip$vehicleArgs<ExtArgs>
+  driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
 }
 
 export type $TripPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Trip"
   objects: {
     route: Prisma.$RoutePayload<ExtArgs>
+    vehicle: Prisma.$VehiclePayload<ExtArgs> | null
+    driver: Prisma.$DriverPayload<ExtArgs>
     tickets: Prisma.$TicketPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     routeId: string
+    vehicleId: string | null
+    driverId: string
     departureTime: Date
-    available: boolean
+    capacity: number
+    available: number
+    status: $Enums.TripStatus
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
-    driverId: string
   }, ExtArgs["result"]["trip"]>
   composites: {}
 }
@@ -1122,6 +1604,8 @@ readonly fields: TripFieldRefs;
 export interface Prisma__TripClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   route<T extends Prisma.RouteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RouteDefaultArgs<ExtArgs>>): Prisma.Prisma__RouteClient<runtime.Types.Result.GetResult<Prisma.$RoutePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  vehicle<T extends Prisma.Trip$vehicleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trip$vehicleArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  driver<T extends Prisma.DriverDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DriverDefaultArgs<ExtArgs>>): Prisma.Prisma__DriverClient<runtime.Types.Result.GetResult<Prisma.$DriverPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tickets<T extends Prisma.Trip$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trip$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1154,12 +1638,15 @@ export interface Prisma__TripClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface TripFieldRefs {
   readonly id: Prisma.FieldRef<"Trip", 'String'>
   readonly routeId: Prisma.FieldRef<"Trip", 'String'>
+  readonly vehicleId: Prisma.FieldRef<"Trip", 'String'>
+  readonly driverId: Prisma.FieldRef<"Trip", 'String'>
   readonly departureTime: Prisma.FieldRef<"Trip", 'DateTime'>
-  readonly available: Prisma.FieldRef<"Trip", 'Boolean'>
+  readonly capacity: Prisma.FieldRef<"Trip", 'Int'>
+  readonly available: Prisma.FieldRef<"Trip", 'Int'>
+  readonly status: Prisma.FieldRef<"Trip", 'TripStatus'>
   readonly createdAt: Prisma.FieldRef<"Trip", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Trip", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Trip", 'DateTime'>
-  readonly driverId: Prisma.FieldRef<"Trip", 'String'>
 }
     
 
@@ -1553,6 +2040,25 @@ export type TripDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Trips to delete.
    */
   limit?: number
+}
+
+/**
+ * Trip.vehicle
+ */
+export type Trip$vehicleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Vehicle
+   */
+  select?: Prisma.VehicleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Vehicle
+   */
+  omit?: Prisma.VehicleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehicleInclude<ExtArgs> | null
+  where?: Prisma.VehicleWhereInput
 }
 
 /**

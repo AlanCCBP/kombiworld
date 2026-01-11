@@ -7,7 +7,7 @@ export default defineConfig({
     path: 'prisma/migrations',
   },
   datasource: {
-    url: env('DATABASE_URL_BOOKING'),
+    url: env('DATABASE_URL'),
   },
   enums: {
     external: ['public.role'],

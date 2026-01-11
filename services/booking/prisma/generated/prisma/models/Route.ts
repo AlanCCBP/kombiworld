@@ -27,17 +27,19 @@ export type AggregateRoute = {
 }
 
 export type RouteAvgAggregateOutputType = {
-  ticketPrice: runtime.Decimal | null
+  basePrice: runtime.Decimal | null
 }
 
 export type RouteSumAggregateOutputType = {
-  ticketPrice: runtime.Decimal | null
+  basePrice: runtime.Decimal | null
 }
 
 export type RouteMinAggregateOutputType = {
   id: string | null
+  companyId: string | null
   name: string | null
-  ticketPrice: runtime.Decimal | null
+  basePrice: runtime.Decimal | null
+  aiCheckedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -45,8 +47,10 @@ export type RouteMinAggregateOutputType = {
 
 export type RouteMaxAggregateOutputType = {
   id: string | null
+  companyId: string | null
   name: string | null
-  ticketPrice: runtime.Decimal | null
+  basePrice: runtime.Decimal | null
+  aiCheckedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -54,8 +58,11 @@ export type RouteMaxAggregateOutputType = {
 
 export type RouteCountAggregateOutputType = {
   id: number
+  companyId: number
   name: number
-  ticketPrice: number
+  basePrice: number
+  aiFlags: number
+  aiCheckedAt: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -64,17 +71,19 @@ export type RouteCountAggregateOutputType = {
 
 
 export type RouteAvgAggregateInputType = {
-  ticketPrice?: true
+  basePrice?: true
 }
 
 export type RouteSumAggregateInputType = {
-  ticketPrice?: true
+  basePrice?: true
 }
 
 export type RouteMinAggregateInputType = {
   id?: true
+  companyId?: true
   name?: true
-  ticketPrice?: true
+  basePrice?: true
+  aiCheckedAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -82,8 +91,10 @@ export type RouteMinAggregateInputType = {
 
 export type RouteMaxAggregateInputType = {
   id?: true
+  companyId?: true
   name?: true
-  ticketPrice?: true
+  basePrice?: true
+  aiCheckedAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -91,8 +102,11 @@ export type RouteMaxAggregateInputType = {
 
 export type RouteCountAggregateInputType = {
   id?: true
+  companyId?: true
   name?: true
-  ticketPrice?: true
+  basePrice?: true
+  aiFlags?: true
+  aiCheckedAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -187,8 +201,11 @@ export type RouteGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type RouteGroupByOutputType = {
   id: string
+  companyId: string
   name: string
-  ticketPrice: runtime.Decimal
+  basePrice: runtime.Decimal
+  aiFlags: runtime.JsonValue | null
+  aiCheckedAt: Date | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -219,22 +236,30 @@ export type RouteWhereInput = {
   OR?: Prisma.RouteWhereInput[]
   NOT?: Prisma.RouteWhereInput | Prisma.RouteWhereInput[]
   id?: Prisma.StringFilter<"Route"> | string
+  companyId?: Prisma.StringFilter<"Route"> | string
   name?: Prisma.StringFilter<"Route"> | string
-  ticketPrice?: Prisma.DecimalFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.JsonNullableFilter<"Route">
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   stops?: Prisma.StopListRelationFilter
   trips?: Prisma.TripListRelationFilter
 }
 
 export type RouteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
+  aiFlags?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  company?: Prisma.CompanyOrderByWithRelationInput
   stops?: Prisma.StopOrderByRelationAggregateInput
   trips?: Prisma.TripOrderByRelationAggregateInput
 }
@@ -244,19 +269,26 @@ export type RouteWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RouteWhereInput | Prisma.RouteWhereInput[]
   OR?: Prisma.RouteWhereInput[]
   NOT?: Prisma.RouteWhereInput | Prisma.RouteWhereInput[]
+  companyId?: Prisma.StringFilter<"Route"> | string
   name?: Prisma.StringFilter<"Route"> | string
-  ticketPrice?: Prisma.DecimalFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.JsonNullableFilter<"Route">
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   stops?: Prisma.StopListRelationFilter
   trips?: Prisma.TripListRelationFilter
 }, "id">
 
 export type RouteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
+  aiFlags?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -272,8 +304,11 @@ export type RouteScalarWhereWithAggregatesInput = {
   OR?: Prisma.RouteScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RouteScalarWhereWithAggregatesInput | Prisma.RouteScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Route"> | string
+  companyId?: Prisma.StringWithAggregatesFilter<"Route"> | string
   name?: Prisma.StringWithAggregatesFilter<"Route"> | string
-  ticketPrice?: Prisma.DecimalWithAggregatesFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalWithAggregatesFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.JsonNullableWithAggregatesFilter<"Route">
+  aiCheckedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Route"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Route"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Route"> | Date | string | null
@@ -282,18 +317,24 @@ export type RouteScalarWhereWithAggregatesInput = {
 export type RouteCreateInput = {
   id?: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutRoutesInput
   stops?: Prisma.StopCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateInput = {
   id?: string
+  companyId: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -304,18 +345,24 @@ export type RouteUncheckedCreateInput = {
 export type RouteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutRoutesNestedInput
   stops?: Prisma.StopUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -325,8 +372,11 @@ export type RouteUncheckedUpdateInput = {
 
 export type RouteCreateManyInput = {
   id?: string
+  companyId: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -335,7 +385,9 @@ export type RouteCreateManyInput = {
 export type RouteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -343,8 +395,11 @@ export type RouteUpdateManyMutationInput = {
 
 export type RouteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -352,21 +407,26 @@ export type RouteUncheckedUpdateManyInput = {
 
 export type RouteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
+  aiFlags?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
 export type RouteAvgOrderByAggregateInput = {
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
 }
 
 export type RouteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -374,20 +434,32 @@ export type RouteMaxOrderByAggregateInput = {
 
 export type RouteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
+  aiCheckedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
 export type RouteSumOrderByAggregateInput = {
-  ticketPrice?: Prisma.SortOrder
+  basePrice?: Prisma.SortOrder
 }
 
 export type RouteScalarRelationFilter = {
   is?: Prisma.RouteWhereInput
   isNot?: Prisma.RouteWhereInput
+}
+
+export type RouteListRelationFilter = {
+  every?: Prisma.RouteWhereInput
+  some?: Prisma.RouteWhereInput
+  none?: Prisma.RouteWhereInput
+}
+
+export type RouteOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -402,12 +474,12 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type RouteCreateNestedOneWithoutStopsInput = {
@@ -438,20 +510,68 @@ export type RouteUpdateOneRequiredWithoutTripsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RouteUpdateToOneWithWhereWithoutTripsInput, Prisma.RouteUpdateWithoutTripsInput>, Prisma.RouteUncheckedUpdateWithoutTripsInput>
 }
 
+export type RouteCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput> | Prisma.RouteCreateWithoutCompanyInput[] | Prisma.RouteUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutCompanyInput | Prisma.RouteCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.RouteCreateManyCompanyInputEnvelope
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+}
+
+export type RouteUncheckedCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput> | Prisma.RouteCreateWithoutCompanyInput[] | Prisma.RouteUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutCompanyInput | Prisma.RouteCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.RouteCreateManyCompanyInputEnvelope
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+}
+
+export type RouteUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput> | Prisma.RouteCreateWithoutCompanyInput[] | Prisma.RouteUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutCompanyInput | Prisma.RouteCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.RouteUpsertWithWhereUniqueWithoutCompanyInput | Prisma.RouteUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.RouteCreateManyCompanyInputEnvelope
+  set?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  disconnect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  delete?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  update?: Prisma.RouteUpdateWithWhereUniqueWithoutCompanyInput | Prisma.RouteUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.RouteUpdateManyWithWhereWithoutCompanyInput | Prisma.RouteUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+}
+
+export type RouteUncheckedUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput> | Prisma.RouteCreateWithoutCompanyInput[] | Prisma.RouteUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutCompanyInput | Prisma.RouteCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.RouteUpsertWithWhereUniqueWithoutCompanyInput | Prisma.RouteUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.RouteCreateManyCompanyInputEnvelope
+  set?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  disconnect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  delete?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  update?: Prisma.RouteUpdateWithWhereUniqueWithoutCompanyInput | Prisma.RouteUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.RouteUpdateManyWithWhereWithoutCompanyInput | Prisma.RouteUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+}
+
 export type RouteCreateWithoutStopsInput = {
   id?: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutRoutesInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateWithoutStopsInput = {
   id?: string
+  companyId: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -477,17 +597,23 @@ export type RouteUpdateToOneWithWhereWithoutStopsInput = {
 export type RouteUpdateWithoutStopsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutRoutesNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateWithoutStopsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -497,17 +623,23 @@ export type RouteUncheckedUpdateWithoutStopsInput = {
 export type RouteCreateWithoutTripsInput = {
   id?: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutRoutesInput
   stops?: Prisma.StopCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateWithoutTripsInput = {
   id?: string
+  companyId: string
   name: string
-  ticketPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -533,21 +665,142 @@ export type RouteUpdateToOneWithWhereWithoutTripsInput = {
 export type RouteUpdateWithoutTripsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutRoutesNestedInput
   stops?: Prisma.StopUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateWithoutTripsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  ticketPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   stops?: Prisma.StopUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteCreateWithoutCompanyInput = {
+  id?: string
+  name: string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  stops?: Prisma.StopCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripCreateNestedManyWithoutRouteInput
+}
+
+export type RouteUncheckedCreateWithoutCompanyInput = {
+  id?: string
+  name: string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  stops?: Prisma.StopUncheckedCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
+}
+
+export type RouteCreateOrConnectWithoutCompanyInput = {
+  where: Prisma.RouteWhereUniqueInput
+  create: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput>
+}
+
+export type RouteCreateManyCompanyInputEnvelope = {
+  data: Prisma.RouteCreateManyCompanyInput | Prisma.RouteCreateManyCompanyInput[]
+  skipDuplicates?: boolean
+}
+
+export type RouteUpsertWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.RouteWhereUniqueInput
+  update: Prisma.XOR<Prisma.RouteUpdateWithoutCompanyInput, Prisma.RouteUncheckedUpdateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.RouteCreateWithoutCompanyInput, Prisma.RouteUncheckedCreateWithoutCompanyInput>
+}
+
+export type RouteUpdateWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.RouteWhereUniqueInput
+  data: Prisma.XOR<Prisma.RouteUpdateWithoutCompanyInput, Prisma.RouteUncheckedUpdateWithoutCompanyInput>
+}
+
+export type RouteUpdateManyWithWhereWithoutCompanyInput = {
+  where: Prisma.RouteScalarWhereInput
+  data: Prisma.XOR<Prisma.RouteUpdateManyMutationInput, Prisma.RouteUncheckedUpdateManyWithoutCompanyInput>
+}
+
+export type RouteScalarWhereInput = {
+  AND?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+  OR?: Prisma.RouteScalarWhereInput[]
+  NOT?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+  id?: Prisma.StringFilter<"Route"> | string
+  companyId?: Prisma.StringFilter<"Route"> | string
+  name?: Prisma.StringFilter<"Route"> | string
+  basePrice?: Prisma.DecimalFilter<"Route"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.JsonNullableFilter<"Route">
+  aiCheckedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Route"> | Date | string | null
+}
+
+export type RouteCreateManyCompanyInput = {
+  id?: string
+  name: string
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type RouteUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  stops?: Prisma.StopUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteUncheckedUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  stops?: Prisma.StopUncheckedUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  basePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aiFlags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -592,11 +845,15 @@ export type RouteCountOutputTypeCountTripsArgs<ExtArgs extends runtime.Types.Ext
 
 export type RouteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
   name?: boolean
-  ticketPrice?: boolean
+  basePrice?: boolean
+  aiFlags?: boolean
+  aiCheckedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   stops?: boolean | Prisma.Route$stopsArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   _count?: boolean | Prisma.RouteCountOutputTypeDefaultArgs<ExtArgs>
@@ -604,50 +861,70 @@ export type RouteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type RouteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
   name?: boolean
-  ticketPrice?: boolean
+  basePrice?: boolean
+  aiFlags?: boolean
+  aiCheckedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["route"]>
 
 export type RouteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
   name?: boolean
-  ticketPrice?: boolean
+  basePrice?: boolean
+  aiFlags?: boolean
+  aiCheckedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["route"]>
 
 export type RouteSelectScalar = {
   id?: boolean
+  companyId?: boolean
   name?: boolean
-  ticketPrice?: boolean
+  basePrice?: boolean
+  aiFlags?: boolean
+  aiCheckedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type RouteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "ticketPrice" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["route"]>
+export type RouteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "name" | "basePrice" | "aiFlags" | "aiCheckedAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["route"]>
 export type RouteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   stops?: boolean | Prisma.Route$stopsArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   _count?: boolean | Prisma.RouteCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type RouteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type RouteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type RouteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+}
+export type RouteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+}
 
 export type $RoutePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Route"
   objects: {
+    company: Prisma.$CompanyPayload<ExtArgs>
     stops: Prisma.$StopPayload<ExtArgs>[]
     trips: Prisma.$TripPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    companyId: string
     name: string
-    ticketPrice: runtime.Decimal
+    basePrice: runtime.Decimal
+    aiFlags: runtime.JsonValue | null
+    aiCheckedAt: Date | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1045,6 +1322,7 @@ readonly fields: RouteFieldRefs;
  */
 export interface Prisma__RouteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stops<T extends Prisma.Route$stopsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$stopsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trips<T extends Prisma.Route$tripsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$tripsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1077,8 +1355,11 @@ export interface Prisma__RouteClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface RouteFieldRefs {
   readonly id: Prisma.FieldRef<"Route", 'String'>
+  readonly companyId: Prisma.FieldRef<"Route", 'String'>
   readonly name: Prisma.FieldRef<"Route", 'String'>
-  readonly ticketPrice: Prisma.FieldRef<"Route", 'Decimal'>
+  readonly basePrice: Prisma.FieldRef<"Route", 'Decimal'>
+  readonly aiFlags: Prisma.FieldRef<"Route", 'Json'>
+  readonly aiCheckedAt: Prisma.FieldRef<"Route", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Route", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Route", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Route", 'DateTime'>
@@ -1331,6 +1612,10 @@ export type RouteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.RouteCreateManyInput | Prisma.RouteCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RouteIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1401,6 +1686,10 @@ export type RouteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many Routes to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RouteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
