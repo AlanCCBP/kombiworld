@@ -5,8 +5,9 @@ const EXPIRES_IN: number = Number(process.env.JWT_EXPIRES_IN) || 3600;
 
 export interface TokenPayload {
   id: string;
-  email?: string;
-  role?: string;
+  email: string;
+  roles: string[];
+  companyIds: string[];
 }
 
 export const generateToken = (payload: TokenPayload): string => {

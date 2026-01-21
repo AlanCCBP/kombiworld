@@ -1,19 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
-import { verifyToken } from '../utils/jwtUtils';
-
-declare module 'express-serve-static-core' {
-  interface Request {
-    user?: any;
-  }
-}
+import { verifyToken } from '@/src/utils/jwtUtils';
 
 export const authenticate = (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader?.split(' ')[1];
+  const authHeader = req.get('authorization');
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
 
   if (!token) {
     return res.status(401).json({ message: 'Authorization token required' });
@@ -21,9 +15,12 @@ export const authenticate = (
 
   try {
     const decoded = verifyToken(token);
+
     req.user = decoded;
+    req.userId = decoded.id;
+
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };

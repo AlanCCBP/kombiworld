@@ -6,12 +6,11 @@ import cors from 'cors';
 
 import 'dotenv/config';
 
-import stopRouter from './src/routes/stopRoutes';
-import routeRouter from './src/routes/routeRoutes';
-import tripRouter from './src/routes/tripRoutes';
-import ticketRouter from './src/routes/ticketRoutes';
-import { contextMiddleware } from './src/middlewares/contextMiddleware';
-import { prisma } from './src/lib/prisma';
+import { prisma } from './src/libs/prisma';
+
+import routesRoutes from './src/modules/routes/routes.routes';
+
+import { contextMiddleware } from './src/middlewares/context.Middleware';
 
 const app: Application = express();
 
@@ -37,10 +36,7 @@ app.use(
   }),
 );
 
-app.use('/api/stops', stopRouter);
-app.use('/api/routes', routeRouter);
-app.use('/api/trips', tripRouter);
-app.use('/api/tickets', ticketRouter);
+app.use('/routes', routesRoutes);
 
 async function start(): Promise<void> {
   try {
