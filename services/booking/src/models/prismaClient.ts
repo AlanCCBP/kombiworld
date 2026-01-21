@@ -1,4 +1,4 @@
-import { prisma } from '../lib/prisma';
+import { prisma } from '../libs/prisma';
 
 process.on('SIGINT', async () => {
   try {
