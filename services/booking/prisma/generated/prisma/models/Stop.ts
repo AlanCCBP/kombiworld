@@ -27,22 +27,26 @@ export type AggregateStop = {
 }
 
 export type StopAvgAggregateOutputType = {
+  sequence: number | null
+  plusMinutes: number | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
   aiConfidence: number | null
-  plusMinutes: number | null
 }
 
 export type StopSumAggregateOutputType = {
+  sequence: number | null
+  plusMinutes: number | null
   latitude: runtime.Decimal | null
   longitude: runtime.Decimal | null
   aiConfidence: number | null
-  plusMinutes: number | null
 }
 
 export type StopMinAggregateOutputType = {
   id: string | null
   routeId: string | null
+  sequence: number | null
+  plusMinutes: number | null
   nameRaw: string | null
   nameNormalized: string | null
   city: string | null
@@ -52,7 +56,6 @@ export type StopMinAggregateOutputType = {
   aiConfidence: number | null
   needsReview: boolean | null
   aiCheckedAt: Date | null
-  plusMinutes: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -61,6 +64,8 @@ export type StopMinAggregateOutputType = {
 export type StopMaxAggregateOutputType = {
   id: string | null
   routeId: string | null
+  sequence: number | null
+  plusMinutes: number | null
   nameRaw: string | null
   nameNormalized: string | null
   city: string | null
@@ -70,7 +75,6 @@ export type StopMaxAggregateOutputType = {
   aiConfidence: number | null
   needsReview: boolean | null
   aiCheckedAt: Date | null
-  plusMinutes: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -79,6 +83,8 @@ export type StopMaxAggregateOutputType = {
 export type StopCountAggregateOutputType = {
   id: number
   routeId: number
+  sequence: number
+  plusMinutes: number
   nameRaw: number
   nameNormalized: number
   city: number
@@ -88,7 +94,6 @@ export type StopCountAggregateOutputType = {
   aiConfidence: number
   needsReview: number
   aiCheckedAt: number
-  plusMinutes: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -97,22 +102,26 @@ export type StopCountAggregateOutputType = {
 
 
 export type StopAvgAggregateInputType = {
+  sequence?: true
+  plusMinutes?: true
   latitude?: true
   longitude?: true
   aiConfidence?: true
-  plusMinutes?: true
 }
 
 export type StopSumAggregateInputType = {
+  sequence?: true
+  plusMinutes?: true
   latitude?: true
   longitude?: true
   aiConfidence?: true
-  plusMinutes?: true
 }
 
 export type StopMinAggregateInputType = {
   id?: true
   routeId?: true
+  sequence?: true
+  plusMinutes?: true
   nameRaw?: true
   nameNormalized?: true
   city?: true
@@ -122,7 +131,6 @@ export type StopMinAggregateInputType = {
   aiConfidence?: true
   needsReview?: true
   aiCheckedAt?: true
-  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -131,6 +139,8 @@ export type StopMinAggregateInputType = {
 export type StopMaxAggregateInputType = {
   id?: true
   routeId?: true
+  sequence?: true
+  plusMinutes?: true
   nameRaw?: true
   nameNormalized?: true
   city?: true
@@ -140,7 +150,6 @@ export type StopMaxAggregateInputType = {
   aiConfidence?: true
   needsReview?: true
   aiCheckedAt?: true
-  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -149,6 +158,8 @@ export type StopMaxAggregateInputType = {
 export type StopCountAggregateInputType = {
   id?: true
   routeId?: true
+  sequence?: true
+  plusMinutes?: true
   nameRaw?: true
   nameNormalized?: true
   city?: true
@@ -158,7 +169,6 @@ export type StopCountAggregateInputType = {
   aiConfidence?: true
   needsReview?: true
   aiCheckedAt?: true
-  plusMinutes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -254,6 +264,8 @@ export type StopGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type StopGroupByOutputType = {
   id: string
   routeId: string
+  sequence: number
+  plusMinutes: number
   nameRaw: string
   nameNormalized: string | null
   city: string | null
@@ -263,7 +275,6 @@ export type StopGroupByOutputType = {
   aiConfidence: number | null
   needsReview: boolean
   aiCheckedAt: Date | null
-  plusMinutes: number
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -295,6 +306,8 @@ export type StopWhereInput = {
   NOT?: Prisma.StopWhereInput | Prisma.StopWhereInput[]
   id?: Prisma.StringFilter<"Stop"> | string
   routeId?: Prisma.StringFilter<"Stop"> | string
+  sequence?: Prisma.IntFilter<"Stop"> | number
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   nameRaw?: Prisma.StringFilter<"Stop"> | string
   nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
   city?: Prisma.StringNullableFilter<"Stop"> | string | null
@@ -304,7 +317,6 @@ export type StopWhereInput = {
   aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
   needsReview?: Prisma.BoolFilter<"Stop"> | boolean
   aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
-  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
@@ -316,6 +328,8 @@ export type StopWhereInput = {
 export type StopOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   nameRaw?: Prisma.SortOrder
   nameNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -325,7 +339,6 @@ export type StopOrderByWithRelationInput = {
   aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
   needsReview?: Prisma.SortOrder
   aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -336,10 +349,13 @@ export type StopOrderByWithRelationInput = {
 
 export type StopWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  routeId_sequence?: Prisma.StopRouteIdSequenceCompoundUniqueInput
   AND?: Prisma.StopWhereInput | Prisma.StopWhereInput[]
   OR?: Prisma.StopWhereInput[]
   NOT?: Prisma.StopWhereInput | Prisma.StopWhereInput[]
   routeId?: Prisma.StringFilter<"Stop"> | string
+  sequence?: Prisma.IntFilter<"Stop"> | number
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   nameRaw?: Prisma.StringFilter<"Stop"> | string
   nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
   city?: Prisma.StringNullableFilter<"Stop"> | string | null
@@ -349,18 +365,19 @@ export type StopWhereUniqueInput = Prisma.AtLeast<{
   aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
   needsReview?: Prisma.BoolFilter<"Stop"> | boolean
   aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
-  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
   ticketsAsOrigin?: Prisma.TicketListRelationFilter
   ticketsAsDestination?: Prisma.TicketListRelationFilter
-}, "id">
+}, "id" | "routeId_sequence">
 
 export type StopOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   nameRaw?: Prisma.SortOrder
   nameNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -370,7 +387,6 @@ export type StopOrderByWithAggregationInput = {
   aiConfidence?: Prisma.SortOrderInput | Prisma.SortOrder
   needsReview?: Prisma.SortOrder
   aiCheckedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -387,6 +403,8 @@ export type StopScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StopScalarWhereWithAggregatesInput | Prisma.StopScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Stop"> | string
   routeId?: Prisma.StringWithAggregatesFilter<"Stop"> | string
+  sequence?: Prisma.IntWithAggregatesFilter<"Stop"> | number
+  plusMinutes?: Prisma.IntWithAggregatesFilter<"Stop"> | number
   nameRaw?: Prisma.StringWithAggregatesFilter<"Stop"> | string
   nameNormalized?: Prisma.StringNullableWithAggregatesFilter<"Stop"> | string | null
   city?: Prisma.StringNullableWithAggregatesFilter<"Stop"> | string | null
@@ -396,7 +414,6 @@ export type StopScalarWhereWithAggregatesInput = {
   aiConfidence?: Prisma.FloatNullableWithAggregatesFilter<"Stop"> | number | null
   needsReview?: Prisma.BoolWithAggregatesFilter<"Stop"> | boolean
   aiCheckedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Stop"> | Date | string | null
-  plusMinutes?: Prisma.IntWithAggregatesFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Stop"> | Date | string | null
@@ -404,6 +421,8 @@ export type StopScalarWhereWithAggregatesInput = {
 
 export type StopCreateInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -413,7 +432,6 @@ export type StopCreateInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -425,6 +443,8 @@ export type StopCreateInput = {
 export type StopUncheckedCreateInput = {
   id?: string
   routeId: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -434,7 +454,6 @@ export type StopUncheckedCreateInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -444,6 +463,8 @@ export type StopUncheckedCreateInput = {
 
 export type StopUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -453,7 +474,6 @@ export type StopUpdateInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -465,6 +485,8 @@ export type StopUpdateInput = {
 export type StopUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -474,7 +496,6 @@ export type StopUncheckedUpdateInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -485,6 +506,8 @@ export type StopUncheckedUpdateInput = {
 export type StopCreateManyInput = {
   id?: string
   routeId: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -494,7 +517,6 @@ export type StopCreateManyInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -502,6 +524,8 @@ export type StopCreateManyInput = {
 
 export type StopUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -511,7 +535,6 @@ export type StopUpdateManyMutationInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -520,6 +543,8 @@ export type StopUpdateManyMutationInput = {
 export type StopUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -529,7 +554,6 @@ export type StopUncheckedUpdateManyInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -545,9 +569,16 @@ export type StopOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StopRouteIdSequenceCompoundUniqueInput = {
+  routeId: string
+  sequence: number
+}
+
 export type StopCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   nameRaw?: Prisma.SortOrder
   nameNormalized?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -557,22 +588,24 @@ export type StopCountOrderByAggregateInput = {
   aiConfidence?: Prisma.SortOrder
   needsReview?: Prisma.SortOrder
   aiCheckedAt?: Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
 export type StopAvgOrderByAggregateInput = {
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   aiConfidence?: Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
 }
 
 export type StopMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   nameRaw?: Prisma.SortOrder
   nameNormalized?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -582,7 +615,6 @@ export type StopMaxOrderByAggregateInput = {
   aiConfidence?: Prisma.SortOrder
   needsReview?: Prisma.SortOrder
   aiCheckedAt?: Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -591,6 +623,8 @@ export type StopMaxOrderByAggregateInput = {
 export type StopMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   nameRaw?: Prisma.SortOrder
   nameNormalized?: Prisma.SortOrder
   city?: Prisma.SortOrder
@@ -600,17 +634,17 @@ export type StopMinOrderByAggregateInput = {
   aiConfidence?: Prisma.SortOrder
   needsReview?: Prisma.SortOrder
   aiCheckedAt?: Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
 export type StopSumOrderByAggregateInput = {
+  sequence?: Prisma.SortOrder
+  plusMinutes?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   aiConfidence?: Prisma.SortOrder
-  plusMinutes?: Prisma.SortOrder
 }
 
 export type StopScalarRelationFilter = {
@@ -660,6 +694,14 @@ export type StopUncheckedUpdateManyWithoutRouteNestedInput = {
   deleteMany?: Prisma.StopScalarWhereInput | Prisma.StopScalarWhereInput[]
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -682,14 +724,6 @@ export type NullableFloatFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type StopCreateNestedOneWithoutTicketsAsOriginInput = {
@@ -722,6 +756,8 @@ export type StopUpdateOneRequiredWithoutTicketsAsDestinationNestedInput = {
 
 export type StopCreateWithoutRouteInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -731,7 +767,6 @@ export type StopCreateWithoutRouteInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -741,6 +776,8 @@ export type StopCreateWithoutRouteInput = {
 
 export type StopUncheckedCreateWithoutRouteInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -750,7 +787,6 @@ export type StopUncheckedCreateWithoutRouteInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -790,6 +826,8 @@ export type StopScalarWhereInput = {
   NOT?: Prisma.StopScalarWhereInput | Prisma.StopScalarWhereInput[]
   id?: Prisma.StringFilter<"Stop"> | string
   routeId?: Prisma.StringFilter<"Stop"> | string
+  sequence?: Prisma.IntFilter<"Stop"> | number
+  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   nameRaw?: Prisma.StringFilter<"Stop"> | string
   nameNormalized?: Prisma.StringNullableFilter<"Stop"> | string | null
   city?: Prisma.StringNullableFilter<"Stop"> | string | null
@@ -799,7 +837,6 @@ export type StopScalarWhereInput = {
   aiConfidence?: Prisma.FloatNullableFilter<"Stop"> | number | null
   needsReview?: Prisma.BoolFilter<"Stop"> | boolean
   aiCheckedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
-  plusMinutes?: Prisma.IntFilter<"Stop"> | number
   createdAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stop"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Stop"> | Date | string | null
@@ -807,6 +844,8 @@ export type StopScalarWhereInput = {
 
 export type StopCreateWithoutTicketsAsOriginInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -816,7 +855,6 @@ export type StopCreateWithoutTicketsAsOriginInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -827,6 +865,8 @@ export type StopCreateWithoutTicketsAsOriginInput = {
 export type StopUncheckedCreateWithoutTicketsAsOriginInput = {
   id?: string
   routeId: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -836,7 +876,6 @@ export type StopUncheckedCreateWithoutTicketsAsOriginInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -850,6 +889,8 @@ export type StopCreateOrConnectWithoutTicketsAsOriginInput = {
 
 export type StopCreateWithoutTicketsAsDestinationInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -859,7 +900,6 @@ export type StopCreateWithoutTicketsAsDestinationInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -870,6 +910,8 @@ export type StopCreateWithoutTicketsAsDestinationInput = {
 export type StopUncheckedCreateWithoutTicketsAsDestinationInput = {
   id?: string
   routeId: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -879,7 +921,6 @@ export type StopUncheckedCreateWithoutTicketsAsDestinationInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -904,6 +945,8 @@ export type StopUpdateToOneWithWhereWithoutTicketsAsOriginInput = {
 
 export type StopUpdateWithoutTicketsAsOriginInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -913,7 +956,6 @@ export type StopUpdateWithoutTicketsAsOriginInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -924,6 +966,8 @@ export type StopUpdateWithoutTicketsAsOriginInput = {
 export type StopUncheckedUpdateWithoutTicketsAsOriginInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -933,7 +977,6 @@ export type StopUncheckedUpdateWithoutTicketsAsOriginInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -953,6 +996,8 @@ export type StopUpdateToOneWithWhereWithoutTicketsAsDestinationInput = {
 
 export type StopUpdateWithoutTicketsAsDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -962,7 +1007,6 @@ export type StopUpdateWithoutTicketsAsDestinationInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -973,6 +1017,8 @@ export type StopUpdateWithoutTicketsAsDestinationInput = {
 export type StopUncheckedUpdateWithoutTicketsAsDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -982,7 +1028,6 @@ export type StopUncheckedUpdateWithoutTicketsAsDestinationInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -991,6 +1036,8 @@ export type StopUncheckedUpdateWithoutTicketsAsDestinationInput = {
 
 export type StopCreateManyRouteInput = {
   id?: string
+  sequence: number
+  plusMinutes?: number
   nameRaw: string
   nameNormalized?: string | null
   city?: string | null
@@ -1000,7 +1047,6 @@ export type StopCreateManyRouteInput = {
   aiConfidence?: number | null
   needsReview?: boolean
   aiCheckedAt?: Date | string | null
-  plusMinutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1008,6 +1054,8 @@ export type StopCreateManyRouteInput = {
 
 export type StopUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1017,7 +1065,6 @@ export type StopUpdateWithoutRouteInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1027,6 +1074,8 @@ export type StopUpdateWithoutRouteInput = {
 
 export type StopUncheckedUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1036,7 +1085,6 @@ export type StopUncheckedUpdateWithoutRouteInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1046,6 +1094,8 @@ export type StopUncheckedUpdateWithoutRouteInput = {
 
 export type StopUncheckedUpdateManyWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   nameRaw?: Prisma.StringFieldUpdateOperationsInput | string
   nameNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1055,7 +1105,6 @@ export type StopUncheckedUpdateManyWithoutRouteInput = {
   aiConfidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   needsReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
   aiCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plusMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1104,6 +1153,8 @@ export type StopCountOutputTypeCountTicketsAsDestinationArgs<ExtArgs extends run
 export type StopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  sequence?: boolean
+  plusMinutes?: boolean
   nameRaw?: boolean
   nameNormalized?: boolean
   city?: boolean
@@ -1113,7 +1164,6 @@ export type StopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   aiConfidence?: boolean
   needsReview?: boolean
   aiCheckedAt?: boolean
-  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1126,6 +1176,8 @@ export type StopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type StopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  sequence?: boolean
+  plusMinutes?: boolean
   nameRaw?: boolean
   nameNormalized?: boolean
   city?: boolean
@@ -1135,7 +1187,6 @@ export type StopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   aiConfidence?: boolean
   needsReview?: boolean
   aiCheckedAt?: boolean
-  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1145,6 +1196,8 @@ export type StopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type StopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   routeId?: boolean
+  sequence?: boolean
+  plusMinutes?: boolean
   nameRaw?: boolean
   nameNormalized?: boolean
   city?: boolean
@@ -1154,7 +1207,6 @@ export type StopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   aiConfidence?: boolean
   needsReview?: boolean
   aiCheckedAt?: boolean
-  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1164,6 +1216,8 @@ export type StopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type StopSelectScalar = {
   id?: boolean
   routeId?: boolean
+  sequence?: boolean
+  plusMinutes?: boolean
   nameRaw?: boolean
   nameNormalized?: boolean
   city?: boolean
@@ -1173,13 +1227,12 @@ export type StopSelectScalar = {
   aiConfidence?: boolean
   needsReview?: boolean
   aiCheckedAt?: boolean
-  plusMinutes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type StopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "nameRaw" | "nameNormalized" | "city" | "province" | "latitude" | "longitude" | "aiConfidence" | "needsReview" | "aiCheckedAt" | "plusMinutes" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["stop"]>
+export type StopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routeId" | "sequence" | "plusMinutes" | "nameRaw" | "nameNormalized" | "city" | "province" | "latitude" | "longitude" | "aiConfidence" | "needsReview" | "aiCheckedAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["stop"]>
 export type StopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
   ticketsAsOrigin?: boolean | Prisma.Stop$ticketsAsOriginArgs<ExtArgs>
@@ -1203,6 +1256,8 @@ export type $StopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     routeId: string
+    sequence: number
+    plusMinutes: number
     nameRaw: string
     nameNormalized: string | null
     city: string | null
@@ -1212,7 +1267,6 @@ export type $StopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     aiConfidence: number | null
     needsReview: boolean
     aiCheckedAt: Date | null
-    plusMinutes: number
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1644,6 +1698,8 @@ export interface Prisma__StopClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface StopFieldRefs {
   readonly id: Prisma.FieldRef<"Stop", 'String'>
   readonly routeId: Prisma.FieldRef<"Stop", 'String'>
+  readonly sequence: Prisma.FieldRef<"Stop", 'Int'>
+  readonly plusMinutes: Prisma.FieldRef<"Stop", 'Int'>
   readonly nameRaw: Prisma.FieldRef<"Stop", 'String'>
   readonly nameNormalized: Prisma.FieldRef<"Stop", 'String'>
   readonly city: Prisma.FieldRef<"Stop", 'String'>
@@ -1653,7 +1709,6 @@ export interface StopFieldRefs {
   readonly aiConfidence: Prisma.FieldRef<"Stop", 'Float'>
   readonly needsReview: Prisma.FieldRef<"Stop", 'Boolean'>
   readonly aiCheckedAt: Prisma.FieldRef<"Stop", 'DateTime'>
-  readonly plusMinutes: Prisma.FieldRef<"Stop", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Stop", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Stop", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Stop", 'DateTime'>

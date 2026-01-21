@@ -68,12 +68,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -96,6 +96,8 @@ export type RouteScalarFieldEnum = (typeof RouteScalarFieldEnum)[keyof typeof Ro
 export const StopScalarFieldEnum = {
   id: 'id',
   routeId: 'routeId',
+  sequence: 'sequence',
+  plusMinutes: 'plusMinutes',
   nameRaw: 'nameRaw',
   nameNormalized: 'nameNormalized',
   city: 'city',
@@ -105,7 +107,6 @@ export const StopScalarFieldEnum = {
   aiConfidence: 'aiConfidence',
   needsReview: 'needsReview',
   aiCheckedAt: 'aiCheckedAt',
-  plusMinutes: 'plusMinutes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -235,8 +236,8 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const NullableJsonNullValueInput = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
@@ -251,9 +252,9 @@ export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 export const JsonNullValueFilter = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull',
-  AnyNull: 'AnyNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]

@@ -71,6 +71,9 @@ model Stop {
   id      String @id @default(uuid())
   routeId String
 
+  sequence    Int // orden lógico de la parada en la ruta
+  plusMinutes Int @default(0) // minutos desde la parada anterior
+
   nameRaw        String
   nameNormalized String?
   city           String?
@@ -83,8 +86,6 @@ model Stop {
   needsReview  Boolean   @default(false)
   aiCheckedAt  DateTime?
 
-  plusMinutes Int @default(0)
-
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -94,6 +95,7 @@ model Stop {
   ticketsAsOrigin      Ticket[] @relation("TicketOrigin")
   ticketsAsDestination Ticket[] @relation("TicketDestination")
 
+  @@unique([routeId, sequence])
   @@index([routeId])
   @@index([nameNormalized])
   @@index([city, province])
