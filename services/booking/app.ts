@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { prisma } from './src/libs/prisma';
 
 import routesRoutes from './src/modules/routes/routes.routes';
+import stopsRoutes from './src/modules/stops/stops.routes';
 
 import { contextMiddleware } from './src/middlewares/context.Middleware';
 
@@ -37,6 +38,7 @@ app.use(
 );
 
 app.use('/routes', routesRoutes);
+app.use('/stops', stopsRoutes);
 
 async function start(): Promise<void> {
   try {
