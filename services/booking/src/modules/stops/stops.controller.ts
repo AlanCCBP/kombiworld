@@ -52,7 +52,12 @@ export class StopsController {
       const companyId = req.companyId!;
       const { routeId, id } = req.params;
 
-      await StopsService.softDelete(companyId, routeId, id);
+      const result = await StopsService.softDelete(companyId, routeId, id);
+
+      if (result.count === 0) {
+        return res.status(404).json({ message: 'Stop not found' });
+      }
+
       res.status(204).send();
     } catch (error) {
       console.error('[StopsController.remove]', error);
