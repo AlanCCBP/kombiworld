@@ -1,11 +1,7 @@
 import { prisma } from '@/src/libs/prisma';
 import { TicketStatus, TripStatus } from '@/prisma/generated/prisma/enums';
 import { CreateTicketInput } from './tickets.types';
-
-const SELLABLE_TRIP_STATUSES = new Set<TripStatus>([
-  TripStatus.SCHEDULED,
-  TripStatus.BOARDING,
-]);
+import { SELLABLE_TRIP_STATUSES } from '../trips/trips.types';
 
 class TicketsService {
   async createTicket(data: CreateTicketInput, companyId: string) {

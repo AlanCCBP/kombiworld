@@ -8,3 +8,8 @@ export type UpsertTripInput = {
   capacity: number;
   status?: TripStatus;
 };
+
+export const SELLABLE_TRIP_STATUSES = new Set<TripStatus>([
+  TripStatus.SCHEDULED,
+  TripStatus.BOARDING,
+]);

@@ -147,10 +147,9 @@ model Ticket {
 
   trip Trip @relation(fields: [tripId], references: [id])
 
-  originStop      Stop @relation("TicketOrigin", fields: [originStopId], references: [id])
-  destinationStop Stop @relation("TicketDestination", fields: [destinationStopId], references: [id])
-
-  journeyLeg JourneyLeg?
+  originStop      Stop        @relation("TicketOrigin", fields: [originStopId], references: [id])
+  destinationStop Stop        @relation("TicketDestination", fields: [destinationStopId], references: [id])
+  journeyLeg      JourneyLeg?
 
   @@index([tripId])
   @@index([passengerId])
