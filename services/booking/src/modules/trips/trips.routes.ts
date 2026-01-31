@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import tripController from '../controllers/tripController';
+import tripsController from './trips.controller';
 
 const router = Router();
 
-router.post('/', tripController.upsertTrip);
-router.get('/', tripController.getTrips);
-router.get('/:tripId', tripController.getTripById);
-router.delete('/:tripId', tripController.deleteTrip);
+router.post('/', tripsController.upsertTrip);
+router.get('/', tripsController.getTrips);
+router.get('/:tripId', tripsController.getTripById);
+router.delete('/:tripId', tripsController.deleteTrip);
 
 export default router;

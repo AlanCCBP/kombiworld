@@ -8,10 +8,12 @@ const router = Router();
 router.use(authenticate);
 router.use(requireCompanyContext);
 
-router.post('/', StopsController.create);
+router.post('/route/:routeId', StopsController.create);
 
-router.get('/route/:routeId', StopsController.getById);
+router.get('/route/:routeId', StopsController.getAll);
 
-router.delete('/:id', StopsController.remove);
+router.get('/route/:routeId/:id', StopsController.getById);
+
+router.delete('/route/:routeId/:id', StopsController.remove);
 
 export default router;

@@ -38,7 +38,7 @@ export class StopsService {
         },
       },
       orderBy: {
-        plusMinutes: 'asc',
+        sequence: 'asc',
       },
     });
   }
